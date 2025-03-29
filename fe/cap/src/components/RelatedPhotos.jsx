@@ -1,5 +1,5 @@
 import React from "react";
-import GalleryItem from "./GalleryItem";
+import EventItem from "./EventItem";
 
 const RelatedPhotos = () => {
 	const relatedPhotos = [
@@ -40,7 +40,7 @@ const RelatedPhotos = () => {
 			</div>
 			<div className="row mb-3 tm-gallery">
 				{relatedPhotos.map((photo) => (
-					<GalleryItem key={photo.id} photo={photo} />
+					<EventItem key={photo.id} photo={photo} />
 				))}
 			</div>
 		</div>

@@ -1,8 +1,8 @@
 package com.example.funlb.controller;
 
-import com.example.funlb.entity.Category;
+//import com.example.funlb.entity.Category;
 import com.example.funlb.entity.Event;
-import com.example.funlb.service.CategoryService;
+//import com.example.funlb.service.CategoryService;
 import com.example.funlb.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ public class EventController {
     @Autowired
     private EventService eventService;
     @Autowired
-    private CategoryService categoryService;
+//    private CategoryService categoryService;
 
     @GetMapping
     public List<Event> getAllEvents() {
@@ -38,10 +38,10 @@ public class EventController {
 
     @PostMapping
     public Event createEvent(@RequestBody Event event) {
-        Set<Category> categories = event.getCategories().stream()
-                .map(category -> categoryService.getCategoryById(category.getId()))
-                .collect(Collectors.toSet());
-        event.setCategories(categories);
+//        Set<Category> categories = event.getCategories().stream()
+//                .map(category -> categoryService.getCategoryById(category.getId()))
+//                .collect(Collectors.toSet());
+//        event.setCategories(categories);
         return eventService.createEvent(event);
     }
 
@@ -49,10 +49,10 @@ public class EventController {
     public ResponseEntity<Event> updateEvent(@PathVariable UUID id, @RequestBody Event eventDetails) {
         Event updatedEvent = eventService.updateEvent(id, eventDetails);
         if (updatedEvent != null) {
-            Set<Category> categories = eventDetails.getCategories().stream()
-                    .map(category -> categoryService.getCategoryById(category.getId()))
-                    .collect(Collectors.toSet());
-            updatedEvent.setCategories(categories);
+//            Set<Category> categories = eventDetails.getCategories().stream()
+//                    .map(category -> categoryService.getCategoryById(category.getId()))
+//                    .collect(Collectors.toSet());
+//            updatedEvent.setCategories(categories);
             return ResponseEntity.ok(updatedEvent);
         }
         return ResponseEntity.notFound().build();

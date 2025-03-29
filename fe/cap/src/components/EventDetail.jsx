@@ -1,18 +1,41 @@
 import React from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-const PhotoDetail = () => {
+const EventDetail = () => {
+	const { id } = useParams();
+	const [event, setEvent] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	useEffect(() => {
+		const fetchEvent = async () => {
+			try {
+				const response = await fetch(`http://localhost:8080/api/events/${id}`);
+				if (!response.ok) throw new Error("Event not found");
+				const data = await response.json();
+				setEvent(data);
+			} catch (err) {
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchEvent();
+	}, [id]);
+
+	if (loading) return <div>Loading...</div>;
+	if (error) return <div>Error: {error}</div>;
+	if (!event) return <div>Event not found</div>;
+
 	return (
 		<div className="container-fluid tm-container-content tm-mt-60">
 			<div className="row mb-4">
-				<h2 className="col-12 tm-text-primary">Photo title goes here</h2>
+				<h2 className="col-12 tm-text-primary">{event.title}</h2>
 			</div>
 			<div className="row tm-mb-90">
 				<div className="col-xl-8 col-lg-7 col-md-6 col-sm-12">
-					<img
-						src="/src/assets/img/img-01-big.jpg"
-						alt="Image"
-						className="img-fluid"
-					/>
+					<img src={event.image} alt="Image" className="img-fluid" />
 				</div>
 				<div className="col-xl-4 col-lg-5 col-md-6 col-sm-12">
 					<div className="tm-bg-gray tm-video-details">
@@ -81,4 +104,4 @@ const PhotoDetail = () => {
 	);
 };
 
-export default PhotoDetail;
+export default EventDetail;

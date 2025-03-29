@@ -5,8 +5,8 @@ const Navbar = () => {
 		<nav className="navbar navbar-expand-lg">
 			<div className="container-fluid">
 				<a className="navbar-brand" href="#">
-					<i className="fas fa-film mr-2"></i>
-					Catalog-Z
+					<i className="fas fa-dice mr-2"></i>
+					FunLB
 				</a>
 				<button
 					className="navbar-toggler"

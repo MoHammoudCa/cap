@@ -6,6 +6,8 @@ import "./assets/css/login.css";
 import "./assets/fontawesome/css/all.min.css";
 import "./assets/css/templatemo-style.css";
 import "./assets/js/plugins.js";
+import "./assets/css/profile.css";
+import "./assets/css/addEvent.css";
 // import "./assets/js/login.js";
 
 createRoot(document.getElementById("root")).render(
