@@ -1,52 +1,27 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import "boxicons";
-import { AuthContext } from "../contexts/auth.context";
-import { useNavigate } from "react-router-dom";
 
 const SignupForm = ({ switchToLogin }) => {
-	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
-	const [error, setError] = useState("");
-	const { register } = useContext(AuthContext);
-	const navigate = useNavigate();
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		setError("");
-
 		if (password !== confirmPassword) {
-			setError("Passwords do not match!");
+			alert("Passwords do not match!");
 			return;
 		}
-
-		const result = await register(name, email, password);
-		if (result.success) {
-			navigate("/login");
-			switchToLogin();
-		} else {
-			setError(result.message || "Registration failed. Please try again.");
-		}
+		console.log("Signup Data:", { email, password });
+		// Add your signup logic here
 	};
 
 	return (
 		<div className="form signup">
 			<div className="form-content">
 				<header>Signup</header>
-				{error && <div className="error-message">{error}</div>}
 				<form onSubmit={handleSubmit}>
-					<div className="field input-field">
-						<input
-							type="text"
-							placeholder="Full Name"
-							className="input"
-							value={name}
-							onChange={(e) => setName(e.target.value)}
-							required
-						/>
-					</div>
 					<div className="field input-field">
 						<input
 							type="email"

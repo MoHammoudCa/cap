@@ -9,14 +9,10 @@ import "./assets/js/plugins.js";
 import "./assets/css/profile.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/css/addEvent.css";
-import { AuthProvider } from "./contexts/auth.context.jsx";
-
 // import "./assets/js/login.js";
 
 createRoot(document.getElementById("root")).render(
 	<StrictMode>
-		<AuthProvider>
-			<App />
-		</AuthProvider>
+		<App />
 	</StrictMode>
 );
