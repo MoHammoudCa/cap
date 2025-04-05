@@ -9,9 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/events")
@@ -19,12 +17,17 @@ public class EventController {
 
     @Autowired
     private EventService eventService;
-    @Autowired
+//    @Autowired
 //    private CategoryService categoryService;
 
-    @GetMapping
+    @GetMapping("/search/")
     public List<Event> getAllEvents() {
         return eventService.getAllEvents();
+    }
+
+    @GetMapping("/search/{searchQuery}")
+    public List<Event> getFilteredEvents(@PathVariable String searchQuery) {
+        return eventService.getFilteredEvents(searchQuery);
     }
 
     @GetMapping("/{id}")

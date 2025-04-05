@@ -32,7 +32,7 @@ public class EventService {
             event.setTitle(eventDetails.getTitle());
             event.setDescription(eventDetails.getDescription());
             event.setLocation(eventDetails.getLocation());
-            event.setCategory(eventDetails.getCategory());
+            event.setCategories(eventDetails.getCategories());
             event.setDate(eventDetails.getDate());
             event.setImage(eventDetails.getImage());
             return eventRepository.save(event);
@@ -42,5 +42,19 @@ public class EventService {
 
     public void deleteEvent(UUID id) {
         eventRepository.deleteById(id);
+    }
+
+    public List<Event> getFilteredEvents(String searchQuery){
+        if (searchQuery==null || searchQuery.isBlank()){
+            return getAllEvents();
+        }
+        return getAllEvents().stream().filter(event -> event.getTitle()!= null &&  event.getTitle().toLowerCase().contains(searchQuery.toLowerCase())
+                || event.getCategories()!= null &&  event.getCategories().toLowerCase().contains(searchQuery.toLowerCase())
+                || event.getOrganizer()!= null && event.getOrganizer().getName().toLowerCase().contains(searchQuery.toLowerCase()))
+                .toList();
+    }
+
+    public List<Event> getEventsByUser(UUID userId){
+        return getAllEvents().stream().filter(event -> event.getOrganizer().getId().equals(userId)).toList();
     }
 }

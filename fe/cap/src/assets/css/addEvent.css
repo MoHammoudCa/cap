@@ -95,3 +95,31 @@
 		margin: 1rem;
 	}
 }
+
+.image-previewTag {
+	width: 100%;
+}
+
+.categories-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 8px;
+}
+
+.category-chip {
+	padding: 6px 12px;
+	background: #e0e0e0;
+	border-radius: 16px;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.category-chip.selected {
+	background: #007bff;
+	color: white;
+}
+
+.category-chip:hover {
+	opacity: 0.9;
+}

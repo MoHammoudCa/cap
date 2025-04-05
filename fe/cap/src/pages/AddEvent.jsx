@@ -10,12 +10,13 @@ const AddEvent = () => {
 		description: "",
 		location: "",
 		date: "",
-		category: "",
+		categories: "",
 		image: "",
 	});
 	const [errors, setErrors] = useState({});
 	const [isSubmitting, setIsSubmitting] = useState(false);
 	const [imagePreview, setImagePreview] = useState("");
+	const [selectedCategories, setSelectedCategories] = useState([]);
 
 	const categories = [
 		"Music",
@@ -28,6 +29,23 @@ const AddEvent = () => {
 		"Health",
 		"Other",
 	];
+
+	const handleCategoryChange = (category) => {
+		setSelectedCategories((prev) => {
+			if (prev.includes(category)) {
+				return prev.filter((c) => c !== category);
+			} else {
+				return [...prev, category];
+			}
+		});
+
+		setFormData((prev) => ({
+			...prev,
+			categories: selectedCategories.includes(category)
+				? selectedCategories.filter((c) => c !== category).join(",")
+				: [...selectedCategories, category].join(","),
+		}));
+	};
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -77,7 +95,7 @@ const AddEvent = () => {
 			newErrors.description = "Description is required";
 		if (!formData.location.trim()) newErrors.location = "Location is required";
 		if (!formData.date) newErrors.date = "Date is required";
-		if (!formData.category) newErrors.category = "Category is required";
+		if (!formData.categories) newErrors.categories = "Category is required";
 		return newErrors;
 	};
 
@@ -175,23 +193,22 @@ const AddEvent = () => {
 						)}
 					</div>
 					<div className="form-group">
-						<label htmlFor="category">Category*</label>
-						<select
-							id="category"
-							name="category"
-							value={formData.category}
-							onChange={handleChange}
-							className={errors.category ? "error" : ""}
-						>
-							<option value="">Select a category</option>
+						<label>Categories*</label>
+						<div className="categories-container">
 							{categories.map((category) => (
-								<option key={category} value={category}>
+								<div
+									key={category}
+									className={`category-chip ${
+										selectedCategories.includes(category) ? "selected" : ""
+									}`}
+									onClick={() => handleCategoryChange(category)}
+								>
 									{category}
-								</option>
+								</div>
 							))}
-						</select>
-						{errors.category && (
-							<span className="error-message">{errors.category}</span>
+						</div>
+						{errors.categories && (
+							<span className="error-message">{errors.categories}</span>
 						)}
 					</div>
 					<div className="form-group">
@@ -209,7 +226,11 @@ const AddEvent = () => {
 						)}
 						{imagePreview && (
 							<div className="image-preview">
-								<img src={imagePreview} alt="Preview" />
+								<img
+									className="image-previewTag"
+									src={imagePreview}
+									alt="Preview"
+								/>
 								{formData.image && (
 									<span className="upload-success">
 										✓ Image uploaded successfully
@@ -219,7 +240,7 @@ const AddEvent = () => {
 						)}
 					</div>
 					<div className="form-actions">
-						<button type="submit" disabled={isSubmitting || !formData.image}>
+						<button type="submit" disabled={isSubmitting}>
 							{isSubmitting ? "Creating..." : "Create Event"}
 						</button>
 					</div>

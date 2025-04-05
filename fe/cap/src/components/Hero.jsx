@@ -3,7 +3,7 @@ const Hero = () => {
 		<div
 			className="tm-hero d-flex justify-content-center align-items-center"
 			data-parallax="scroll"
-			data-image-src="/src/assets/img/hero.jpg"
+			// data-image-src="/src/assets/img/hero.jpg"
 		>
 			<form className="d-flex tm-search-form">
 				<input

@@ -3,6 +3,8 @@ package com.example.funlb.entity;
 import lombok.Data;
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -16,7 +18,7 @@ public class Event {
     private String title;
     private String description;
     private String location;
-    private String category;
+    private String categories;
     private Timestamp date;
     private String image;
 

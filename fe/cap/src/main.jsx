@@ -7,6 +7,7 @@ import "./assets/fontawesome/css/all.min.css";
 import "./assets/css/templatemo-style.css";
 import "./assets/js/plugins.js";
 import "./assets/css/profile.css";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "./assets/css/addEvent.css";
 // import "./assets/js/login.js";
 

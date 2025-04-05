@@ -10,7 +10,9 @@ const Events = () => {
 	useEffect(() => {
 		const fetchEvents = async () => {
 			try {
-				const response = await fetch("http://localhost:8080/api/events");
+				const response = await fetch(
+					"http://localhost:8080/api/events/search/"
+				);
 				if (!response.ok) {
 					throw new Error("Network response was not ok");
 				}
@@ -36,7 +38,7 @@ const Events = () => {
 
 	return (
 		<div className="container-fluid tm-container-content tm-mt-60">
-			<div className="row mb-4">
+			{/* <div className="row mb-4">
 				<h2 className="col-6 tm-text-primary">Latest Events</h2>
 				<div className="col-6 d-flex justify-content-end align-items-center">
 					<form action="" className="tm-text-primary">
@@ -50,13 +52,13 @@ const Events = () => {
 						of 200
 					</form>
 				</div>
-			</div>
-			<div className="row tm-mb-90 tm-gallery">
+			</div> */}
+			<div className="row tm-mb-90 tm-gallery" style={{ margin: "40px" }}>
 				{events.map((event) => (
 					<EventItem key={event.id} event={event} />
 				))}
 			</div>
-			<Pagination />
+			{/* <Pagination /> */}
 		</div>
 	);
 };
