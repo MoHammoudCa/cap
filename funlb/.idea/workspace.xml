@@ -5,22 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../fe/cap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/css/addEvent.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/assets/css/addEvent.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/css/templatemo-style.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/assets/css/templatemo-style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Hero.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Hero.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/AddEvent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/AddEvent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/JwtResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/MessageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/SignupRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/JwtUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/UserDetailsServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/UserRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,6 +89,7 @@
       <workItem from="1743155182131" duration="3389000" />
       <workItem from="1743700283887" duration="5044000" />
       <workItem from="1743772651342" duration="1477000" />
+      <workItem from="1743859076026" duration="8834000" />
     </task>
     <servers />
   </component>

@@ -1,21 +1,34 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "boxicons";
+
+import { AuthContext } from "../contexts/auth.context";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ switchToSignup }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [error, setError] = useState("");
+	const { login } = useContext(AuthContext);
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("Login Data:", { email, password });
-		// Add your login logic here
+		setError("");
+
+		const result = await login(email, password);
+		if (result.success) {
+			navigate("/");
+		} else {
+			setError(result.message || "Login failed. Please try again.");
+		}
 	};
 
 	return (
 		<div className="form login">
 			<div className="form-content">
 				<header>Login</header>
+				{error && <div className="error-message">{error}</div>}
 				<form onSubmit={handleSubmit}>
 					<div className="field input-field">
 						<input
