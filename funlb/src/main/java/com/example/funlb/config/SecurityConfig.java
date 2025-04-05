@@ -1,6 +1,6 @@
 package com.example.funlb.config;
 
-import com.example.funlb.service.UserService;
+//import com.example.funlb.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +30,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
 
-    private final UserService userService;
+//    private final UserService userService;
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((authorize) ->
                         //authorize.anyRequest().authenticated()
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
-                                .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/auth/signup").permitAll()
                                 .anyRequest().authenticated()
 
                 );
