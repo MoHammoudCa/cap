@@ -1,11 +1,14 @@
 package com.example.funlb.service;
 
 import com.example.funlb.entity.Event;
+import com.example.funlb.entity.User;
 import com.example.funlb.repository.EventRepository;
+import com.example.funlb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -13,6 +16,8 @@ public class EventService {
 
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     public List<Event> getAllEvents() {
         return eventRepository.findAll();
@@ -22,7 +27,10 @@ public class EventService {
         return eventRepository.findById(id).orElse(null);
     }
 
-    public Event createEvent(Event event) {
+    public Event createEvent(Event event, UUID creatorId) {
+        Optional<User> userOptional = userRepository.findById(creatorId);
+        User creator = userOptional.get();
+        event.setOrganizer(creator);
         return eventRepository.save(event);
     }
 

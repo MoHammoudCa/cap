@@ -1,27 +1,54 @@
 import React, { useState } from "react";
 import "boxicons";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const SignupForm = ({ switchToLogin }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [name, setName] = useState("");
+	const [error, setError] = useState("");
+	const { register } = useAuth();
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password !== confirmPassword) {
-			alert("Passwords do not match!");
-			return;
+		try {
+			if (password !== confirmPassword) {
+				alert("Passwords do not match!");
+				return;
+			}
+			const userData = {
+				email,
+				password,
+				name,
+				role: "USER",
+			};
+			await register(userData);
+			navigate("/");
+		} catch (err) {
+			setError(err.message || "signup failed");
 		}
-		console.log("Signup Data:", { email, password });
-		// Add your signup logic here
 	};
 
 	return (
 		<div className="form signup">
 			<div className="form-content">
 				<header>Signup</header>
+				{error && <div className="error-message">{error}</div>}
 				<form onSubmit={handleSubmit}>
+					<div className="field input-field">
+						<input
+							type="text"
+							placeholder="Name"
+							className="input"
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+							required
+						/>
+					</div>
 					<div className="field input-field">
 						<input
 							type="email"
@@ -52,10 +79,11 @@ const SignupForm = ({ switchToLogin }) => {
 							required
 						/>
 						<i
-							className={`bx ${showPassword ? "bx-show" : "bx-hide"} eye-icon`}
+							className={`fa-solid ${
+								showPassword ? "fa-eye-slash" : "fa-eye"
+							} eye-icon`}
 							onClick={() => setShowPassword(!showPassword)}
 						></i>
-						<box-icon name="rocket"></box-icon>
 					</div>
 					<div className="field button-field">
 						<button type="submit">Signup</button>

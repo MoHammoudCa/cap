@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axios";
 
 import Navbar from "../components/Navbar";
 
@@ -110,14 +111,15 @@ const AddEvent = () => {
 		setIsSubmitting(true);
 
 		try {
-			const response = await fetch("http://localhost:8080/api/events", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(formData),
-				credentials: "include",
-			});
+			const response = await api.post("/events", JSON.stringify(formData));
+			// const response = await fetch("http://localhost:8080/api/events", {
+			// 	method: "POST",
+			// 	headers: { "Content-Type": "application/json" },
+			// 	body: JSON.stringify(formData),
+			// 	credentials: "include",
+			// });
 
-			if (!response.ok) throw new Error("Failed to create event");
+			if (response.status !== 200) throw new Error("Failed to create event");
 			navigate("/events");
 		} catch (error) {
 			console.error("Error:", error);

@@ -1,21 +1,31 @@
 import React, { useState } from "react";
 import "boxicons";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = ({ switchToSignup }) => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [showPassword, setShowPassword] = useState(false);
+	const [error, setError] = useState("");
+	const { login } = useAuth();
+	const navigate = useNavigate();
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		console.log("Login Data:", { email, password });
-		// Add your login logic here
+		try {
+			await login(email, password);
+			navigate("/");
+		} catch (err) {
+			setError(err.message || "login failed");
+		}
 	};
 
 	return (
 		<div className="form login">
 			<div className="form-content">
 				<header>Login</header>
+				{error && <div className="error-message">{error}</div>}
 				<form onSubmit={handleSubmit}>
 					<div className="field input-field">
 						<input
@@ -36,8 +46,14 @@ const LoginForm = ({ switchToSignup }) => {
 							onChange={(e) => setPassword(e.target.value)}
 							required
 						/>
-						<i
+						{/* <i
 							className={`bx ${showPassword ? "bx-show" : "bx-hide"} eye-icon`}
+							onClick={() => setShowPassword(!showPassword)}
+						></i> */}
+						<i
+							className={`fa-solid ${
+								showPassword ? "fa-eye-slash" : "fa-eye"
+							} eye-icon`}
 							onClick={() => setShowPassword(!showPassword)}
 						></i>
 					</div>
