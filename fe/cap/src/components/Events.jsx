@@ -53,7 +53,7 @@ const Events = () => {
 					</form>
 				</div>
 			</div> */}
-			<div className="row tm-mb-90 tm-gallery" style={{ margin: "40px" }}>
+			<div className="row tm-mb-90 tm-gallery">
 				{events.map((event) => (
 					<EventItem key={event.id} event={event} />
 				))}

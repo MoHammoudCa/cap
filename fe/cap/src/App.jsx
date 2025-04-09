@@ -7,6 +7,8 @@ import Profile from "./pages/Profile";
 import AddEvent from "./pages/AddEvent";
 import EventDetailPage from "./pages/EventDetailPage";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
 
 const userData = {
 	id: "550e8400-e29b-41d4-a716-446655440000",
@@ -28,6 +30,8 @@ const App = () => {
 				<Route element={<ProtectedRoute />}>
 					<Route path="/add-event" element={<AddEvent />} />
 				</Route>
+				<Route path="/about" element={<About />} />
+				<Route path="/contact" element={<Contact />} />
 				<Route path="/event/:id" element={<EventDetailPage />} />
 			</Routes>
 		</Router>

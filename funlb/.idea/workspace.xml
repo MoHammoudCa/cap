@@ -7,17 +7,16 @@
     <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../fe/cap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/cap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/AddEvent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/AddEvent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Hero.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Hero.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/FunlbApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/FunlbApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,6 +87,7 @@
       <workItem from="1743155182131" duration="3389000" />
       <workItem from="1743700283887" duration="5044000" />
       <workItem from="1743772651342" duration="1477000" />
+      <workItem from="1744026865751" duration="2997000" />
     </task>
     <servers />
   </component>
