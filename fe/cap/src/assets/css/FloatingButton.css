@@ -1,0 +1,49 @@
+.floating-button-container {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	z-index: 1000;
+}
+
+.floating-button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	cursor: pointer;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
+	padding: 0;
+}
+
+.floating-button:hover {
+	transform: scale(1.1);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.floating-button:active {
+	transform: scale(0.95);
+}
+
+.floating-button:disabled {
+	background-color: #cccccc !important;
+	cursor: not-allowed;
+	transform: none;
+	box-shadow: none;
+}
+
+.floating-button-text {
+	color: white;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 6px 12px;
+	border-radius: 20px;
+	font-size: 14px;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+	pointer-events: none;
+}
+
+.floating-button-container:hover .floating-button-text {
+	opacity: 1;
+}

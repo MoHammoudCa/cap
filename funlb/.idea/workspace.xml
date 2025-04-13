@@ -5,17 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../fe/cap/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/LikeRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/cap/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Hero.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Hero.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Navbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Navbar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/CustomUserDetailsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/CustomUserDetailsService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -88,6 +94,8 @@
       <workItem from="1743700283887" duration="5044000" />
       <workItem from="1743772651342" duration="1477000" />
       <workItem from="1744026865751" duration="2997000" />
+      <workItem from="1744202118681" duration="7546000" />
+      <workItem from="1744521015317" duration="5045000" />
     </task>
     <servers />
   </component>

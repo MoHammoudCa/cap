@@ -2,9 +2,14 @@ package com.example.funlb.controller;
 
 import com.example.funlb.dto.UserDTO;
 import com.example.funlb.entity.User;
+import com.example.funlb.repository.UserRepository;
 import com.example.funlb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +21,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public List<UserDTO> getAllUsers() {
@@ -41,13 +48,41 @@ public class UserController {
         }
     }
 
+//    @PutMapping("/{id}")
+//    public ResponseEntity<?> updateUser(@PathVariable UUID id, @RequestBody User userDetails) {
+//        User updatedUser = userService.updateUser(id, userDetails);
+//        if (updatedUser != null) {
+//            return ResponseEntity.ok("User updated successfully");
+//        }
+//        return ResponseEntity.notFound().build();
+//    }
+
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable UUID id, @RequestBody User userDetails) {
-        User updatedUser = userService.updateUser(id, userDetails);
-        if (updatedUser != null) {
-            return ResponseEntity.ok("User updated successfully");
+    public ResponseEntity<?> updateUser(
+            @PathVariable UUID id,
+            @RequestBody User userDetails,
+            @AuthenticationPrincipal UserDetails authenticatedUser) {
+
+
+        User currentUser = userRepository.findById(id).orElse(null);
+        if (currentUser == null) {
+            return ResponseEntity.notFound().build();
         }
-        return ResponseEntity.notFound().build();
+
+        // Verify the authenticated user matches the requested user ID
+        if (!authenticatedUser.getUsername().equals(id.toString())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized to update this profile");
+        }
+
+        // Update only allowed fields - exclude password
+        currentUser.setName(userDetails.getName());
+        currentUser.setEmail(userDetails.getEmail());
+        currentUser.setRole(userDetails.getRole());
+        currentUser.setProfilePicture(userDetails.getProfilePicture());
+
+        // Save without changing password
+        User updatedUser = userRepository.save(currentUser);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")

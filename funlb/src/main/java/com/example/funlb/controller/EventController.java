@@ -43,6 +43,11 @@ public class EventController {
         return eventService.getFilteredEvents(searchQuery);
     }
 
+    @GetMapping("/user/{id}")
+    public List<Event> getEventByOrganizerId(@PathVariable UUID id) {
+        return eventService.getEventsByUser(id);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventById(@PathVariable UUID id) {
         Event event = eventService.getEventById(id);

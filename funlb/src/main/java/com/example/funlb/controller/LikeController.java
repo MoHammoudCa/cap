@@ -1,5 +1,6 @@
 package com.example.funlb.controller;
 
+import com.example.funlb.dto.LikeRequest;
 import com.example.funlb.entity.Event;
 import com.example.funlb.entity.Like;
 import com.example.funlb.entity.User;
@@ -52,9 +53,9 @@ public class LikeController {
     }
 
     @PostMapping
-    public Like createLike(@RequestBody Like like, @RequestBody Event event, HttpServletRequest request ) {
+    public Like createLike(@RequestBody LikeRequest likeRequest, HttpServletRequest request ) {
         UUID userId = getUserIdFromRequest(request);
-        return likeService.createLike(like, userId, event.getId());
+        return likeService.createLike(likeRequest, userId);
     }
 
     @DeleteMapping("/{id}")

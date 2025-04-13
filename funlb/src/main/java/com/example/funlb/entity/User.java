@@ -22,7 +22,7 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String role = "USER";
+    private String role = "ROLE_USER";
     private String profilePicture = "default-profile-pic-url";
 
 }

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
+import MyEvents from "../pages/MyEvents";
 
-const Events = () => {
+const MyEventsComp = () => {
+	const userId = JSON.parse(localStorage.getItem("user")).id;
 	const [events, setEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
@@ -10,7 +12,7 @@ const Events = () => {
 		const fetchEvents = async () => {
 			try {
 				const response = await fetch(
-					"http://localhost:8080/api/events/search/"
+					"http://localhost:8080/api/events/user/" + userId
 				);
 				if (!response.ok) {
 					throw new Error("Network response was not ok");
@@ -37,29 +39,13 @@ const Events = () => {
 
 	return (
 		<div className="container-fluid tm-container-content tm-mt-60">
-			{/* <div className="row mb-4">
-				<h2 className="col-6 tm-text-primary">Latest Events</h2>
-				<div className="col-6 d-flex justify-content-end align-items-center">
-					<form action="" className="tm-text-primary">
-						Page{" "}
-						<input
-							type="text"
-							value="1"
-							size="1"
-							className="tm-input-paging tm-text-primary"
-						/>{" "}
-						of 200
-					</form>
-				</div>
-			</div> */}
 			<div className="row tm-mb-90 tm-gallery">
 				{events.map((event) => (
 					<EventItem key={event.id} event={event} />
 				))}
 			</div>
-			{/* <Pagination /> */}
 		</div>
 	);
 };
 
-export default Events;
+export default MyEventsComp;

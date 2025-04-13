@@ -1,5 +1,6 @@
 package com.example.funlb.service;
 
+import com.example.funlb.dto.LikeRequest;
 import com.example.funlb.entity.Event;
 import com.example.funlb.entity.Like;
 import com.example.funlb.entity.User;
@@ -31,14 +32,15 @@ public class LikeService {
         return likeRepository.findById(id).orElse(null);
     }
 
-    public Like createLike(Like like, UUID userId, UUID eventId) {
+    public Like createLike(LikeRequest like, UUID userId) {
         Optional<User> userOptional = userRepository.findById(userId);
-        Optional<Event> eventOptional = eventRepository.findById(eventId);
+        Optional<Event> eventOptional = eventRepository.findById(like.getEventId());
         User user = userOptional.get();
         Event event = eventOptional.get();
-        like.setEvent(event);
-        like.setUser(user);
-        return likeRepository.save(like);
+        Like l = like.getLike();
+        l.setEvent(event);
+        l.setUser(user);
+        return likeRepository.save(l);
     }
 
     public void deleteLike(UUID id) {

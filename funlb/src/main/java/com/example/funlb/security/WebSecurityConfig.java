@@ -53,9 +53,9 @@ public class WebSecurityConfig {
                 )
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/api/auth/**", "/api/test/all").permitAll() // Use 'requestMatchers' instead of 'antMatchers'
-                                .requestMatchers("/api/users/**").hasAnyRole("USER", "ADMIN")
-                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                                .requestMatchers("/api/auth/**", "/api/test/all").permitAll()
+                                .requestMatchers("/api/users/**").permitAll()
+                                .requestMatchers("/api/admin/**").permitAll()
                                 .requestMatchers("/api/events/**").permitAll()
                                 .anyRequest().authenticated()
                 );

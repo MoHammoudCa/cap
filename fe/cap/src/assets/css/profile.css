@@ -25,12 +25,80 @@
 	border-radius: 50%;
 	overflow: hidden;
 	border: 4px solid #f0f0f0;
+	position: relative;
+	cursor: pointer;
+	transition: all 0.3s ease;
+}
+
+.avatar-container:hover {
+	border-color: #4070f4;
 }
 
 .profile-avatar {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	transition: all 0.3s ease;
+}
+
+.avatar-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	color: white;
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
+
+.avatar-container:hover .avatar-overlay {
+	opacity: 1;
+}
+
+.camera-icon {
+	width: 24px;
+	height: 24px;
+	margin-bottom: 5px;
+}
+
+.change-text {
+	font-size: 0.75rem;
+	font-weight: 500;
+}
+
+.uploading-overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.7);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.spinner {
+	width: 24px;
+	height: 24px;
+	border: 3px solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	border-top-color: white;
+	animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 .profile-name {
@@ -86,6 +154,7 @@ button {
 	font-weight: 500;
 	cursor: pointer;
 	transition: all 0.2s ease;
+	font-family: "Poppins", sans-serif;
 }
 
 .edit-button {

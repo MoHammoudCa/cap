@@ -9,15 +9,7 @@ import EventDetailPage from "./pages/EventDetailPage";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-
-const userData = {
-	id: "550e8400-e29b-41d4-a716-446655440000",
-	name: "John Doe",
-	email: "john@example.com",
-	role: "USER", // or 'ORGANIZER' or 'ADMIN'
-	profile_picture: "https://example.com/path/to/image.jpg", // or null
-	created_at: "2023-01-15T10:30:00.000Z",
-};
+import MyEvents from "./pages/MyEvents";
 
 const App = () => {
 	return (
@@ -26,9 +18,10 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/photo/:id" element={<PhotoDetailPage />} />
 				<Route path="/login" element={<LoginSignup />} />
-				<Route path="/profile/:id" element={<Profile user={userData} />} />
+				<Route path="/profile/" element={<Profile />} />
 				<Route element={<ProtectedRoute />}>
 					<Route path="/add-event" element={<AddEvent />} />
+					<Route path="/my-events" element={<MyEvents />} />
 				</Route>
 				<Route path="/about" element={<About />} />
 				<Route path="/contact" element={<Contact />} />
