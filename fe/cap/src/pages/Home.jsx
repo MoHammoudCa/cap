@@ -4,6 +4,7 @@ import Hero from "../components/Hero";
 import Events from "../components/Events";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
+import SearchAndFilter from "../components/Search&Filter";
 
 const Home = () => {
 	return (
@@ -11,6 +12,7 @@ const Home = () => {
 			<Loader />
 			<Navbar />
 			<Hero />
+			<SearchAndFilter />
 			<Events />
 			<Footer />
 		</>
