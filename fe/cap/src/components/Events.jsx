@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
 
-const Events = () => {
-	const [events, setEvents] = useState([]);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+const Events = ({ finalEvents, loading, error }) => {
+	// const [events, setEvents] = useState([]);
+	// const [loading, setLoading] = useState(true);
+	// const [error, setError] = useState(null);
 
-	useEffect(() => {
-		const fetchEvents = async () => {
-			try {
-				const response = await fetch(
-					"http://localhost:8080/api/events/search/"
-				);
-				if (!response.ok) {
-					throw new Error("Network response was not ok");
-				}
-				const data = await response.json();
-				setEvents(data);
-			} catch (err) {
-				setError(err.message);
-			} finally {
-				setLoading(false);
-			}
-		};
+	// useEffect(() => {
+	// 	const fetchEvents = async () => {
+	// 		try {
+	// 			const response = await fetch(
+	// 				"http://localhost:8080/api/events/search/"
+	// 			);
+	// 			if (!response.ok) {
+	// 				throw new Error("Network response was not ok");
+	// 			}
+	// 			const data = await response.json();
+	// 			setEvents(data);
+	// 		} catch (err) {
+	// 			setError(err.message);
+	// 		} finally {
+	// 			setLoading(false);
+	// 		}
+	// 	};
 
-		fetchEvents();
-	}, []);
+	// 	fetchEvents();
+	// }, []);
 
 	if (loading) {
 		return <div>Loading events...</div>;
@@ -53,7 +53,7 @@ const Events = () => {
 				</div>
 			</div> */}
 			<div className="row tm-mb-90 tm-gallery">
-				{events.map((event) => (
+				{finalEvents.map((event) => (
 					<EventItem key={event.id} event={event} />
 				))}
 			</div>

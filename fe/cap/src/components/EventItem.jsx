@@ -17,7 +17,7 @@ const EventItem = ({ event }) => {
 		});
 	};
 
-	const categories = event.categories?.split(",").map((item) => item.trim());
+	// const categories = event.categories?.split(",").map((item) => item.trim());
 
 	// console.log(event);
 	return (
@@ -83,8 +83,8 @@ const EventItem = ({ event }) => {
 						)}
 
 						<p style={{ marginBottom: "10px" }}>
-							{categories &&
-								categories.map((category, index) => (
+							{event.categories &&
+								event.categories?.map((category, index) => (
 									<span
 										key={index}
 										className="badge rounded-pill bg-info text-dark"

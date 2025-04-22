@@ -10,12 +10,12 @@ import {
 } from "react-icons/fi";
 import axios from "axios";
 
-const SearchAndFilter = () => {
+const SearchAndFilter = ({ setFinalEvents, setLoading, setError }) => {
 	const [searchTerm, setSearchTerm] = useState("");
 	const [events, setEvents] = useState([]);
-	const [filteredEvents, setFilteredEvents] = useState([]);
-	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState(null);
+	// const [filteredEvents, setFilteredEvents] = useState([]);
+	// const [loading, setLoading] = useState(false);
+	// const [error, setError] = useState(null);
 	const [showFilters, setShowFilters] = useState(false);
 	const [selectedCategories, setSelectedCategories] = useState([]);
 	const [filterFollowing, setFilterFollowing] = useState(false);
@@ -72,12 +72,14 @@ const SearchAndFilter = () => {
 				: [];
 
 			setEvents(normalizedEvents);
-			setFilteredEvents(normalizedEvents);
+			// setFilteredEvents(normalizedEvents);
+			setFinalEvents(normalizedEvents);
 		} catch (err) {
 			setError(err.message);
 			console.error("Error fetching events:", err);
 			setEvents([]);
-			setFilteredEvents([]);
+			setFinalEvents([]);
+			// setFilteredEvents([]);
 		} finally {
 			setLoading(false);
 		}
@@ -124,7 +126,8 @@ const SearchAndFilter = () => {
 			});
 		}
 
-		setFilteredEvents(result);
+		// setFilteredEvents(result);
+		setFinalEvents(result);
 	}, [events, selectedCategories, filterFollowing, filterLiked, sortDate]);
 
 	const toggleCategory = (categoryId) => {
@@ -157,8 +160,8 @@ const SearchAndFilter = () => {
 			</form>
 
 			{/* Loading and error states */}
-			{loading && <div className="loading">Loading events...</div>}
-			{error && <div className="error">Error: {error}</div>}
+			{/* {loading && <div className="loading">Loading events...</div>}
+			{error && <div className="error">Error: {error}</div>} */}
 
 			{/* Filters Panel */}
 			{showFilters && (
@@ -228,7 +231,7 @@ const SearchAndFilter = () => {
 			)}
 
 			{/* Results */}
-			<div className="results-container">
+			{/* <div className="results-container">
 				{filteredEvents.length > 0
 					? filteredEvents.map((event) => (
 							<div key={event.id} className="result-item">
@@ -262,7 +265,7 @@ const SearchAndFilter = () => {
 								No events found. Try adjusting your search or filters.
 							</p>
 					  )}
-			</div>
+			</div> */}
 		</div>
 	);
 };
