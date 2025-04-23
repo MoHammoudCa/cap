@@ -10,20 +10,17 @@ const Home = () => {
 	const [finalEvents, setFinalEvents] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
-	if(loading) {
-		<Loader />
+	if (loading) {
+		<Loader />;
 	}
 	return (
 		<>
-			
-				
-			
 			<Navbar />
-			<Hero 
+			<Hero
 				setFinalEvents={setFinalEvents}
 				setLoading={setLoading}
 				setError={setError}
-				/>
+			/>
 			{/* <SearchAndFilter
 				setFinalEvents={setFinalEvents}
 				setLoading={setLoading}

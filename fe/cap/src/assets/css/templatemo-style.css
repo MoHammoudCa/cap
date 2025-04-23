@@ -146,6 +146,9 @@ p {
 	line-height: 1.8;
 }
 
+.react-parallax-content {
+	width: 80%;
+}
 a {
 	text-decoration: none;
 	transition: all 0.3s ease;
