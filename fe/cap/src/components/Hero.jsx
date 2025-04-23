@@ -10,11 +10,6 @@ const Hero = ({ setFinalEvents, setLoading, setError }) => {
 			strength={200}
 			className="tm-hero d-flex justify-content-center align-items-center"
 		>
-			<SearchAndFilter
-				setFinalEvents={setFinalEvents}
-				setLoading={setLoading}
-				setError={setError}
-			/>
 			{/* <form className="d-flex tm-search-form">
 				<input
 					className="form-control tm-search-input"

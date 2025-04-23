@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
-import SearchAndFilter from "./SearchAndFilter";
+import SearchAndFilter from "./Search&Filter";
 import axios from "axios";
 
 const MyEventsComp = () => {
