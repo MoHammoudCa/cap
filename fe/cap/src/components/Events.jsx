@@ -1,31 +1,59 @@
-// import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
+import SearchAndFilter from "./SearchAndFilter";
+import axios from "axios";
 
-const Events = ({ finalEvents, loading, error }) => {
-	// const [events, setEvents] = useState([]);
-	// const [loading, setLoading] = useState(true);
-	// const [error, setError] = useState(null);
+const Events = () => {
+	const [originalEvents, setOriginalEvents] = useState([]);
+	const [filteredEvents, setFilteredEvents] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
-	// useEffect(() => {
-	// 	const fetchEvents = async () => {
-	// 		try {
-	// 			const response = await fetch(
-	// 				"http://localhost:8080/api/events/search/"
-	// 			);
-	// 			if (!response.ok) {
-	// 				throw new Error("Network response was not ok");
-	// 			}
-	// 			const data = await response.json();
-	// 			setEvents(data);
-	// 		} catch (err) {
-	// 			setError(err.message);
-	// 		} finally {
-	// 			setLoading(false);
-	// 		}
-	// 	};
+	const normalizeEvent = (event) => {
+		const categories =
+			typeof event?.categories === "string"
+				? event.categories
+						.split(",")
+						.map((item) => item.trim())
+						.filter(Boolean)
+				: [];
 
-	// 	fetchEvents();
-	// }, []);
+		return {
+			id: event?.id || `event-${Math.random().toString(36).substr(2, 9)}`,
+			title: event?.title || "Untitled Event",
+			description: event?.description || "",
+			date: event?.date || null,
+			isFollowing: Boolean(event?.isFollowing),
+			isLiked: Boolean(event?.isLiked),
+			categories,
+		};
+	};
+
+	useEffect(() => {
+		const fetchEvents = async () => {
+			setLoading(true);
+			setError(null);
+			try {
+				const response = await axios.get(
+					"http://localhost:8080/api/events/search/"
+				);
+
+				const normalizedEvents = Array.isArray(response.data)
+					? response.data.map(normalizeEvent)
+					: [];
+
+				setOriginalEvents(normalizedEvents);
+				setFilteredEvents(normalizedEvents);
+			} catch (err) {
+				setError(err.message);
+				console.error("Error fetching events:", err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchEvents();
+	}, []);
 
 	if (loading) {
 		return <div>Loading events...</div>;
@@ -37,27 +65,24 @@ const Events = ({ finalEvents, loading, error }) => {
 
 	return (
 		<div className="container-fluid tm-container-content tm-mt-60">
-			{/* <div className="row mb-4">
-				<h2 className="col-6 tm-text-primary">Latest Events</h2>
-				<div className="col-6 d-flex justify-content-end align-items-center">
-					<form action="" className="tm-text-primary">
-						Page{" "}
-						<input
-							type="text"
-							value="1"
-							size="1"
-							className="tm-input-paging tm-text-primary"
-						/>{" "}
-						of 200
-					</form>
-				</div>
-			</div> */}
+			<SearchAndFilter
+				events={originalEvents}
+				setFilteredEvents={setFilteredEvents}
+				setLoading={setLoading}
+				setError={setError}
+			/>
+
 			<div className="row tm-mb-90 tm-gallery">
-				{finalEvents.map((event) => (
-					<EventItem key={event.id} event={event} />
-				))}
+				{filteredEvents.length > 0 ? (
+					filteredEvents.map((event) => (
+						<EventItem key={event.id} event={event} />
+					))
+				) : (
+					<div className="col-12">
+						<p>No events found matching your criteria.</p>
+					</div>
+				)}
 			</div>
-			{/* <Pagination /> */}
 		</div>
 	);
 };

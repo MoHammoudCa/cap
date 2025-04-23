@@ -1,39 +1,16 @@
 import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
-import MyEvents from "../pages/MyEvents";
+import SearchAndFilter from "./SearchAndFilter";
+import axios from "axios";
 
 const MyEventsComp = () => {
-	const userId = JSON.parse(localStorage.getItem("user")).id;
-	const [events, setEvents] = useState([]);
+	const userId = JSON.parse(localStorage.getItem("user"))?.id;
+	const [originalEvents, setOriginalEvents] = useState([]);
+	const [filteredEvents, setFilteredEvents] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
-	useEffect(() => {
-		const fetchEvents = async () => {
-			try {
-				const response = await fetch(
-					"http://localhost:8080/api/events/user/" + userId
-				);
-				if (!response.ok) {
-					throw new Error("Network response was not ok");
-				}
-				const data = await response.json();
-				const normalizedEvents = Array.isArray(data)
-				? data.map(normalizeEvent)
-				: [];
-				setEvents(normalizedEvents);
-			} catch (err) {
-				setError(err.message);
-			} finally {
-				setLoading(false);
-			}
-		};
-
-		fetchEvents();
-	}, []);
-
 	const normalizeEvent = (event) => {
-		// Convert categories string to array
 		const categories =
 			typeof event?.categories === "string"
 				? event.categories
@@ -53,6 +30,36 @@ const MyEventsComp = () => {
 		};
 	};
 
+	useEffect(() => {
+		const fetchEvents = async () => {
+			setLoading(true);
+			setError(null);
+			try {
+				if (!userId) {
+					throw new Error("User not logged in");
+				}
+
+				const response = await axios.get(
+					`http://localhost:8080/api/events/user/${userId}`
+				);
+
+				const normalizedEvents = Array.isArray(response.data)
+					? response.data.map(normalizeEvent)
+					: [];
+
+				setOriginalEvents(normalizedEvents);
+				setFilteredEvents(normalizedEvents);
+			} catch (err) {
+				setError(err.message);
+				console.error("Error fetching user events:", err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchEvents();
+	}, [userId]);
+
 	if (loading) {
 		return <div>Loading events...</div>;
 	}
@@ -63,10 +70,23 @@ const MyEventsComp = () => {
 
 	return (
 		<div className="container-fluid tm-container-content tm-mt-60">
+			<SearchAndFilter
+				events={originalEvents}
+				setFilteredEvents={setFilteredEvents}
+				setLoading={setLoading}
+				setError={setError}
+			/>
+
 			<div className="row tm-mb-90 tm-gallery">
-				{events.map((event) => (
-					<EventItem key={event.id} event={event} />
-				))}
+				{filteredEvents.length > 0 ? (
+					filteredEvents.map((event) => (
+						<EventItem key={event.id} event={event} />
+					))
+				) : (
+					<div className="col-12">
+						<p>No events found matching your criteria.</p>
+					</div>
+				)}
 			</div>
 		</div>
 	);
