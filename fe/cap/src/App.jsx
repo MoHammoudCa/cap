@@ -10,6 +10,7 @@ import ProtectedRoute from "./components/layout/ProtectedRoute";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MyEvents from "./pages/MyEvents";
+import LogoutPage from "./pages/logout";
 
 const App = () => {
 	return (
@@ -18,10 +19,12 @@ const App = () => {
 				<Route path="/" element={<Home />} />
 				<Route path="/photo/:id" element={<PhotoDetailPage />} />
 				<Route path="/login" element={<LoginSignup />} />
-				<Route path="/profile/" element={<Profile />} />
+
 				<Route element={<ProtectedRoute />}>
 					<Route path="/add-event" element={<AddEvent />} />
 					<Route path="/my-events" element={<MyEvents />} />
+					<Route path="/logout" element={<LogoutPage />} />
+					<Route path="/profile/" element={<Profile />} />
 				</Route>
 				<Route path="/about" element={<About />} />
 				<Route path="/contact" element={<Contact />} />

@@ -1,6 +1,7 @@
 import { Parallax } from "react-parallax";
+import SearchAndFilter from "../components/Search&Filter";
 
-const Hero = () => {
+const Hero = ({ setFinalEvents, setLoading, setError }) => {
 	return (
 		<Parallax
 			blur={{ min: -15, max: 15 }}
@@ -9,7 +10,12 @@ const Hero = () => {
 			strength={200}
 			className="tm-hero d-flex justify-content-center align-items-center"
 		>
-			<form className="d-flex tm-search-form">
+			<SearchAndFilter
+				setFinalEvents={setFinalEvents}
+				setLoading={setLoading}
+				setError={setError}
+			/>
+			{/* <form className="d-flex tm-search-form">
 				<input
 					className="form-control tm-search-input"
 					type="search"
@@ -19,7 +25,7 @@ const Hero = () => {
 				<button className="btn btn-outline-success tm-search-btn" type="submit">
 					<i className="fas fa-search"></i>
 				</button>
-			</form>
+			</form> */}
 		</Parallax>
 	);
 };

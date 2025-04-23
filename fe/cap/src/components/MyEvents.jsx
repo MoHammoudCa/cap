@@ -18,7 +18,10 @@ const MyEventsComp = () => {
 					throw new Error("Network response was not ok");
 				}
 				const data = await response.json();
-				setEvents(data);
+				const normalizedEvents = Array.isArray(data)
+				? data.map(normalizeEvent)
+				: [];
+				setEvents(normalizedEvents);
 			} catch (err) {
 				setError(err.message);
 			} finally {
@@ -28,6 +31,27 @@ const MyEventsComp = () => {
 
 		fetchEvents();
 	}, []);
+
+	const normalizeEvent = (event) => {
+		// Convert categories string to array
+		const categories =
+			typeof event?.categories === "string"
+				? event.categories
+						.split(",")
+						.map((item) => item.trim())
+						.filter(Boolean)
+				: [];
+
+		return {
+			id: event?.id || `event-${Math.random().toString(36).substr(2, 9)}`,
+			title: event?.title || "Untitled Event",
+			description: event?.description || "",
+			date: event?.date || null,
+			isFollowing: Boolean(event?.isFollowing),
+			isLiked: Boolean(event?.isLiked),
+			categories,
+		};
+	};
 
 	if (loading) {
 		return <div>Loading events...</div>;

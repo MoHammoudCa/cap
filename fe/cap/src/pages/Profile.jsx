@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
+import { useAuth } from "../context/AuthContext";
 
 const Profile = () => {
 	const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -10,6 +11,7 @@ const Profile = () => {
 	const [isHovering, setIsHovering] = useState(false);
 	const [isUploading, setIsUploading] = useState(false);
 	const fileInputRef = useRef(null);
+	const { logout } = useAuth();
 
 	const formattedDate = new Date(created_at).toLocaleDateString("en-US", {
 		year: "numeric",
@@ -39,6 +41,10 @@ const Profile = () => {
 		fetchProfileData();
 	}, [userId]);
 
+	const handleLogout = async() => {
+		await logout();
+	  };
+
 	const handleImageClick = () => {
 		fileInputRef.current.click();
 	};
@@ -66,7 +72,7 @@ const Profile = () => {
 		setIsUploading(true);
 		try {
 			// Step 1: Upload to imgBB
-			const imgbbUrl = `https://api.imgbb.com/1/upload?key=43296ed8e6b7bdb72f75e31281f96904`;
+			const imgbbUrl = `https://api.imgbb.com/1/upload?key=b76b2619b45c9ba98787c8a173723e7c`;
 			const formData = new FormData();
 			formData.append("image", file);
 
@@ -191,6 +197,7 @@ const Profile = () => {
 
 					<div className="profile-actions">
 						<button className="edit-button">Edit Profile</button>
+						<button className="edit-button" onClick={handleLogout}>logout</button>
 						{role === "ADMIN" && (
 							<button className="admin-button">Admin Panel</button>
 						)}

@@ -74,6 +74,7 @@ const SearchAndFilter = ({ setFinalEvents, setLoading, setError }) => {
 			setEvents(normalizedEvents);
 			// setFilteredEvents(normalizedEvents);
 			setFinalEvents(normalizedEvents);
+			setLoading(false);
 		} catch (err) {
 			setError(err.message);
 			console.error("Error fetching events:", err);

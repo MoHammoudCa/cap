@@ -66,7 +66,7 @@ const AddEvent = () => {
 
 		setIsSubmitting(true);
 		try {
-			const imgbbUrl = `https://api.imgbb.com/1/upload?key=43296ed8e6b7bdb72f75e31281f96904`;
+			const imgbbUrl = `https://api.imgbb.com/1/upload?key=b76b2619b45c9ba98787c8a173723e7c`;
 			const formData = new FormData();
 			formData.append("image", file);
 
