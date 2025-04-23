@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import Footer from "../components/Footer";
 import Loader from "../components/Loader";
-import MyEventsComp from "../components/MyEvents";
+import MyEventsComp from "../components/MyEventsComp";
 import FloatingButton from "../components/FloatingButton";
 import { useNavigate } from "react-router-dom";
 
