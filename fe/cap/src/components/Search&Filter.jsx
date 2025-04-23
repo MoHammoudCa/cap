@@ -41,13 +41,13 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
       result = result.filter(event => 
         event.title.toLowerCase().includes(term) || 
         event.description.toLowerCase().includes(term)
-    }
+  )}
 
     // Apply category filter if any selected
     if (selectedCategories.length > 0) {
       result = result.filter((event) =>
         event.categories.some((cat) => selectedCategories.includes(cat))
-    }
+  )}
 
     // Apply following filter
     if (filterFollowing) {
