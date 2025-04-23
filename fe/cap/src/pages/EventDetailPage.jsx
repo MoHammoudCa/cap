@@ -10,9 +10,11 @@ import { useParams } from "react-router-dom";
 const EventDetailPage = () => {
 	// const { id } = useParams();
 
+	
+
 	return (
 		<>
-			<Loader />
+			{/* <Loader /> */}
 			<Navbar />
 			<Hero />
 			<EventDetail />

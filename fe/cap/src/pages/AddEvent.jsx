@@ -120,7 +120,7 @@ const AddEvent = () => {
 			// });
 
 			if (response.status !== 200) throw new Error("Failed to create event");
-			navigate("/events");
+			navigate("/my-events");
 		} catch (error) {
 			console.error("Error:", error);
 			setErrors({ submit: error.message });

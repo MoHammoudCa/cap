@@ -19,7 +19,7 @@ const EventItem = ({ event }) => {
 
 	// const categories = event.categories?.split(",").map((item) => item.trim());
 
-	// console.log(event);
+	// console.log(event);	
 	return (
 		<>
 			{/* <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">

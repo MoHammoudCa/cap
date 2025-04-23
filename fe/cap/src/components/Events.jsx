@@ -17,6 +17,8 @@ const Events = () => {
 						.map((item) => item.trim())
 						.filter(Boolean)
 				: [];
+				console.log(event);
+				
 
 		return {
 			id: event?.id || `event-${Math.random().toString(36).substr(2, 9)}`,
@@ -26,6 +28,7 @@ const Events = () => {
 			isFollowing: Boolean(event?.isFollowing),
 			isLiked: Boolean(event?.isLiked),
 			categories,
+			image: event.image
 		};
 	};
 
