@@ -1,6 +1,14 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+	const location = useLocation();
+
+	// Helper function to check if current path matches the link
+	const isActive = (path) => {
+		return location.pathname === path;
+	};
+
 	return (
 		<>
 			<div style={{ height: "35px" }}></div>
@@ -25,7 +33,9 @@ const Navbar = () => {
 						<ul className="navbar-nav ml-auto mb-2 mb-lg-0">
 							<li className="nav-item">
 								<a
-									className="nav-link nav-link-1 active"
+									className={`nav-link nav-link-1 ${
+										isActive("/") ? "active" : ""
+									}`}
 									aria-current="page"
 									href="/"
 								>
@@ -34,22 +44,42 @@ const Navbar = () => {
 							</li>
 
 							<li className="nav-item">
-								<a className="nav-link nav-link-3" href="/about">
+								<a
+									className={`nav-link nav-link-3 ${
+										isActive("/about") ? "active" : ""
+									}`}
+									href="/about"
+								>
 									About
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link nav-link-4" href="/contact">
+								<a
+									className={`nav-link nav-link-4 ${
+										isActive("/contact") ? "active" : ""
+									}`}
+									href="/contact"
+								>
 									Contact
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link nav-link-2" href="/my-events">
+								<a
+									className={`nav-link nav-link-2 ${
+										isActive("/my-events") ? "active" : ""
+									}`}
+									href="/my-events"
+								>
 									My Events
 								</a>
 							</li>
 							<li className="nav-item">
-								<a className="nav-link nav-link-4" href="/profile">
+								<a
+									className={`nav-link nav-link-4 ${
+										isActive("/profile") ? "active" : ""
+									}`}
+									href="/profile"
+								>
 									Profile
 								</a>
 							</li>
