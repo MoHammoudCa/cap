@@ -184,19 +184,10 @@ const Profile = () => {
 							<span className="detail-value">{email}</span>
 						</div>
 
-						<div className="detail-item">
-							<span className="detail-label">User ID:</span>
-							<span className="detail-value">{id}</span>
-						</div>
-
-						<div className="detail-item">
-							<span className="detail-label">Member since:</span>
-							<span className="detail-value">{formattedDate}</span>
-						</div>
+					
 					</div>
 
 					<div className="profile-actions">
-						<button className="edit-button">Edit Profile</button>
 						<button className="edit-button" onClick={handleLogout}>logout</button>
 						{role === "ADMIN" && (
 							<button className="admin-button">Admin Panel</button>

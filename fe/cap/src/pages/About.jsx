@@ -10,175 +10,149 @@ const About = () => {
 			<Navbar />
 			<Parallax
 				blur={{ min: -15, max: 15 }}
-				bgImage="/src/assets/img/hero.jpg"
-				bgImageAlt="Hero background"
+				bgImage="/src/assets/img/lebanon-events.jpg" // Changed to more relevant image
+				bgImageAlt="Lebanon events background"
 				strength={200}
 				className="tm-hero d-flex justify-content-center align-items-center"
 			>
-				{/* You can add content inside the parallax if needed */}
-				{/* <div style={{ height: '100%' }}></div> */}
+				<div className="tm-hero-text text-center text-white">
+					<h1 className="tm-hero-title">Discover the Pulse of Lebanon</h1>
+					<p className="tm-hero-subtitle">
+						Connecting people with the best events across the country
+					</p>
+				</div>
 			</Parallax>
 
 			<div className="container-fluid tm-mt-60">
 				<div className="row mb-4">
 					<h2 className="col-12 tm-text-primary">
-						About Catalog-Z Website Template
+						About Fun.LB - Lebanon's Event Hub
 					</h2>
 				</div>
 				<div className="row tm-mb-74 tm-row-1640">
 					<div className="col-lg-5 col-md-6 col-12 mb-3">
 						<img
-							src="/src/assets/img/about.jpg"
-							alt="Image"
+							src="/src/assets/img/funlb-team.jpg"
+							alt="Fun.LB team"
 							className="img-fluid"
+							style={{width : '100%', height : 'auto' }}
 						/>
 					</div>
 					<div className="col-lg-7 col-md-6 col-12">
 						<div className="tm-about-img-text">
 							<p className="mb-4">
-								You may support TemplateMo website by making{" "}
-								<a
-									href="https://paypal.me/templatemo"
-									target="_parent"
-									rel="sponsored"
-								>
-									a small contribution
-								</a>{" "}
-								via PayPal. This will be helpful for us. We hope you like this
-								Catalog-Z photo / video template for your website. We are making
-								new templates regularly for you. Please come back and visit our{" "}
-								<a
-									rel="sponsored"
-									href="https://templatemo.com"
-									target="_parent"
-								>
-									TemplateMo website
-								</a>{" "}
-								again.{" "}
+								<strong>Fun.LB</strong> is Lebanon's premier event discovery and management platform, 
+								born out of a passion for bringing people together through memorable experiences. 
+								Our mission is to transform how Lebanese residents and visitors discover, 
+								participate in, and organize events across the country.
+							</p>
+							<p className="mb-4">
+								Founded in 2024 by Mohammad Hammoud, Fun.LB addresses the fragmented 
+								event discovery landscape in Lebanon by providing a centralized, 
+								AI-powered platform that connects event organizers with their target audiences.
 							</p>
 							<p>
-								Credits go to Pexels and Unsplash for photos and video used in
-								this template. Catalog-Z is free{" "}
-								<a rel="sponsored" href="https://v5.getbootstrap.com/">
-									Bootstrap 5
-								</a>{" "}
-								Alpha 2 HTML Template designed for video and photo websites.
-							</p>
-							<p>
-								You are <b>allowed</b> to use this template for your commercial
-								or non-commercial websites. You can integrate it with any kind
-								of CMS website. You are <b>NOT allowed</b> to redistribute the
-								downloadable template ZIP file on any template collection
-								website. Please{" "}
-								<a
-									rel="nofollow"
-									href="https://templatemo.com/contact"
-									target="_parent"
-								>
-									contact us
-								</a>{" "}
-								for more information. Thank you.
+								We believe in the power of community and shared experiences to 
+								strengthen social bonds and create lasting memories. Whether you're 
+								looking for cultural events, music festivals, business conferences, 
+								or local meetups, Fun.LB is your gateway to Lebanon's vibrant event scene.
 							</p>
 						</div>
 					</div>
 				</div>
+				
+				{/* Our Mission Section */}
 				<div className="row tm-mb-50">
-					<div className="col-md-6 col-12">
-						<div className="tm-about-2-col">
-							<h2 className="tm-text-primary mb-4">
-								Left side of 2-Column content
-							</h2>
+					<div className="col-12 text-center mb-5">
+						<h2 className="tm-text-primary">Our Core Values</h2>
+					</div>
+					<div className="col-md-4 col-12">
+						<div className="tm-about-3-col">
+							<div className="tm-about-icon-container mb-5">
+								<i className="fas fa-users fa-3x tm-text-primary"></i>
+							</div>
+							<h2 className="tm-text-primary mb-4">Community First</h2>
 							<p className="mb-4">
-								Pellentesque urna odio, scelerisque eu mauris vitae, vestibulum
-								sodales neque. Ut augue justo, tincidunt nec aliquet ac, cursus
-								vel augue. Suspendisse vel quam imperdiet, sodales tellus sed,
-								ullamcorper lorem.
-							</p>
-							<p>
-								Suspendisse id consequat risus. Aliquam varius posuere nunc, nec
-								imperdiet neque condimentum at. Aenean porta eleifend venenatis.
-								Orci varius natoque penatibus et magnis dis parturient montes,
-								nascetur ridiculus mus.
+								We prioritize building genuine connections between event organizers 
+								and attendees, fostering a vibrant event ecosystem in Lebanon.
 							</p>
 						</div>
 					</div>
-					<div className="col-md-6 col-12">
-						<div className="tm-about-2-col">
-							<h2 className="tm-text-primary mb-4">
-								Right-side Title goes here
-							</h2>
+					<div className="col-md-4 col-12">
+						<div className="tm-about-3-col">
+							<div className="tm-about-icon-container mb-5">
+								<i className="fas fa-lightbulb fa-3x tm-text-primary"></i>
+							</div>
+							<h2 className="tm-text-primary mb-4">Innovation Driven</h2>
 							<p className="mb-4">
-								Pellentesque urna odio, scelerisque eu mauris vitae, vestibulum
-								sodales neque. Ut augue justo, tincidunt nec aliquet ac, cursus
-								vel augue. Suspendisse vel quam imperdiet, sodales tellus sed,
-								ullamcorper lorem.
+								Leveraging cutting-edge AI technology to simplify event discovery 
+								and management while delivering personalized experiences.
 							</p>
-							<p>
-								Suspendisse id consequat risus. Aliquam varius posuere nunc, nec
-								imperdiet neque condimentum at. Aenean porta eleifend venenatis.
-								Orci varius natoque penatibus et magnis dis parturient montes,
-								nascetur ridiculus mus.
+						</div>
+					</div>
+					<div className="col-md-4 col-12">
+						<div className="tm-about-3-col">
+							<div className="tm-about-icon-container mb-5">
+								<i className="fas fa-map-marked-alt fa-3x tm-text-primary"></i>
+							</div>
+							<h2 className="tm-text-primary mb-4">Local Focus</h2>
+							<p className="mb-4">
+								Dedicated to showcasing Lebanon's rich cultural diversity through 
+								events that celebrate our heritage and contemporary creativity.
 							</p>
 						</div>
 					</div>
 				</div>
+				
+				{/* Services Section */}
 				<div className="row tm-mb-50">
-					<div className="col-md-4 col-12">
-						<div className="tm-about-3-col">
-							<div className="tm-about-icon-container mb-5">
-								<i className="fas fa-desktop fa-3x tm-text-primary"></i>
-							</div>
-							<h2 className="tm-text-primary mb-4">Three-column title one</h2>
-							<p className="mb-4">
-								Integer tristique arcu scelerisque mauris posuere convallis.
-								Fusce egestas ipsum sapien, hendrerit ultricies nisi viverra
-								eget. Vestibulum in tortor eget elit rutrum interdum.{" "}
-							</p>
-							<p>
-								Cras auctor velit urna, et feugiat ex tincidunt ut. Sed viverra,
-								elit at pulvinar tristique, sem quam vehicula dolor, sed
-								scelerisque augue mauris non dolor.
-							</p>
-						</div>
+					<div className="col-12 text-center mb-5">
+						<h2 className="tm-text-primary">Our Services</h2>
 					</div>
-					<div className="col-md-4 col-12">
-						<div className="tm-about-3-col">
-							<div className="tm-about-icon-container mb-5">
-								<i className="fas fa-mobile-alt fa-3x tm-text-primary"></i>
-							</div>
+					<div className="col-md-6 col-12">
+						<div className="tm-about-2-col">
 							<h2 className="tm-text-primary mb-4">
-								Title two of three-column
+								For Event Attendees
 							</h2>
-							<p className="tm-mb-50">
-								Donec nec est tincidunt, rhoncus nulla sit amet, imperdiet
-								augue. Phasellus sodales placerat ipsum ac auctor. Mauris
-								molestie blandit turpis. Mauris ante tellus, feugiat nec metus
-								non, bibendum semper velit.
-							</p>
-							<div className="text-center">
-								<a href="#" className="btn btn-primary">
-									Read More
-								</a>
-							</div>
+							<ul className="tm-service-list">
+								<li>AI-powered personalized event recommendations</li>
+								<li>Comprehensive event search with smart filters</li>
+								<li>Interactive maps with directions to event locations</li>
+								<li>Calendar integration and reminder system</li>
+								<li>Verified event reviews and ratings</li>
+								<li>Real-time notifications for event updates</li>
+							</ul>
 						</div>
 					</div>
-					<div className="col-md-4 col-12">
-						<div className="tm-about-3-col">
-							<div className="tm-about-icon-container mb-5">
-								<i className="fas fa-photo-video fa-3x tm-text-primary"></i>
-							</div>
-							<h2 className="tm-text-primary mb-4">Third Title goes here</h2>
-							<p className="mb-4">
-								Pellentesque habitant morbi tristique senectus et netus et
-								malesuada fames ac turpis egestas. Donec nec est tincidunt,
-								rhoncus nulla sit amet, imperdiet augue.{" "}
-							</p>
-							<p>
-								Phasellus sodales placerat ipsum ac auctor. Mauris molestie
-								blandit turpis. Mauris ante tellus, feugiat nec metus non,
-								bibendum semper velit.
-							</p>
+					<div className="col-md-6 col-12">
+						<div className="tm-about-2-col">
+							<h2 className="tm-text-primary mb-4">
+								For Event Organizers
+							</h2>
+							<ul className="tm-service-list">
+								<li>Easy event creation and management tools</li>
+								<li>AI-assisted event description and poster generation</li>
+								<li>Targeted audience reach and analytics</li>
+								<li>Organizer verification for credibility</li>
+								<li>Ticket management and attendee tracking</li>
+								<li>Emergency notification system</li>
+							</ul>
 						</div>
+					</div>
+				</div>
+				
+				
+				{/* Call to Action */}
+				<div className="row tm-mb-50">
+					<div className="col-12 text-center">
+						<h2 className="tm-text-primary mb-4">Join the Fun.LB Community</h2>
+						<p className="mb-4">
+							Whether you're looking to discover amazing events or promote your own, 
+							Fun.LB is your ultimate event platform in Lebanon.
+						</p>
+						<a href="/signup" className="btn btn-primary tm-btn-big">
+							Get Started Now
+						</a>
 					</div>
 				</div>
 			</div>

@@ -45,26 +45,6 @@ const Navbar = () => {
 
 							<li className="nav-item">
 								<a
-									className={`nav-link nav-link-3 ${
-										isActive("/about") ? "active" : ""
-									}`}
-									href="/about"
-								>
-									About
-								</a>
-							</li>
-							<li className="nav-item">
-								<a
-									className={`nav-link nav-link-4 ${
-										isActive("/contact") ? "active" : ""
-									}`}
-									href="/contact"
-								>
-									Contact
-								</a>
-							</li>
-							<li className="nav-item">
-								<a
 									className={`nav-link nav-link-2 ${
 										isActive("/my-events") ? "active" : ""
 									}`}
@@ -73,6 +53,28 @@ const Navbar = () => {
 									My Events
 								</a>
 							</li>
+
+							<li className="nav-item">
+								<a
+									className={`nav-link nav-link-3 ${
+										isActive("/about") ? "active" : ""
+									}`}
+									href="/about"
+								>
+									About
+								</a>
+							</li>
+							{/* <li className="nav-item">
+								<a
+									className={`nav-link nav-link-4 ${
+										isActive("/contact") ? "active" : ""
+									}`}
+									href="/contact"
+								>
+									Contact
+								</a>
+							</li> */}
+							
 							<li className="nav-item">
 								<a
 									className={`nav-link nav-link-4 ${

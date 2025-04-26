@@ -23,6 +23,14 @@ public class EventService {
         return eventRepository.findAll();
     }
 
+    public List<Event> getAllAvailableEvents() {
+        return getAllEvents().stream().filter(Event::isAvailable).toList();
+    }
+
+    public List<Event> getAllArchivedEvents() {
+        return getAllEvents().stream().filter(event -> !event.isAvailable()).toList();
+    }
+
     public Event getEventById(UUID id) {
         return eventRepository.findById(id).orElse(null);
     }

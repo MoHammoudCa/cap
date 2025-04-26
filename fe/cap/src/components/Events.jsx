@@ -28,7 +28,9 @@ const Events = () => {
 			isFollowing: Boolean(event?.isFollowing),
 			isLiked: Boolean(event?.isLiked),
 			categories,
-			image: event.image
+			image: event.image,
+			location: event.location
+			
 		};
 	};
 
@@ -38,7 +40,7 @@ const Events = () => {
 			setError(null);
 			try {
 				const response = await axios.get(
-					"http://localhost:8080/api/events/search/"
+					"http://localhost:8080/api/events/"
 				);
 
 				const normalizedEvents = Array.isArray(response.data)

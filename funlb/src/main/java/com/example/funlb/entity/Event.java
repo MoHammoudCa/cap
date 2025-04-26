@@ -26,11 +26,7 @@ public class Event {
     @JoinColumn(name = "organizer_id")
     private User organizer;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "event_categories",
-//            joinColumns = @JoinColumn(name = "event_id"),
-//            inverseJoinColumns = @JoinColumn(name = "category_id")
-//    )
-//    private Set<Category> categories;
+    public boolean isAvailable() {
+        return date != null && date.after(new Timestamp(System.currentTimeMillis()));
+    }
 }

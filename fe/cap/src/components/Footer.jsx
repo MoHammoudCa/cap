@@ -1,86 +1,96 @@
 import React from "react";
+import '../assets/css/footer.css'
 
 const Footer = () => {
 	return (
 		<footer className="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
 			<div className="container-fluid tm-container-small">
 				<div className="row">
-					<div className="col-lg-6 col-md-12 col-12 px-5 mb-5">
+					{/* About Fun.LB */}
+					<div className="col-lg-5 col-md-12 col-12 px-5 mb-5">
 						<h3 className="tm-text-primary mb-4 tm-footer-title">
-							About Catalog-Z
+							About Fun.LB
 						</h3>
-						<p>
-							Catalog-Z is free{" "}
-							<a rel="sponsored" href="https://v5.getbootstrap.com/">
-								Bootstrap 5
-							</a>{" "}
-							Alpha 2 HTML Template for video and photo websites. You can freely
-							use this TemplateMo layout for a front-end integration with any
-							kind of CMS website.
+						<p className="mb-4">
+							Lebanon's premier event discovery platform connecting people with unforgettable experiences. 
+							From cultural festivals to business conferences, we bring Lebanon's vibrant event scene to your fingertips.
 						</p>
 					</div>
+
+					{/* Quick Links */}
 					<div className="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
-						<h3 className="tm-text-primary mb-4 tm-footer-title">Our Links</h3>
+						<h3 className="tm-text-primary mb-4 tm-footer-title">Quick Links</h3>
 						<ul className="tm-footer-links pl-0">
-							<li>
-								<a href="#">Advertise</a>
+							<li className="mb-2">
+								<a href="/events" className="tm-text-light">Browse Events</a>
 							</li>
-							<li>
-								<a href="#">Support</a>
+							<li className="mb-2">
+								<a href="/create-event" className="tm-text-light">Host an Event</a>
 							</li>
-							<li>
-								<a href="#">Our Company</a>
+							<li className="mb-2">
+								<a href="/about" className="tm-text-light">About Us</a>
 							</li>
-							<li>
-								<a href="#">Contact</a>
+							<li className="mb-2">
+								<a href="/blog" className="tm-text-light">Event Blog</a>
+							</li>
+							<li className="mb-2">
+								<a href="/contact" className="tm-text-light">Contact Us</a>
 							</li>
 						</ul>
 					</div>
-					<div className="col-lg-3 col-md-6 col-sm-6 col-12 px-5 mb-5">
-						<ul className="tm-social-links d-flex justify-content-end pl-0 mb-5">
+
+					{/* Contact & Social */}
+					<div className="col-lg-4 col-md-6 col-sm-6 col-12 px-5 mb-5">
+						<h3 className="tm-text-primary mb-4 tm-footer-title">Connect With Us</h3>
+						<ul className="tm-contact-info pl-0 mb-4">
 							<li className="mb-2">
-								<a href="https://facebook.com">
-									<i className="fab fa-facebook"></i>
-								</a>
+								<i className="fas fa-map-marker-alt mr-2"></i>
+								Beirut, Lebanon
 							</li>
 							<li className="mb-2">
-								<a href="https://twitter.com">
-									<i className="fab fa-twitter"></i>
-								</a>
+								<i className="fas fa-phone mr-2"></i>
+								+961 1 234 567
 							</li>
 							<li className="mb-2">
-								<a href="https://instagram.com">
-									<i className="fab fa-instagram"></i>
+								<i className="fas fa-envelope mr-2"></i>
+								info@funlb.com
+							</li>
+						</ul>
+						
+						<h5 className="mb-3">Follow Us</h5>
+						<ul className="tm-social-links d-flex pl-0 mb-4">
+							<li className="mr-3">
+								<a href="https://facebook.com/funlb" className="tm-social-link">
+									<i className="fab fa-facebook-f fa-lg"></i>
 								</a>
 							</li>
-							<li className="mb-2">
-								<a href="https://pinterest.com">
-									<i className="fab fa-pinterest"></i>
+							<li className="mr-3">
+								<a href="https://instagram.com/funlb" className="tm-social-link">
+									<i className="fab fa-instagram fa-lg"></i>
+								</a>
+							</li>
+							<li className="mr-3">
+								<a href="https://twitter.com/funlb" className="tm-social-link">
+									<i className="fab fa-twitter fa-lg"></i>
+								</a>
+							</li>
+							<li className="mr-3">
+								<a href="https://linkedin.com/company/funlb" className="tm-social-link">
+									<i className="fab fa-linkedin-in fa-lg"></i>
 								</a>
 							</li>
 						</ul>
-						<a href="#" className="tm-text-gray text-right d-block mb-2">
-							Terms of Use
-						</a>
-						<a href="#" className="tm-text-gray text-right d-block">
-							Privacy Policy
-						</a>
 					</div>
 				</div>
-				<div className="row">
+
+				{/* Copyright */}
+				<div className="row pt-4">
 					<div className="col-lg-8 col-md-7 col-12 px-5 mb-3">
-						Copyright 2020 Catalog-Z Company. All rights reserved.
+						&copy; {new Date().getFullYear()} Fun.LB - All Rights Reserved
 					</div>
 					<div className="col-lg-4 col-md-5 col-12 px-5 text-right">
-						Designed by{" "}
-						<a
-							href="https://templatemo.com"
-							className="tm-text-gray"
-							rel="sponsored"
-							target="_parent"
-						>
-							TemplateMo
-						</a>
+						<a href="/privacy" className="tm-text-light mr-3">Privacy Policy</a>
+						<a href="/terms" className="tm-text-light">Terms of Service</a>
 					</div>
 				</div>
 			</div>

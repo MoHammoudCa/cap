@@ -33,15 +33,11 @@ public class EventController {
         this.jwtUtils = jwtUtils;
     }
 
-    @GetMapping("/search/")
+    @GetMapping("/")
     public List<Event> getAllEvents() {
-        return eventService.getAllEvents();
+        return eventService.getAllAvailableEvents();
     }
 
-    @GetMapping("/search/{searchQuery}")
-    public List<Event> getFilteredEvents(@PathVariable String searchQuery) {
-        return eventService.getFilteredEvents(searchQuery);
-    }
 
     @GetMapping("/user/{id}")
     public List<Event> getEventByOrganizerId(@PathVariable UUID id) {

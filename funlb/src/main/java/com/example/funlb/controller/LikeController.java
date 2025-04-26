@@ -63,4 +63,12 @@ public class LikeController {
         likeService.deleteLike(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/check")
+    public List<Like> getAllLikes(
+            @RequestParam UUID eventId,
+            @RequestParam UUID userId) {
+
+        return likeService.getLikesByEventAndUser(eventId, userId);
+    }
 }

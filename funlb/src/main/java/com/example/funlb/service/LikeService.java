@@ -43,6 +43,10 @@ public class LikeService {
         return likeRepository.save(l);
     }
 
+    public List<Like> getLikesByEventAndUser(UUID eventId, UUID userId) {
+        return likeRepository.findByEventIdAndUserId(eventId, userId);
+    }
+
     public void deleteLike(UUID id) {
         likeRepository.deleteById(id);
     }

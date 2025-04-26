@@ -1,0 +1,45 @@
+/* Footer Styles */
+.tm-bg-dark {
+	background-color: #1a1a1a;
+}
+
+.tm-text-light {
+	color: #f8f9fa;
+}
+
+.tm-footer a {
+	color: #adb5bd;
+	transition: color 0.3s;
+}
+
+.tm-footer a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.tm-social-link {
+	display: inline-block;
+	width: 40px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	background: rgba(255,255,255,0.1);
+	border-radius: 50%;
+	transition: all 0.3s;
+}
+
+.tm-social-link:hover {
+	background: rgba(255,255,255,0.2);
+	transform: translateY(-3px);
+}
+
+.tm-newsletter-input {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	border-right: none;
+}
+
+.tm-newsletter-btn {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
