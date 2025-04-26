@@ -7,6 +7,8 @@ import {
   FiCalendar,
   FiChevronDown,
   FiChevronUp,
+  FiClock,
+  FiCheckCircle,
 } from "react-icons/fi";
 
 const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) => {
@@ -15,7 +17,8 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [filterFollowing, setFilterFollowing] = useState(false);
   const [filterLiked, setFilterLiked] = useState(false);
-  const [sortDate, setSortDate] = useState(null);
+  const [sortDate, setSortDate] = useState("desc"); // Default to newest first
+  const [eventStatusFilter, setEventStatusFilter] = useState("active"); // Default to active events
 
   const baseCategories = [
     { id: "Music", name: "Music" },
@@ -34,6 +37,15 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
     if (!events) return;
 
     let result = [...events];
+    const now = new Date();
+
+    // Apply event status filter
+    if (eventStatusFilter === "active") {
+      result = result.filter(event => new Date(event.date) >= now);
+    } else if (eventStatusFilter === "past") {
+      result = result.filter(event => new Date(event.date) < now);
+    }
+    // "all" shows both active and past
 
     // Apply search term filter
     if (searchTerm) {
@@ -41,12 +53,13 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
       result = result.filter(event => 
         event.title.toLowerCase().includes(term) || 
         event.description.toLowerCase().includes(term)
-  )}
+      );
+    }
 
     // Apply category filter if any selected
     if (selectedCategories.length > 0) {
       result = result.filter((event) =>
-        event.categories.some((cat) => selectedCategories.includes(cat))
+        event.categories?.some((cat) => selectedCategories.includes(cat))
   )}
 
     // Apply following filter
@@ -69,7 +82,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
     }
 
     setFilteredEvents(result);
-  }, [events, searchTerm, selectedCategories, filterFollowing, filterLiked, sortDate]);
+  }, [events, searchTerm, selectedCategories, filterFollowing, filterLiked, sortDate, eventStatusFilter]);
 
   const toggleCategory = (categoryId) => {
     setSelectedCategories((prev) =>
@@ -103,6 +116,35 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
       {/* Filters Panel */}
       {showFilters && (
         <div className="filters-panel">
+          {/* New Event Status Filter Section */}
+          <div className="filter-section">
+            <h4>Event Status</h4>
+            <div className="status-options">
+              <button
+                type="button"
+                className={`status-button ${eventStatusFilter === "active" ? "active" : ""}`}
+                onClick={() => setEventStatusFilter("active")}
+              >
+                <FiClock /> Active Events
+              </button>
+              <button
+                type="button"
+                className={`status-button ${eventStatusFilter === "past" ? "active" : ""}`}
+                onClick={() => setEventStatusFilter("past")}
+              >
+                <FiCheckCircle /> Past Events
+              </button>
+              <button
+                type="button"
+                className={`status-button ${eventStatusFilter === "all" ? "active" : ""}`}
+                onClick={() => setEventStatusFilter("all")}
+              >
+                All Events
+              </button>
+            </div>
+          </div>
+
+          {/* Existing Filters */}
           <div className="filter-section">
             <h4>Categories</h4>
             <div className="category-bubbles">

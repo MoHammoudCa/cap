@@ -16,7 +16,6 @@ const MyEvents = () => {
 
 	return (
 		<>
-			<Loader />
 			<Navbar />
 			<Hero />
 			<MyEventsComp />

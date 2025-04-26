@@ -29,7 +29,8 @@ const Events = () => {
 			isLiked: Boolean(event?.isLiked),
 			categories,
 			image: event.image,
-			location: event.location
+			location: event.location,
+			organizer: event.organizer
 			
 		};
 	};
@@ -83,9 +84,9 @@ const Events = () => {
 						<EventItem key={event.id} event={event} />
 					))
 				) : (
-					<div className="col-12">
-						<p>No events found matching your criteria.</p>
-					</div>
+					<div className="alert alert-info">
+						No events found matching your criteria.
+						</div>
 				)}
 			</div>
 		</div>

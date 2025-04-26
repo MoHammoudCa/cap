@@ -180,3 +180,34 @@
 .search-button {
 	display: none;
 }
+.status-options {
+	display: flex;
+	gap: 8px;
+	flex-wrap: wrap;
+  }
+  
+  .status-button {
+	padding: 8px 12px;
+	border: 1px solid #ddd;
+	border-radius: 20px;
+	background: white;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	transition: all 0.2s;
+  }
+  
+  .status-button:hover {
+	background: #f5f5f5;
+  }
+  
+  .status-button.active {
+	background: #007bff;
+	color: white;
+	border-color: #007bff;
+  }
+  
+  .status-button svg {
+	font-size: 16px;
+  }

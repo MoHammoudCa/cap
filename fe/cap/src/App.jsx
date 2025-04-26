@@ -11,6 +11,7 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import MyEvents from "./pages/MyEvents";
 import LogoutPage from "./pages/logout";
+import OrganizerProfilePage from "./pages/OrganizerProfilePage";
 
 const App = () => {
 	return (
@@ -29,7 +30,7 @@ const App = () => {
 				<Route path="/about" element={<About />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/event/:id" element={<EventDetailPage />} />
-			</Routes>
+				<Route path="/organizer/:id" element={<OrganizerProfilePage />} />			</Routes>
 		</Router>
 	);
 };

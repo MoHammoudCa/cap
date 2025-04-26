@@ -1,0 +1,11 @@
+.organizer-link {
+    transition: all 0.2s ease;
+  }
+  
+  .organizer-link:hover {
+    transform: translateY(-1px);
+  }
+  
+  .organizer-link:hover strong {
+    text-decoration: underline;
+  }

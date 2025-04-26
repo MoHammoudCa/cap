@@ -26,6 +26,7 @@ const MyEventsComp = () => {
 			date: event?.date || null,
 			isFollowing: Boolean(event?.isFollowing),
 			isLiked: Boolean(event?.isLiked),
+			image : event.image,
 			categories,
 		};
 	};
@@ -83,9 +84,9 @@ const MyEventsComp = () => {
 						<EventItem key={event.id} event={event} />
 					))
 				) : (
-					<div className="col-12">
-						<p>No events found matching your criteria.</p>
-					</div>
+					<div className="alert alert-info">
+						No events found matching your criteria.
+						</div>
 				)}
 			</div>
 		</div>
