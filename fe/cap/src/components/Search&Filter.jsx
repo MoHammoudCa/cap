@@ -17,7 +17,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [filterFollowing, setFilterFollowing] = useState(false);
   const [filterLiked, setFilterLiked] = useState(false);
-  const [sortDate, setSortDate] = useState("desc"); // Default to newest first
+  const [sortDate, setSortDate] = useState("asc"); // Default to newest first
   const [eventStatusFilter, setEventStatusFilter] = useState("active"); // Default to active events
 
   const baseCategories = [
@@ -195,14 +195,14 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
                 className={`sort-button ${sortDate === "asc" ? "active" : ""}`}
                 onClick={() => setSortDate(sortDate === "asc" ? null : "asc")}
               >
-                <FiCalendar /> Oldest First
+                <FiCalendar /> Newest First
               </button>
               <button
                 type="button"
                 className={`sort-button ${sortDate === "desc" ? "active" : ""}`}
                 onClick={() => setSortDate(sortDate === "desc" ? null : "desc")}
               >
-                <FiCalendar /> Newest First
+                <FiCalendar /> Oldest First
               </button>
             </div>
           </div>
