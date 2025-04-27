@@ -123,3 +123,36 @@
 .category-chip:hover {
 	opacity: 0.9;
 }
+
+.price-group {
+    margin-bottom: 1rem;
+}
+
+.price-input-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.price-input-container input {
+    flex: 1;
+    min-width: 0;
+}
+
+.currency-select {
+    width: 80px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}

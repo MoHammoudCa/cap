@@ -21,6 +21,8 @@ public class Event {
     private String categories;
     private Timestamp date;
     private String image;
+    private int capacity;
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "organizer_id")

@@ -22,19 +22,16 @@ const Footer = () => {
 						<h3 className="tm-text-primary mb-4 tm-footer-title">Quick Links</h3>
 						<ul className="tm-footer-links pl-0">
 							<li className="mb-2">
-								<a href="/events" className="tm-text-light">Browse Events</a>
+								<a href="/" className="tm-text-light">Browse Events</a>
 							</li>
 							<li className="mb-2">
-								<a href="/create-event" className="tm-text-light">Host an Event</a>
+								<a href="/add-event" className="tm-text-light">Host an Event</a>
 							</li>
 							<li className="mb-2">
 								<a href="/about" className="tm-text-light">About Us</a>
 							</li>
 							<li className="mb-2">
 								<a href="/blog" className="tm-text-light">Event Blog</a>
-							</li>
-							<li className="mb-2">
-								<a href="/contact" className="tm-text-light">Contact Us</a>
 							</li>
 						</ul>
 					</div>
@@ -56,44 +53,14 @@ const Footer = () => {
 								info@funlb.com
 							</li>
 						</ul>
-						
-						<h5 className="mb-3">Follow Us</h5>
-						<ul className="tm-social-links d-flex pl-0 mb-4">
-							<li className="mr-3">
-								<a href="https://facebook.com/funlb" className="tm-social-link">
-									<i className="fab fa-facebook-f fa-lg"></i>
-								</a>
-							</li>
-							<li className="mr-3">
-								<a href="https://instagram.com/funlb" className="tm-social-link">
-									<i className="fab fa-instagram fa-lg"></i>
-								</a>
-							</li>
-							<li className="mr-3">
-								<a href="https://twitter.com/funlb" className="tm-social-link">
-									<i className="fab fa-twitter fa-lg"></i>
-								</a>
-							</li>
-							<li className="mr-3">
-								<a href="https://linkedin.com/company/funlb" className="tm-social-link">
-									<i className="fab fa-linkedin-in fa-lg"></i>
-								</a>
-							</li>
-						</ul>
 					</div>
 				</div>
 
 				{/* Copyright */}
-				<div className="row pt-4">
 					<div className="col-lg-8 col-md-7 col-12 px-5 mb-3">
 						&copy; {new Date().getFullYear()} Fun.LB - All Rights Reserved
 					</div>
-					<div className="col-lg-4 col-md-5 col-12 px-5 text-right">
-						<a href="/privacy" className="tm-text-light mr-3">Privacy Policy</a>
-						<a href="/terms" className="tm-text-light">Terms of Service</a>
-					</div>
 				</div>
-			</div>
 		</footer>
 	);
 };

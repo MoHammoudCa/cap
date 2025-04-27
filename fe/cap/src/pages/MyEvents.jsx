@@ -19,7 +19,6 @@ const MyEvents = () => {
 			<Navbar />
 			<Hero />
 			<MyEventsComp />
-			<FloatingButton onClick={handleClick} />
 			<Footer />
 		</>
 	);

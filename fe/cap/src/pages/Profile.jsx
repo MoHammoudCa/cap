@@ -5,7 +5,7 @@ import { useAuth } from "../context/AuthContext";
 const Profile = () => {
 	const userId = JSON.parse(localStorage.getItem("user")).id;
 	const [user, setUser] = useState({});
-	const { id, name, email, role, profile_picture, created_at } = user;
+	const { id, name, email, role, profilePicture, created_at } = user;
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [isHovering, setIsHovering] = useState(false);
@@ -71,55 +71,57 @@ const Profile = () => {
 	const uploadImage = async (file) => {
 		setIsUploading(true);
 		try {
-			// Step 1: Upload to imgBB
-			const imgbbUrl = `https://api.imgbb.com/1/upload?key=b76b2619b45c9ba98787c8a173723e7c`;
-			const formData = new FormData();
-			formData.append("image", file);
-
-			const imgbbResponse = await fetch(imgbbUrl, {
-				method: "POST",
-				body: formData,
-			});
-
-			const imgbbData = await imgbbResponse.json();
-
-			if (!imgbbData.success) {
-				throw new Error("Image upload to imgBB failed");
+		  // Step 1: Upload to imgBB
+		  const imgbbUrl = `https://api.imgbb.com/1/upload?key=b76b2619b45c9ba98787c8a173723e7c`;
+		  const formData = new FormData();
+		  formData.append("image", file);
+	  
+		  const imgbbResponse = await fetch(imgbbUrl, {
+			method: "POST",
+			body: formData,
+		  });
+	  
+		  const imgbbData = await imgbbResponse.json();
+	  
+		  if (!imgbbData.success) {
+			throw new Error("Image upload to imgBB failed");
+		  }
+	  
+		  const imageUrl = imgbbData.data.url;
+	  
+		  // Step 2: Update user with new profile picture
+		  const token = localStorage.getItem("token");
+		  const updateResponse = await fetch(
+			`http://localhost:8080/api/users/${userId}`,
+			{
+			  method: "PUT",
+			  headers: {
+				"Content-Type": "application/json",
+			  },
+			  body: JSON.stringify({
+				...user, // Include all current user data
+				profilePicture: imageUrl, // Only change the profile picture
+			  }),
 			}
-
-			const imageUrl = imgbbData.data.url;
-
-			// Step 2: Update user with new profile picture
-			const updateResponse = await fetch(
-				`http://localhost:8080/api/users/${userId}`,
-				{
-					method: "PUT",
-					headers: {
-						"Content-Type": "application/json",
-						Authorization: `Bearer ${localStorage.getItem("token")}`,
-					},
-					body: JSON.stringify({
-						...user, // Include all current user data
-						profile_picture: imageUrl, // Only change the profile picture
-					}),
-				}
-			);
-
-			if (!updateResponse.ok) {
-				throw new Error("Failed to update profile");
-			}
-
-			// Update local state with new image
-			setUser((prev) => ({ ...prev, profile_picture: imageUrl }));
-			alert("Profile picture updated successfully!");
+		  );
+	  
+		  if (!updateResponse.ok) {
+			const errorData = await updateResponse.json();
+			throw new Error(errorData.message || "Failed to update profile");
+		  }
+	  
+		  // Update local state with new image
+		  const updatedUser = await updateResponse.json();
+		  setUser(updatedUser);
+		  alert("Profile picture updated successfully!");
 		} catch (err) {
-			console.error("Error:", err);
-			setError(err.message);
-			alert("Failed to update profile picture. Please try again.");
+		  console.error("Error:", err);
+		  setError(err.message);
+		  alert(err.message || "Failed to update profile picture. Please try again.");
 		} finally {
-			setIsUploading(false);
+		  setIsUploading(false);
 		}
-	};
+	  };
 
 	if (loading) {
 		return <div>Loading profile...</div>;
@@ -143,7 +145,7 @@ const Profile = () => {
 						>
 							<img
 								src={
-									profile_picture ||
+									profilePicture ||
 									`https://ui-avatars.com/api/?name=${encodeURIComponent(
 										name
 									)}&background=random`
@@ -184,7 +186,6 @@ const Profile = () => {
 							<span className="detail-value">{email}</span>
 						</div>
 
-					
 					</div>
 
 					<div className="profile-actions">

@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FaEdit, FaTrash, FaHeart, FaRegHeart, FaTimesCircle, FaCheckCircle, FaHourglassHalf } from "react-icons/fa";
+import { FiCalendar, FiClock, FiMapPin, FiUser } from "react-icons/fi";
 import axios from "axios";
-import { FaCheckCircle, FaTimesCircle, FaHourglassHalf } from "react-icons/fa";
-import { parseISO, isAfter, isBefore } from "date-fns";
+import { parseISO, isAfter, isBefore, format } from "date-fns";
 
-const EventItem = ({ event }) => {
+
+const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
     const [isLiked, setIsLiked] = useState(event.isLiked || false);
     const [likeId, setLikeId] = useState(null);
-    const user = JSON.parse(localStorage.getItem("user"))?.id;
-    
-    const getEventStatus = (eventDate) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const currentUserId = user?.id;
+    const isOrganizer = event.organizer?.id === currentUserId;
+
+    const normalizeCategories = (categories) => {
+        if (typeof categories === "string") {
+            return categories.split(',').map(item => item.trim()).filter(Boolean);
+        }
+        if (Array.isArray(categories)) {
+            return categories;
+        }
+        return [];
+    };
+	const getEventStatus = (eventDate) => {
         const now = new Date();
         const eventDateObj = parseISO(eventDate);
         
@@ -31,41 +44,30 @@ const EventItem = ({ event }) => {
                 icon: <FaHourglassHalf className="text-warning me-1" />,
                 badgeClass: "bg-warning"
             };
-        }
-    };
-
-    const statusInfo = event.date ? getEventStatus(event.date) : { 
+		}
+	}
+	const statusInfo = event.date ? getEventStatus(event.date) : { 
         status: "Unknown", 
         icon: null,
         badgeClass: "bg-secondary"
     };
 
+    const categories = normalizeCategories(event.categories);
+
     const formatDate = (dateString) => {
-        const date = new Date(dateString);
-        const day = String(date.getDate()).padStart(2, "0");
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const year = date.getFullYear();
-        return `${day}-${month}-${year}`;
+        return format(parseISO(dateString), "MMM dd, yyyy");
     };
 
     const formatTime = (dateString) => {
-        return new Date(dateString).toLocaleTimeString("en-US", {
-            hour: "2-digit",
-            minute: "2-digit",
-        });
+        return format(parseISO(dateString), "h:mm a");
     };
 
     useEffect(() => {
         const checkLikeStatus = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/api/reactions`, {
-                    params: {
-                        eventId: event.id,
-                        userId: user?.id
-                    },
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
+                    params: { eventId: event.id, userId: currentUserId },
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
                 
                 if (response.data.length > 0) {
@@ -77,38 +79,24 @@ const EventItem = ({ event }) => {
             }
         };
 
-        if (user) {
-            checkLikeStatus();
-        }
-    }, [event.id, user]);
+        if (currentUserId) checkLikeStatus();
+    }, [event.id, currentUserId]);
 
     const handleLikeToggle = async () => {
-        if (!user) {
-            // Redirect to login or show a message
-            return;
-        }
+        if (!currentUserId) return;
 
         try {
             if (isLiked) {
                 await axios.delete(`http://localhost:8080/api/reactions/${likeId}`, {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}`
-                    }
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
                 setIsLiked(false);
                 setLikeId(null);
             } else {
                 const response = await axios.post(
                     `http://localhost:8080/api/reactions`,
-                    {
-                        eventId: event.id,
-                        type: "like"
-                    },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${localStorage.getItem('token')}`
-                        }
-                    }
+                    { eventId: event.id, type: "like" },
+                    { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
                 );
                 setIsLiked(true);
                 setLikeId(response.data.id);
@@ -118,25 +106,30 @@ const EventItem = ({ event }) => {
         }
     };
 
+    const handleDelete = async () => {
+        if (window.confirm("Are you sure you want to delete this event?")) {
+            try {
+                await axios.delete(`http://localhost:8080/api/events/${event.id}`, {
+                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                });
+                onDelete(event.id);
+            } catch (error) {
+                console.error("Error deleting event:", error);
+                alert("Failed to delete event");
+            }
+        }
+    };
+
     return (
         <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
             <div className="card h-100">
-                {!event.image ? (
-                    <img
-                        src="/src/assets/img/defaultEventImage.png"
-                        alt="Default event image"
-                        className="card-img-top"
-                        style={{ height: "200px", objectFit: "cover" }}
-                    />
-                ) : (
-                    <img 
-                        src={event.image} 
-                        alt="Event" 
-                        className="card-img-top"
-                        style={{ height: "200px", objectFit: "cover" }}
-                    />
-                )}
-                <div className="card-body d-flex flex-column">
+                <img 
+                    src={event.image || "/default-event.jpg"} 
+                    alt={event.title} 
+                    className="card-img-top"
+                    style={{ height: "200px", objectFit: "cover" }}
+                />
+                <div className="card-body">
                     <div className="d-flex justify-content-between align-items-start mb-2">
                         <h5 className="card-title">{event.title}</h5>
                         <button 
@@ -144,22 +137,14 @@ const EventItem = ({ event }) => {
                             className="btn btn-link p-0 border-0"
                             aria-label={isLiked ? "Unlike event" : "Like event"}
                         >
-                            <i 
-                                className={`fa-heart ${isLiked ? 'fas text-danger' : 'far'}`}
-                                style={{ fontSize: '1.5rem' }}
-                            ></i>
+                            {isLiked ? (
+                                <FaHeart className="text-danger" style={{ fontSize: '1.5rem' }} />
+                            ) : (
+                                <FaRegHeart style={{ fontSize: '1.5rem' }} />
+                            )}
                         </button>
                     </div>
-                    
-                    {/* Status Badge */}
-                    <div className="mb-3 d-flex align-items-center">
-                        {statusInfo.icon}
-                        <span className={`badge ${statusInfo.badgeClass} ms-1`}>
-                            {statusInfo.status}
-                        </span>
-                    </div>
-                    
-                    {/* Organizer with Avatar */}
+
                     {event.organizer && (
                         <div className="d-flex align-items-center mb-3">
                             <Link 
@@ -179,6 +164,14 @@ const EventItem = ({ event }) => {
                             </Link>
                         </div>
                     )}
+				
+					 {/* Status Badge */}
+					 <div className="mb-3 d-flex align-items-center">
+                        {statusInfo.icon}
+                        <span className={`badge ${statusInfo.badgeClass} ms-1`}>
+                            {statusInfo.status}
+                        </span>
+                    </div>
 
                     {/* Event Details */}
                     <div className="mb-3">
@@ -203,26 +196,45 @@ const EventItem = ({ event }) => {
                         )}
                     </div>
 
-                    {/* Categories */}
-                    <div className="mt-auto">
-                        <div className="d-flex flex-wrap mb-3">
-                            {event.categories?.map((category, index) => (
-                                <span
-                                    key={index}
-                                    className="badge rounded-pill bg-info text-dark me-2 mb-2"
-                                    style={{ fontSize: "0.75rem", padding: "0.35em 0.65em" }}
-                                >
-                                    {category}
-                                </span>
-                            ))}
+                    {categories.length > 0 && (
+                        <div className="mb-3">
+                            <div className="d-flex flex-wrap gap-1">
+                                {categories.map((category, index) => (
+                                    <span
+                                        key={index}
+                                        className="badge rounded-pill bg-info text-dark"
+                                        style={{ fontSize: "0.75rem", padding: "0.35em 0.65em" }}
+                                    >
+                                        {category}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
-                        
+                    )}
+
+                    <div className="d-flex justify-content-between mt-auto">
                         <Link
                             to={`/event/${event.id}`}
-                            className="btn btn-primary w-100 py-2"
+                            className="btn btn-sm btn-outline-primary"
                         >
-                            More Details
+                            View Details
                         </Link>
+                        {showActions && isOrganizer && (
+                            <div>
+                                <Link
+                                    to={`/event/${event.id}/edit`}
+                                    className="btn btn-sm btn-outline-secondary me-2"
+                                >
+                                    <FaEdit className="me-1" /> Edit
+                                </Link>
+                                <button
+                                    onClick={handleDelete}
+                                    className="btn btn-sm btn-outline-danger"
+                                >
+                                    <FaTrash className="me-1" /> Delete
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

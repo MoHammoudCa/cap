@@ -51,6 +51,8 @@ public class EventService {
             event.setCategories(eventDetails.getCategories());
             event.setDate(eventDetails.getDate());
             event.setImage(eventDetails.getImage());
+            event.setCapacity(eventDetails.getCapacity());
+            event.setPrice(eventDetails.getPrice());
             return eventRepository.save(event);
         }
         return null;

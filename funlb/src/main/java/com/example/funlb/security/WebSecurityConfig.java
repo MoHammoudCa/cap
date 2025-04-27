@@ -57,6 +57,8 @@ public class WebSecurityConfig {
                                 .requestMatchers("/api/users/**").permitAll()
                                 .requestMatchers("/api/admin/**").permitAll()
                                 .requestMatchers("/api/events/**").permitAll()
+                                .requestMatchers("/api/follows/**").permitAll()
+                                .requestMatchers("/api/likes/**").permitAll()
                                 .anyRequest().authenticated()
                 );
         // Add the JWT Token filter before the UsernamePasswordAuthenticationFilter

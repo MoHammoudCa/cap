@@ -60,8 +60,7 @@ public class UserController {
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(
             @PathVariable UUID id,
-            @RequestBody User userDetails,
-            @AuthenticationPrincipal UserDetails authenticatedUser) {
+            @RequestBody User userDetails) {
 
 
         User currentUser = userRepository.findById(id).orElse(null);
@@ -69,18 +68,11 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
-        // Verify the authenticated user matches the requested user ID
-        if (!authenticatedUser.getUsername().equals(id.toString())) {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Unauthorized to update this profile");
-        }
-
-        // Update only allowed fields - exclude password
         currentUser.setName(userDetails.getName());
         currentUser.setEmail(userDetails.getEmail());
         currentUser.setRole(userDetails.getRole());
         currentUser.setProfilePicture(userDetails.getProfilePicture());
 
-        // Save without changing password
         User updatedUser = userRepository.save(currentUser);
         return ResponseEntity.ok(updatedUser);
     }

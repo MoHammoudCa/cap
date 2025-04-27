@@ -12,6 +12,7 @@ import Contact from "./pages/Contact";
 import MyEvents from "./pages/MyEvents";
 import LogoutPage from "./pages/logout";
 import OrganizerProfilePage from "./pages/OrganizerProfilePage";
+import EditEvent from "./components/EditEvent";
 
 const App = () => {
 	return (
@@ -30,7 +31,9 @@ const App = () => {
 				<Route path="/about" element={<About />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/event/:id" element={<EventDetailPage />} />
-				<Route path="/organizer/:id" element={<OrganizerProfilePage />} />			</Routes>
+				<Route path="/event/:id/edit" element={<EditEvent />} />
+				<Route path="/organizer/:id" element={<OrganizerProfilePage />} />	
+						</Routes>
 		</Router>
 	);
 };

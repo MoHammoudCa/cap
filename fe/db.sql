@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS public.users
     email character varying(255) COLLATE pg_catalog."default" NOT NULL,
     password character varying(255) COLLATE pg_catalog."default" NOT NULL,
     role character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    profile_picture character varying(255) COLLATE pg_catalog."default",
+    profilePicture character varying(255) COLLATE pg_catalog."default",
     created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT users_pkey PRIMARY KEY (id),
@@ -188,7 +188,7 @@ INSERT INTO public.categories (id, name) VALUES
 
 
 
-INSERT INTO public.users (id, name, email, password, role, profile_picture, created_at) VALUES
+INSERT INTO public.users (id, name, email, password, role, profilePicture, created_at) VALUES
     -- Admin
     ('aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', 'Admin User', 'admin@example.com', '$2a$10$xJwL5vxJZ5jzL5Z5zL5Z5e', 'ADMIN', 'https://example.com/profiles/admin.jpg', '2023-01-01 10:00:00'),
 
