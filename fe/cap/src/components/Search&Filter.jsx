@@ -15,8 +15,6 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
   const [searchTerm, setSearchTerm] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [filterFollowing, setFilterFollowing] = useState(false);
-  const [filterLiked, setFilterLiked] = useState(false);
   const [sortDate, setSortDate] = useState("asc"); // Default to newest first
   const [eventStatusFilter, setEventStatusFilter] = useState("active"); // Default to active events
 
@@ -62,16 +60,6 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
         event.categories?.some((cat) => selectedCategories.includes(cat))
   )}
 
-    // Apply following filter
-    if (filterFollowing) {
-      result = result.filter((event) => event.isFollowing);
-    }
-
-    // Apply liked filter
-    if (filterLiked) {
-      result = result.filter((event) => event.isLiked);
-    }
-
     // Apply date sorting
     if (sortDate) {
       result.sort((a, b) => {
@@ -82,7 +70,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
     }
 
     setFilteredEvents(result);
-  }, [events, searchTerm, selectedCategories, filterFollowing, filterLiked, sortDate, eventStatusFilter]);
+  }, [events, searchTerm, selectedCategories, , sortDate, eventStatusFilter]);
 
   const toggleCategory = (categoryId) => {
     setSelectedCategories((prev) =>
@@ -161,30 +149,6 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
                 </button>
               ))}
             </div>
-          </div>
-
-          <div className="filter-section">
-            <label className="filter-checkbox">
-              <input
-                type="checkbox"
-                checked={filterFollowing}
-                onChange={() => setFilterFollowing(!filterFollowing)}
-              />
-              <FiUserCheck className="filter-icon" />
-              Following Only
-            </label>
-          </div>
-
-          <div className="filter-section">
-            <label className="filter-checkbox">
-              <input
-                type="checkbox"
-                checked={filterLiked}
-                onChange={() => setFilterLiked(!filterLiked)}
-              />
-              <FiHeart className="filter-icon" />
-              Liked Only
-            </label>
           </div>
 
           <div className="filter-section">

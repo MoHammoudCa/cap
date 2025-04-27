@@ -60,4 +60,10 @@ public class FollowController {
         long count = followService.getFollowersCount(userId);
         return ResponseEntity.ok(Collections.singletonMap("count", count));
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<UUID>> getFollowedUserIds(@PathVariable UUID userId) {
+        List<UUID> followedIds = followService.getFollowedUserIds(userId);
+        return ResponseEntity.ok(followedIds);
+    }
 }

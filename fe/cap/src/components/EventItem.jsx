@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { FaEdit, FaTrash, FaHeart, FaRegHeart, FaTimesCircle, FaCheckCircle, FaHourglassHalf } from "react-icons/fa";
-import { FiCalendar, FiClock, FiMapPin, FiUser } from "react-icons/fi";
+import { 
+  FaEdit, 
+  FaTrash, 
+  FaHeart, 
+  FaRegHeart, 
+  FaTimesCircle, 
+  FaCheckCircle, 
+  FaHourglassHalf 
+} from "react-icons/fa";
 import axios from "axios";
 import { parseISO, isAfter, isBefore, format } from "date-fns";
 
-
 const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
-    const [isLiked, setIsLiked] = useState(event.isLiked || false);
-    const [likeId, setLikeId] = useState(null);
+    const [isLiked, setIsLiked] = useState(false);
+    const [likesCount, setLikesCount] = useState(0);
+    const [isLoadingLike, setIsLoadingLike] = useState(false);
     const user = JSON.parse(localStorage.getItem("user"));
     const currentUserId = user?.id;
     const isOrganizer = event.organizer?.id === currentUserId;
@@ -22,7 +29,8 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
         }
         return [];
     };
-	const getEventStatus = (eventDate) => {
+
+    const getEventStatus = (eventDate) => {
         const now = new Date();
         const eventDateObj = parseISO(eventDate);
         
@@ -44,9 +52,10 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                 icon: <FaHourglassHalf className="text-warning me-1" />,
                 badgeClass: "bg-warning"
             };
-		}
-	}
-	const statusInfo = event.date ? getEventStatus(event.date) : { 
+        }
+    };
+
+    const statusInfo = event.date ? getEventStatus(event.date) : { 
         status: "Unknown", 
         icon: null,
         badgeClass: "bg-secondary"
@@ -63,46 +72,49 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
     };
 
     useEffect(() => {
-        const checkLikeStatus = async () => {
+        const fetchLikeData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/api/reactions`, {
-                    params: { eventId: event.id, userId: currentUserId },
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-                });
-                
-                if (response.data.length > 0) {
-                    setIsLiked(true);
-                    setLikeId(response.data[0].id);
+                // Check like status
+                if (currentUserId) {
+                    const statusResponse = await axios.get(`http://localhost:8080/api/likes/status`, {
+                        params: { userId: currentUserId, eventId: event.id }
+                    });
+                    setIsLiked(statusResponse.data.isLiked);
                 }
+                
+                // Get likes count
+                const countResponse = await axios.get(`http://localhost:8080/api/likes/count/${event.id}`);
+                setLikesCount(countResponse.data.count);
             } catch (error) {
-                console.error("Error checking like status:", error);
+                console.error("Error fetching like data:", error);
             }
         };
 
-        if (currentUserId) checkLikeStatus();
+        fetchLikeData();
     }, [event.id, currentUserId]);
 
     const handleLikeToggle = async () => {
         if (!currentUserId) return;
-
+        setIsLoadingLike(true);
+        
         try {
             if (isLiked) {
-                await axios.delete(`http://localhost:8080/api/reactions/${likeId}`, {
-                    headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+                await axios.delete(`http://localhost:8080/api/likes`, {
+                    params: { userId: currentUserId, eventId: event.id }
                 });
                 setIsLiked(false);
-                setLikeId(null);
+                setLikesCount(prev => prev - 1);
             } else {
-                const response = await axios.post(
-                    `http://localhost:8080/api/reactions`,
-                    { eventId: event.id, type: "like" },
-                    { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
-                );
+                await axios.post(`http://localhost:8080/api/likes`, null, {
+                    params: { userId: currentUserId, eventId: event.id }
+                });
                 setIsLiked(true);
-                setLikeId(response.data.id);
+                setLikesCount(prev => prev + 1);
             }
         } catch (error) {
             console.error("Error toggling like:", error);
+        } finally {
+            setIsLoadingLike(false);
         }
     };
 
@@ -122,27 +134,34 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
 
     return (
         <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
-            <div className="card h-100">
+            <div className="card h-100 shadow-sm">
                 <img 
                     src={event.image || "/default-event.jpg"} 
                     alt={event.title} 
                     className="card-img-top"
                     style={{ height: "200px", objectFit: "cover" }}
                 />
-                <div className="card-body">
+                <div className="card-body d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-start mb-2">
-                        <h5 className="card-title">{event.title}</h5>
-                        <button 
-                            onClick={handleLikeToggle}
-                            className="btn btn-link p-0 border-0"
-                            aria-label={isLiked ? "Unlike event" : "Like event"}
-                        >
-                            {isLiked ? (
-                                <FaHeart className="text-danger" style={{ fontSize: '1.5rem' }} />
-                            ) : (
-                                <FaRegHeart style={{ fontSize: '1.5rem' }} />
-                            )}
-                        </button>
+                        <h5 className="card-title mb-0">{event.title}</h5>
+                        <div className="d-flex align-items-center">
+                            <span className="text-muted me-2 small">{likesCount}</span>
+                            <button 
+                                onClick={handleLikeToggle}
+                                className="btn btn-link p-0 border-0"
+                                disabled={isLoadingLike}
+                                aria-label={isLiked ? "Unlike event" : "Like event"}
+                                style={{ lineHeight: 1 }}
+                            >
+                                {isLoadingLike ? (
+                                    <span className="spinner-border spinner-border-sm" role="status"></span>
+                                ) : isLiked ? (
+                                    <FaHeart className="text-danger" style={{ fontSize: '1.25rem' }} />
+                                ) : (
+                                    <FaRegHeart className="text-muted" style={{ fontSize: '1.25rem' }} />
+                                )}
+                            </button>
+                        </div>
                     </div>
 
                     {event.organizer && (
@@ -164,9 +183,9 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                             </Link>
                         </div>
                     )}
-				
-					 {/* Status Badge */}
-					 <div className="mb-3 d-flex align-items-center">
+                
+                    {/* Status Badge */}
+                    <div className="mb-3 d-flex align-items-center">
                         {statusInfo.icon}
                         <span className={`badge ${statusInfo.badgeClass} ms-1`}>
                             {statusInfo.status}
@@ -212,7 +231,7 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                         </div>
                     )}
 
-                    <div className="d-flex justify-content-between mt-auto">
+                    <div className="d-flex justify-content-between mt-auto pt-2">
                         <Link
                             to={`/event/${event.id}`}
                             className="btn btn-sm btn-outline-primary"

@@ -19,6 +19,4 @@ public class Like {
     @ManyToOne
     @JoinColumn(name = "event_id")
     private Event event;
-
-    private String type;
 }

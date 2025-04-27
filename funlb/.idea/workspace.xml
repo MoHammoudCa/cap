@@ -5,33 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/css/addEvent.css" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/assets/css/addEvent.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/MyEventsComp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/MyEventsComp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/OrganizerProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/OrganizerProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/AddEvent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/AddEvent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/MyEvents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/MyEvents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/Profile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/db.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/db.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/CorsConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/FollowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/FollowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/EventRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/FollowRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/FollowRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/LikeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/FollowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/FollowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/config/CorsConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/FollowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/FollowController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Like.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Like.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/EventRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/EventRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/FollowRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/FollowRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/LikeRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/FollowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/FollowService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" afterDir="false" />
@@ -70,7 +60,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.FunlbApplication.executor": "Debug",
+    "Spring Boot.FunlbApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -146,7 +136,7 @@
       <workItem from="1744521015317" duration="5045000" />
       <workItem from="1744577325349" duration="3979000" />
       <workItem from="1745476186994" duration="5000" />
-      <workItem from="1745671318106" duration="17407000" />
+      <workItem from="1745671318106" duration="20532000" />
     </task>
     <servers />
   </component>

@@ -5,12 +5,12 @@ import { format, parseISO, isAfter, isBefore } from "date-fns";
 import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaCheckCircle, FaTimesCircle, FaHourglassHalf } from "react-icons/fa";
 import '../assets/css/eventDetails.css'
 
-
 const EventDetail = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [similarEvents, setSimilarEvents] = useState([]);
   
   const normalizeEvent = (event) => {
     const categories =
@@ -38,30 +38,73 @@ const EventDetail = () => {
   };
 
   const getEventStatus = (eventDate) => {
-	const now = new Date();
-	const eventDateObj = parseISO(eventDate);
-	
-	if (isBefore(eventDateObj, now)) {
-	  return { 
-		status: "Ended", 
-		icon: <FaTimesCircle className="text-danger me-1" />,
-		badgeClass: "bg-danger"
-	  };
-	} else if (isAfter(eventDateObj, now)) {
-	  return { 
-		status: "Active", 
-		icon: <FaCheckCircle className="text-success me-1" />,
-		badgeClass: "bg-success"
-	  };
-	} else {
-	  return { 
-		status: "Happening Now", 
-		icon: <FaHourglassHalf className="text-warning me-1" />,
-		badgeClass: "bg-warning"
-	  };
-	}
+    const now = new Date();
+    const eventDateObj = parseISO(eventDate);
+    
+    if (isBefore(eventDateObj, now)) {
+      return { 
+        status: "Ended", 
+        icon: <FaTimesCircle className="text-danger me-1" />,
+        badgeClass: "bg-danger"
+      };
+    } else if (isAfter(eventDateObj, now)) {
+      return { 
+        status: "Active", 
+        icon: <FaCheckCircle className="text-success me-1" />,
+        badgeClass: "bg-success"
+      };
+    } else {
+      return { 
+        status: "Happening Now", 
+        icon: <FaHourglassHalf className="text-warning me-1" />,
+        badgeClass: "bg-warning"
+      };
+    }
   };
-  
+
+  const fetchSimilarEvents = async (currentEvent) => {
+    try {
+      const response = await fetch(`http://localhost:8080/api/events/`);
+      if (!response.ok) throw new Error("Could not fetch events");
+      const allEvents = await response.json();
+      
+
+	  const now = new Date();
+	  
+      // Filter out the current event
+      const otherEvents = allEvents.filter(e => e.id !== currentEvent.id
+		&& new Date(e.date) > now).map(normalizeEvent);
+      
+      // Score events based on similarity
+      const scoredEvents = otherEvents.map(otherEvent => {
+        let score = 0;
+        
+        // Same organizer (high weight)
+        if (currentEvent.organizer && otherEvent.organizer && 
+            currentEvent.organizer.id === otherEvent.organizer.id) {
+          score += 2;
+        }
+        
+        // Shared categories (medium weight)
+        const sharedCategories = currentEvent.categories.filter(cat => 
+          otherEvent.categories.includes(cat)
+        ).length;
+        score += sharedCategories * 3;
+        
+        return { ...otherEvent, score };
+      });
+      
+      // Sort by score and get top 3
+      const topSimilar = scoredEvents
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
+      
+      setSimilarEvents(topSimilar);
+    } catch (err) {
+      console.error("Error fetching similar events:", err);
+      setSimilarEvents([]);
+    }
+  };
 
   useEffect(() => {
     const fetchEvent = async () => {
@@ -69,7 +112,9 @@ const EventDetail = () => {
         const response = await fetch(`http://localhost:8080/api/events/${id}`);
         if (!response.ok) throw new Error("Event not found");
         const data = await response.json();
-        setEvent(normalizeEvent(data));
+        const normalizedEvent = normalizeEvent(data);
+        setEvent(normalizedEvent);
+        fetchSimilarEvents(normalizedEvent);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -92,11 +137,10 @@ const EventDetail = () => {
   if (error) return <div className="alert alert-danger mx-3">Error: {error}</div>;
   if (!event) return <div className="alert alert-warning mx-3">Event not found</div>;
 
-
   const statusInfo = event.date ? getEventStatus(event.date) : { 
-	status: "Unknown", 
-	icon: null,
-	badgeClass: "bg-secondary"
+    status: "Unknown", 
+    icon: null,
+    badgeClass: "bg-secondary"
   };
   
   return (
@@ -109,7 +153,7 @@ const EventDetail = () => {
       <div className="row">
         {/* Left Column - Image and Description */}
         <div className="col-lg-8 pe-lg-4">
-          {/* Full-width Image - now with proper height */}
+          {/* Full-width Image */}
           <div className="mb-4">
             <img 
               src={event.image || "/default-event.jpg"} 
@@ -128,7 +172,44 @@ const EventDetail = () => {
               </p>
             </div>
           </div>
+
+          {/* Similar Events Section */}
+          {similarEvents.length > 0 && (
+            <div className="card border-0 shadow-sm mt-4">
+              <div className="card-body">
+                <h3 className="h4 mb-3">Similar Events</h3>
+                <div className="row">
+                  {similarEvents.map((similarEvent) => (
+                    <div className="col-md-4 mb-3" key={similarEvent.id}>
+                      <div className="card h-100">
+                        <Link to={`/event/${similarEvent.id}`} className="text-decoration-none">
+                          <img 
+                            src={similarEvent.image || "/default-event.jpg"} 
+                            className="card-img-top" 
+                            alt={similarEvent.title}
+                            style={{ height: "150px", objectFit: "cover" }}
+                          />
+                          <div className="card-body">
+                            <h5 className="card-title text-dark">{similarEvent.title}</h5>
+                            <div className="d-flex align-items-center text-muted small mb-2">
+                              <FaCalendarAlt className="me-2" />
+                              <span>{formatDate(similarEvent.date)}</span>
+                            </div>
+                            <div className="d-flex align-items-center text-muted small">
+                              <FaMapMarkerAlt className="me-2" />
+                              <span>{similarEvent.location}</span>
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
+        
         {/* Right Column - Event Details */}
         <div className="col-lg-4">
           <div className="card border-0 shadow-sm h-100">
@@ -136,21 +217,21 @@ const EventDetail = () => {
               <h3 className="h5 mb-3">Event Details</h3>
               
               {/* Organizer */}
-				{event.organizer && (
-				<div className="d-flex align-items-center mb-3">
-					<Link to={`/organizer/${event.organizer.id}`} className="text-decoration-none d-flex align-items-center">
-					<img 
-						src={event.organizer.profilePicture || `https://ui-avatars.com/api/?name=${encodeURIComponent(event.organizer.name)}&background=random`}
-						alt={event.organizer.name}
-						className="rounded-circle me-2"
-						style={{ width: "40px", height: "40px", objectFit: "cover" }}
-					/>
-					<span className="text-dark">
-						 Hosted by <strong>{event.organizer.name}</strong>
-					</span>
-					</Link>
-				</div>
-				)}
+              {event.organizer && (
+                <div className="d-flex align-items-center mb-3">
+                  <Link to={`/organizer/${event.organizer.id}`} className="text-decoration-none d-flex align-items-center">
+                    <img 
+                      src={event.organizer.profilePicture || `https://ui-avatars.com/api/?name=${encodeURIComponent(event.organizer.name)}&background=random`}
+                      alt={event.organizer.name}
+                      className="rounded-circle me-2"
+                      style={{ width: "40px", height: "40px", objectFit: "cover" }}
+                    />
+                    <span className="text-dark">
+                      Hosted by <strong>{event.organizer.name}</strong>
+                    </span>
+                  </Link>
+                </div>
+              )}
 
               {/* Date & Time */}
               <div className="d-flex align-items-center mb-2">
@@ -189,7 +270,7 @@ const EventDetail = () => {
                 </li>
               </ul>
 
-              {/* Categories with better spacing */}
+              {/* Categories */}
               <div className="mt-4 mb-5">
                 <h4 className="h6 mb-3">Categories</h4>
                 <div className="d-flex flex-wrap gap-2">

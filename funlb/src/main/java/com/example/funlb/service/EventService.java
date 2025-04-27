@@ -62,17 +62,25 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    public List<Event> getFilteredEvents(String searchQuery){
-        if (searchQuery==null || searchQuery.isBlank()){
+    public List<Event> getFilteredEvents(String searchQuery) {
+        if (searchQuery == null || searchQuery.isBlank()) {
             return getAllEvents();
         }
-        return getAllEvents().stream().filter(event -> event.getTitle()!= null &&  event.getTitle().toLowerCase().contains(searchQuery.toLowerCase())
-                || event.getCategories()!= null &&  event.getCategories().toLowerCase().contains(searchQuery.toLowerCase())
-                || event.getOrganizer()!= null && event.getOrganizer().getName().toLowerCase().contains(searchQuery.toLowerCase()))
+        return getAllEvents().stream().filter(event -> event.getTitle() != null && event.getTitle().toLowerCase().contains(searchQuery.toLowerCase())
+                        || event.getCategories() != null && event.getCategories().toLowerCase().contains(searchQuery.toLowerCase())
+                        || event.getOrganizer() != null && event.getOrganizer().getName().toLowerCase().contains(searchQuery.toLowerCase()))
                 .toList();
     }
 
-    public List<Event> getEventsByUser(UUID userId){
+    public List<Event> getEventsByUser(UUID userId) {
         return getAllEvents().stream().filter(event -> event.getOrganizer().getId().equals(userId)).toList();
+    }
+
+    public List<Event> getEventsByOrganizerId(List<UUID> organizerId) {
+        return eventRepository.findByOrganizerIdIn(organizerId);
+    }
+
+    public List<Event> getEventsById(List<UUID> eventIds) {
+        return eventRepository.findByIdIn(eventIds);
     }
 }

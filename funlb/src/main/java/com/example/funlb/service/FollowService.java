@@ -59,4 +59,10 @@ public class FollowService {
     public long getFollowersCount(UUID userId) {
         return followRepository.countByFollowedId(userId);
     }
+
+    public List<UUID> getFollowedUserIds(UUID followerId) {
+        return followRepository.findByFollowerId(followerId).stream()
+                .map(follow -> follow.getFollowed().getId())
+                .toList();
+    }
 }
