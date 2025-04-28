@@ -56,9 +56,17 @@ public class LikeService {
         return likeRepository.countByEventId(eventId);
     }
 
+    public long getLikedEventsCountByUser(UUID userId) {
+        return likeRepository.countByUserId(userId);
+    }
+
     public List<UUID> getLikedEventsIds(UUID userId) {
         return likeRepository.findByUserId(userId).stream()
                 .map(like -> like.getEvent().getId())
                 .toList();
+    }
+
+    public List<Like> getLikedEventsByUser(UUID userId) {
+        return likeRepository.findByUserId(userId);
     }
 }

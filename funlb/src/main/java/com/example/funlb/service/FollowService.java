@@ -30,7 +30,6 @@ public class FollowService {
 
     @Transactional
     public Follow createFollow(UUID followerId, UUID followedId) {
-        // Check if follow relationship already exists
         if (followRepository.existsByFollowerIdAndFollowedId(followerId, followedId)) {
             throw new IllegalStateException("Already following this user");
         }
@@ -60,9 +59,19 @@ public class FollowService {
         return followRepository.countByFollowedId(userId);
     }
 
-    public List<UUID> getFollowedUserIds(UUID followerId) {
+    public long getFollowingCount(UUID userId) {
+        return followRepository.countByFollowerId(userId);
+    }
+
+    public List<UUID> getFollowingIds(UUID followerId) {
         return followRepository.findByFollowerId(followerId).stream()
                 .map(follow -> follow.getFollowed().getId())
+                .toList();
+    }
+
+    public List<UUID> getFollowersIds(UUID followedId) {
+        return followRepository.findByFollowedId(followedId).stream()
+                .map(follow -> follow.getFollower().getId())
                 .toList();
     }
 }

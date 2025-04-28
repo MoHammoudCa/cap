@@ -61,9 +61,21 @@ public class FollowController {
         return ResponseEntity.ok(Collections.singletonMap("count", count));
     }
 
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<UUID>> getFollowedUserIds(@PathVariable UUID userId) {
-        List<UUID> followedIds = followService.getFollowedUserIds(userId);
-        return ResponseEntity.ok(followedIds);
+    @GetMapping("/following-count/{userId}")
+    public ResponseEntity<Map<String, Long>> getFollowingCount(@PathVariable UUID userId) {
+        long count = followService.getFollowingCount(userId);
+        return ResponseEntity.ok(Collections.singletonMap("count", count));
+    }
+
+    @GetMapping("/followers/{userId}")
+    public ResponseEntity<List<UUID>> getFollowersIds(@PathVariable UUID userId) {
+        List<UUID> followersIds = followService.getFollowersIds(userId);
+        return ResponseEntity.ok(followersIds);
+    }
+
+    @GetMapping("/following/{userId}")
+    public ResponseEntity<List<UUID>> getFollowingIds(@PathVariable UUID userId) {
+        List<UUID> followingIds = followService.getFollowingIds(userId);
+        return ResponseEntity.ok(followingIds);
     }
 }

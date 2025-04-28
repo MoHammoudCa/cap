@@ -45,9 +45,21 @@ public class LikeController {
         return ResponseEntity.ok(Collections.singletonMap("count", count));
     }
 
+    @GetMapping("/user-count/{userId}")
+    public ResponseEntity<Map<String, Long>> getLikedEventsCountByUser(@PathVariable UUID userId) {
+        long count = likeService.getLikedEventsCountByUser(userId);
+        return ResponseEntity.ok(Collections.singletonMap("count", count));
+    }
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<UUID>> getLikedEventsIds(@PathVariable UUID userId) {
         List<UUID> likedEventsIds = likeService.getLikedEventsIds(userId);
         return ResponseEntity.ok(likedEventsIds);
+    }
+
+    @GetMapping("/user-events/{userId}")
+    public ResponseEntity<List<Like>> getLikedEvents(@PathVariable UUID userId) {
+        List<Like> likedEvents = likeService.getLikedEventsByUser(userId);
+        return ResponseEntity.ok(likedEvents);
     }
 }
