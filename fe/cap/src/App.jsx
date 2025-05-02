@@ -13,6 +13,9 @@ import MyEvents from "./pages/MyEvents";
 import LogoutPage from "./pages/logout";
 import OrganizerProfilePage from "./pages/OrganizerProfilePage";
 import EditEvent from "./components/EditEvent";
+import FollowersPage from "./pages/FollowersPage";
+import FollowingPage from "./pages/FollowingPage";
+import LikedEventsPage from "./pages/LikedEventsPage";
 
 const App = () => {
 	return (
@@ -33,7 +36,10 @@ const App = () => {
 				<Route path="/event/:id" element={<EventDetailPage />} />
 				<Route path="/event/:id/edit" element={<EditEvent />} />
 				<Route path="/organizer/:id" element={<OrganizerProfilePage />} />	
-						</Routes>
+				<Route path="/user/:id/followers" element={<FollowersPage/>}/>
+				<Route path="/user/:id/following" element={<FollowingPage/>}/>
+				<Route path="/user/:userId/liked-events" element={<LikedEventsPage />} />
+			</Routes>
 		</Router>
 	);
 };

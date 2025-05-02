@@ -4,7 +4,6 @@ import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
 import { FaUserFriends, FaHeart, FaCalendarAlt, FaEnvelope, FaSignOutAlt, FaUserCog, FaCamera } from "react-icons/fa";
 
-
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem("user")).id;
   const [user, setUser] = useState({});
@@ -16,7 +15,10 @@ const Profile = () => {
   const [stats, setStats] = useState({
     followersCount: 0,
     followingCount: 0,
-    likedEventsCount: 0
+    likedEventsCount: 0,
+    followersList: [],
+    followingList: [],
+    likedEventsList: []
   });
   const fileInputRef = useRef(null);
   const { logout } = useAuth();
@@ -30,17 +32,31 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const [userResponse] = await Promise.all([
-          fetch(`http://localhost:8080/api/users/${userId}`)
+        const [userResponse, followersResponse, followingResponse, likedEventsResponse] = await Promise.all([
+          fetch(`http://localhost:8080/api/users/${userId}`),
+          fetch(`http://localhost:8080/api/follows/followers/${userId}`),
+          fetch(`http://localhost:8080/api/follows/following/${userId}`),
+          fetch(`http://localhost:8080/api/likes/user/${userId}`)
         ]);
 
-        if (!userResponse.ok ) {
+        if (!userResponse.ok || !followersResponse.ok || !followingResponse.ok || !likedEventsResponse.ok) {
           throw new Error("Network response was not ok");
         }
 
         const userData = await userResponse.json();
+        const followersList = await followersResponse.json();
+        const followingList = await followingResponse.json();
+        const likedEventsList = await likedEventsResponse.json();
         
         setUser(userData);
+        setStats({
+          followersCount: followersList.length,
+          followingCount: followingList.length,
+          likedEventsCount: likedEventsList.length,
+          followersList,
+          followingList,
+          likedEventsList
+        });
       } catch (err) {
         setError(err.message);
       } finally {
@@ -186,35 +202,35 @@ const Profile = () => {
           </div>
 
           {/* Stats Section */}
-		 <div className="d-flex justify-content-around text-center mb-4 py-3 border-top border-bottom">
-                  <div>
-                    <Link to={`/user/${userId}/followers`} className="text-decoration-none text-dark">
-                      <div className="fs-4 fw-bold">{stats.followersCount}</div>
-                      <div className="text-muted small">
-                        <FaUserFriends className="me-1" />
-                        Followers
-                      </div>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link to={`/user/${userId}/following`} className="text-decoration-none text-dark">
-                      <div className="fs-4 fw-bold">{stats.followingCount}</div>
-                      <div className="text-muted small">
-                        <FaUserFriends className="me-1" />
-                        Following
-                      </div>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link to={`/user/${userId}/liked-events`} className="text-decoration-none text-dark">
-                      <div className="fs-4 fw-bold">{stats.likedEventsCount}</div>
-                      <div className="text-muted small">
-                        <FaHeart className="me-1" />
-                        Liked Events
-                      </div>
-                    </Link>
-                  </div>
+          <div className="d-flex justify-content-around text-center mb-4 py-3 border-top border-bottom">
+            <div>
+              <Link to={`/user/${userId}/followers`} className="text-decoration-none text-dark">
+                <div className="fs-4 fw-bold">{stats.followersCount}</div>
+                <div className="text-muted small">
+                  <FaUserFriends className="me-1" />
+                  Followers
                 </div>
+              </Link>
+            </div>
+            <div>
+              <Link to={`/user/${userId}/following`} className="text-decoration-none text-dark">
+                <div className="fs-4 fw-bold">{stats.followingCount}</div>
+                <div className="text-muted small">
+                  <FaUserFriends className="me-1" />
+                  Following
+                </div>
+              </Link>
+            </div>
+            <div>
+              <Link to={`/user/${userId}/liked-events`} className="text-decoration-none text-dark">
+                <div className="fs-4 fw-bold">{stats.likedEventsCount}</div>
+                <div className="text-muted small">
+                  <FaHeart className="me-1" />
+                  Liked Events
+                </div>
+              </Link>
+            </div>
+          </div>
 
           <div className="profile-details">
             <div className="detail-item">
