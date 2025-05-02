@@ -17,11 +17,10 @@ const Events = () => {
 						.map((item) => item.trim())
 						.filter(Boolean)
 				: [];
-				console.log(event);
 				
 
 		return {
-			id: event?.id || `event-${Math.random().toString(36).substr(2, 9)}`,
+			id: event?.id || null,
 			title: event?.title || "Untitled Event",
 			description: event?.description || "",
 			date: event?.date || null,
@@ -30,7 +29,8 @@ const Events = () => {
 			categories,
 			image: event.image,
 			location: event.location,
-			organizer: event.organizer
+			organizer: event.organizer,
+			capacity: event.capacity
 			
 		};
 	};

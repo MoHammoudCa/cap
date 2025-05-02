@@ -1,9 +1,21 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { format, parseISO, isAfter, isBefore } from "date-fns";
-import { FaCalendarAlt, FaClock, FaMapMarkerAlt, FaUser, FaCheckCircle, FaTimesCircle, FaHourglassHalf } from "react-icons/fa";
-import '../assets/css/eventDetails.css'
+import { 
+  FaCalendarAlt, 
+  FaClock, 
+  FaMapMarkerAlt, 
+  FaUser, 
+  FaCheckCircle, 
+  FaTimesCircle, 
+  FaHourglassHalf,
+  FaTicketAlt,
+  FaUserCheck,
+  FaTimes
+} from "react-icons/fa";
+import axios from "axios";
+import { parseISO, isAfter, isBefore, format } from "date-fns";
+import EventItem from "./EventItem";
+import '../assets/css/eventDetails.css';
 
 const EventDetail = () => {
   const { id } = useParams();
@@ -11,14 +23,18 @@ const EventDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [similarEvents, setSimilarEvents] = useState([]);
-  
+  const [isAttending, setIsAttending] = useState(false);
+  const [attendanceCount, setAttendanceCount] = useState(0);
+  const [isLoadingAttendance, setIsLoadingAttendance] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+
+  const user = JSON.parse(localStorage.getItem("user"));
+  const currentUserId = user?.id;
+
   const normalizeEvent = (event) => {
     const categories =
       typeof event?.categories === "string"
-        ? event.categories
-            .split(",")
-            .map((item) => item.trim())
-            .filter(Boolean)
+        ? event.categories.split(",").map(item => item.trim()).filter(Boolean)
         : Array.isArray(event?.categories) 
           ? event.categories
           : [];
@@ -29,12 +45,98 @@ const EventDetail = () => {
       title: event?.title || "Untitled Event",
       description: event?.description || "",
       date: event?.date || null,
-      isFollowing: Boolean(event?.isFollowing),
-      isLiked: Boolean(event?.isLiked),
       categories,
       image: event?.image,
-      location: event?.location
+      location: event?.location,
+      capacity: event?.capacity || 0
     };
+  };
+
+  const fetchEvent = async () => {
+    try {
+      setLoading(true);
+      const [eventRes, attendanceRes, countRes] = await Promise.all([
+        axios.get(`http://localhost:8080/api/events/${id}`),
+        currentUserId ? axios.get(`http://localhost:8080/api/attendees/check`, {
+          params: { userId: currentUserId, eventId: id }
+        }) : { data: false },
+        axios.get(`http://localhost:8080/api/attendees/count/${id}`)
+      ]);
+
+      const normalizedEvent = normalizeEvent(eventRes.data);
+      setEvent(normalizedEvent);
+      setIsAttending(attendanceRes.data);
+      setAttendanceCount(countRes.data);
+
+      fetchSimilarEvents(normalizedEvent);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchSimilarEvents = async (currentEvent) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/events/`);
+      const now = new Date();
+      
+      const otherEvents = response.data
+        .filter(e => e.id !== currentEvent.id && new Date(e.date) > now)
+        .map(normalizeEvent);
+      
+      setSimilarEvents(otherEvents.slice(0, 3));
+    } catch (err) {
+      console.error("Error fetching similar events:", err);
+      setSimilarEvents([]);
+    }
+  };
+
+  const handleAttendance = async () => {
+    if (!currentUserId) return;
+    
+    if (isAttending) {
+      try {
+        setIsLoadingAttendance(true);
+        console.log(currentUserId , id);
+        await axios.delete(`http://localhost:8080/api/attendees`, {
+          params: { userId: currentUserId, eventId: id }
+        });
+        setIsAttending(false);
+        setAttendanceCount(prev => prev - 1);
+      } catch (error) {
+        console.error("Error canceling attendance:", error);
+      } finally {
+        setIsLoadingAttendance(false);
+      }
+    } else {
+      setShowConfirmModal(true);
+    }
+  };
+
+  const confirmAttendance = async () => {
+    try {
+      setIsLoadingAttendance(true);
+      await axios.post(`http://localhost:8080/api/attendees`, null, {
+        params: { userId: currentUserId, eventId: id }
+      });
+      setIsAttending(true);
+      setAttendanceCount(prev => prev + 1);
+      setShowConfirmModal(false);
+    } catch (error) {
+      console.error("Error registering attendance:", error);
+      alert(error.response?.data?.message || "Cannot register for this event");
+    } finally {
+      setIsLoadingAttendance(false);
+    }
+  };
+
+  const formatDate = (dateString) => {
+    return format(parseISO(dateString), "MMMM do, yyyy");
+  };
+
+  const formatTime = (dateString) => {
+    return format(parseISO(dateString), "h:mm a");
   };
 
   const getEventStatus = (eventDate) => {
@@ -62,76 +164,9 @@ const EventDetail = () => {
     }
   };
 
-  const fetchSimilarEvents = async (currentEvent) => {
-    try {
-      const response = await fetch(`http://localhost:8080/api/events/`);
-      if (!response.ok) throw new Error("Could not fetch events");
-      const allEvents = await response.json();
-      
-
-	  const now = new Date();
-	  
-      // Filter out the current event
-      const otherEvents = allEvents.filter(e => e.id !== currentEvent.id
-		&& new Date(e.date) > now).map(normalizeEvent);
-      
-      // Score events based on similarity
-      const scoredEvents = otherEvents.map(otherEvent => {
-        let score = 0;
-        
-        // Same organizer (high weight)
-        if (currentEvent.organizer && otherEvent.organizer && 
-            currentEvent.organizer.id === otherEvent.organizer.id) {
-          score += 2;
-        }
-        
-        // Shared categories (medium weight)
-        const sharedCategories = currentEvent.categories.filter(cat => 
-          otherEvent.categories.includes(cat)
-        ).length;
-        score += sharedCategories * 3;
-        
-        return { ...otherEvent, score };
-      });
-      
-      // Sort by score and get top 3
-      const topSimilar = scoredEvents
-        .sort((a, b) => b.score - a.score)
-        .slice(0, 3);
-      
-      setSimilarEvents(topSimilar);
-    } catch (err) {
-      console.error("Error fetching similar events:", err);
-      setSimilarEvents([]);
-    }
-  };
-
   useEffect(() => {
-    const fetchEvent = async () => {
-      try {
-        const response = await fetch(`http://localhost:8080/api/events/${id}`);
-        if (!response.ok) throw new Error("Event not found");
-        const data = await response.json();
-        const normalizedEvent = normalizeEvent(data);
-        setEvent(normalizedEvent);
-        fetchSimilarEvents(normalizedEvent);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
     fetchEvent();
-  }, [id]);
-
-  const formatDate = (dateString) => {
-    return format(parseISO(dateString), "MMMM do, yyyy");
-  };
-
-  const formatTime = (dateString) => {
-    return format(parseISO(dateString), "h:mm a");
-  };
+  }, [id, currentUserId]);
 
   if (loading) return <div className="text-center py-5">Loading...</div>;
   if (error) return <div className="alert alert-danger mx-3">Error: {error}</div>;
@@ -142,18 +177,67 @@ const EventDetail = () => {
     icon: null,
     badgeClass: "bg-secondary"
   };
-  
+
+  const isOrganizer = event.organizer?.id === currentUserId;
+  const isFull = event.capacity && attendanceCount >= event.capacity;
+  const remainingSpots = event.capacity ? event.capacity - attendanceCount : null;
+
   return (
     <div className="container-fluid tm-container-content" style={{ paddingBottom: "100px" }}>
+      {/* Confirmation Modal */}
+      {showConfirmModal && (
+        <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Confirm Attendance</h5>
+                <button 
+                  type="button" 
+                  className="btn-close" 
+                  onClick={() => setShowConfirmModal(false)}
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to register for "{event.title}"?</p>
+                {event.capacity && (
+                  <p className="small text-muted">
+                    {attendanceCount}/{event.capacity} spots already reserved
+                  </p>
+                )}
+              </div>
+              <div className="modal-footer">
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  onClick={() => setShowConfirmModal(false)}
+                  disabled={isLoadingAttendance}
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="button" 
+                  className="btn btn-primary" 
+                  onClick={confirmAttendance}
+                  disabled={isLoadingAttendance}
+                >
+                  {isLoadingAttendance ? (
+                    <span className="spinner-border spinner-border-sm" role="status"></span>
+                  ) : 'Confirm'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="row mb-4">
         <h2 className="col-12 tm-text-primary">{event.title}</h2>
       </div>
       
-      {/* Main Content Row */}
       <div className="row">
         {/* Left Column - Image and Description */}
         <div className="col-lg-8 pe-lg-4">
-          {/* Full-width Image */}
           <div className="mb-4">
             <img 
               src={event.image || "/default-event.jpg"} 
@@ -163,7 +247,6 @@ const EventDetail = () => {
             />
           </div>
           
-          {/* Description */}
           <div className="card border-0 shadow-sm mt-3">
             <div className="card-body">
               <h3 className="h4 mb-3">About This Event</h3>
@@ -173,38 +256,35 @@ const EventDetail = () => {
             </div>
           </div>
 
-          {/* Similar Events Section */}
           {similarEvents.length > 0 && (
-            <div className="card border-0 shadow-sm mt-4">
-              <div className="card-body">
-                <h3 className="h4 mb-3">Similar Events</h3>
-                <div className="row">
-                  {similarEvents.map((similarEvent) => (
-                    <div className="col-md-4 mb-3" key={similarEvent.id}>
-                      <div className="card h-100">
-                        <Link to={`/event/${similarEvent.id}`} className="text-decoration-none">
-                          <img 
-                            src={similarEvent.image || "/default-event.jpg"} 
-                            className="card-img-top" 
-                            alt={similarEvent.title}
-                            style={{ height: "150px", objectFit: "cover" }}
-                          />
-                          <div className="card-body">
-                            <h5 className="card-title text-dark">{similarEvent.title}</h5>
-                            <div className="d-flex align-items-center text-muted small mb-2">
-                              <FaCalendarAlt className="me-2" />
-                              <span>{formatDate(similarEvent.date)}</span>
-                            </div>
-                            <div className="d-flex align-items-center text-muted small">
-                              <FaMapMarkerAlt className="me-2" />
-                              <span>{similarEvent.location}</span>
-                            </div>
+            <div className="mt-5">
+              <h3 className="tm-text-primary mb-4">Similar Events You Might Like</h3>
+              <div className="row">
+                {similarEvents.map((similarEvent) => (
+                  <div className="col-md-4 mb-4" key={similarEvent.id}>
+                    <div className="card h-100 shadow-sm">
+                      <Link to={`/event/${similarEvent.id}`} className="text-decoration-none">
+                        <img 
+                          src={similarEvent.image || "/default-event.jpg"} 
+                          className="card-img-top" 
+                          alt={similarEvent.title}
+                          style={{ height: "180px", objectFit: "cover" }}
+                        />
+                        <div className="card-body">
+                          <h5 className="card-title text-dark">{similarEvent.title}</h5>
+                          <div className="d-flex align-items-center text-muted small mb-2">
+                            <FaCalendarAlt className="me-2" />
+                            <span>{formatDate(similarEvent.date)}</span>
                           </div>
-                        </Link>
-                      </div>
+                          <div className="d-flex align-items-center text-muted small">
+                            <FaMapMarkerAlt className="me-2" />
+                            <span>{similarEvent.location || "Location not specified"}</span>
+                          </div>
+                        </div>
+                      </Link>
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -262,7 +342,10 @@ const EventDetail = () => {
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                   <span>Capacity</span>
-                  <span>{event.capacity || "Unlimited"}</span>
+                  <span>
+                    {event.capacity ? `${attendanceCount}/${event.capacity}` : "Unlimited"}
+                    {remainingSpots !== null && ` (${remainingSpots} remaining)`}
+                  </span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center px-0">
                   <span>Price</span>
@@ -271,7 +354,7 @@ const EventDetail = () => {
               </ul>
 
               {/* Categories */}
-              <div className="mt-4 mb-5">
+              <div className="mb-4">
                 <h4 className="h6 mb-3">Categories</h4>
                 <div className="d-flex flex-wrap gap-2">
                   {event.categories?.map((category, index) => (
@@ -289,6 +372,35 @@ const EventDetail = () => {
                   ))}
                 </div>
               </div>
+
+              {/* Attendance Button */}
+              {currentUserId && !isOrganizer && (
+                <div className="mt-4">
+                  {isFull && !isAttending ? (
+                    <button className="btn btn-secondary w-100" disabled>
+                      <FaTicketAlt className="me-2" /> Event Full
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleAttendance}
+                      disabled={isLoadingAttendance}
+                      className={`btn ${isAttending ? 'btn-outline-danger' : 'btn-primary'} w-100`}
+                    >
+                      {isLoadingAttendance ? (
+                        <span className="spinner-border spinner-border-sm me-2" role="status"></span>
+                      ) : isAttending ? (
+                        <>
+                          <FaTimes className="me-2" /> Cancel Attendance
+                        </>
+                      ) : (
+                        <>
+                          <FaTicketAlt className="me-2" /> Reserve Spot
+                        </>
+                      )}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         </div>

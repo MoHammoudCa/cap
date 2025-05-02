@@ -7,7 +7,8 @@ import {
   FaRegHeart, 
   FaTimesCircle, 
   FaCheckCircle, 
-  FaHourglassHalf 
+  FaHourglassHalf,
+  FaUserCheck
 } from "react-icons/fa";
 import axios from "axios";
 import { parseISO, isAfter, isBefore, format } from "date-fns";
@@ -16,6 +17,9 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
     const [isLiked, setIsLiked] = useState(false);
     const [likesCount, setLikesCount] = useState(0);
     const [isLoadingLike, setIsLoadingLike] = useState(false);
+    const [isAttending, setIsAttending] = useState(false);
+    const [attendanceCount, setAttendanceCount] = useState(0);
+    
     const user = JSON.parse(localStorage.getItem("user"));
     const currentUserId = user?.id;
     const isOrganizer = event.organizer?.id === currentUserId;
@@ -71,26 +75,41 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
         return format(parseISO(dateString), "h:mm a");
     };
 
+    // Check if event has ended
+    const isEventEnded = event.date ? isBefore(parseISO(event.date), new Date()) : false;
+
     useEffect(() => {
-        const fetchLikeData = async () => {
+        const fetchData = async () => {
             try {
                 // Check like status
                 if (currentUserId) {
-                    const statusResponse = await axios.get(`http://localhost:8080/api/likes/status`, {
-                        params: { userId: currentUserId, eventId: event.id }
-                    });
-                    setIsLiked(statusResponse.data.isLiked);
+                    const [likeStatusRes, attendanceStatusRes] = await Promise.all([
+                        axios.get(`http://localhost:8080/api/likes/status`, {
+                            params: { userId: currentUserId, eventId: event.id }
+                        }),
+                        axios.get(`http://localhost:8080/api/attendees/check`, {
+                            params: { userId: currentUserId, eventId: event.id }
+                        })
+                    ]);
+                    
+                    setIsLiked(likeStatusRes.data.isLiked);
+                    setIsAttending(attendanceStatusRes.data);
                 }
                 
-                // Get likes count
-                const countResponse = await axios.get(`http://localhost:8080/api/likes/count/${event.id}`);
-                setLikesCount(countResponse.data.count);
+                // Get counts
+                const [likesCountRes, attendanceCountRes] = await Promise.all([
+                    axios.get(`http://localhost:8080/api/likes/count/${event.id}`),
+                    axios.get(`http://localhost:8080/api/attendees/count/${event.id}`)
+                ]);
+                
+                setLikesCount(likesCountRes.data.count);
+                setAttendanceCount(attendanceCountRes.data);
             } catch (error) {
-                console.error("Error fetching like data:", error);
+                console.error("Error fetching data:", error);
             }
         };
 
-        fetchLikeData();
+        fetchData();
     }, [event.id, currentUserId]);
 
     const handleLikeToggle = async () => {
@@ -143,7 +162,9 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                 />
                 <div className="card-body d-flex flex-column">
                     <div className="d-flex justify-content-between align-items-start mb-2">
-                        <h5 className="card-title mb-0">{event.title}</h5>
+                        <div className="d-flex align-items-center">
+                            <h5 className="card-title mb-0 me-2">{event.title}</h5>
+                        </div>
                         <div className="d-flex align-items-center">
                             <span className="text-muted me-2 small">{likesCount}</span>
                             <button 
@@ -184,6 +205,27 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                         </div>
                     )}
                 
+                    {/* Capacity Indicator */}
+                    {event.capacity && (
+                        <div className="mb-3">
+                            <div className="progress" style={{ height: "6px" }}>
+                                <div 
+                                    className="progress-bar bg-info" 
+                                    role="progressbar" 
+                                    style={{ 
+                                        width: `${Math.min(100, (attendanceCount / event.capacity) * 100)}%` 
+                                    }}
+                                    aria-valuenow={attendanceCount}
+                                    aria-valuemin="0"
+                                    aria-valuemax={event.capacity}
+                                ></div>
+                            </div>
+                            <small className="text-muted">
+                                {attendanceCount}/{event.capacity} spots filled
+                            </small>
+                        </div>
+                    )}
+
                     {/* Status Badge */}
                     <div className="mb-3 d-flex align-items-center">
                         {statusInfo.icon}
@@ -254,6 +296,13 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                                 </button>
                             </div>
                         )}
+                         {/* Attending/Attended Badge */}
+                         {isAttending && (
+                                <span className={`badge ${isEventEnded ? 'bg-secondary' : 'bg-success'}`}>
+                                    <FaUserCheck className="me-1" /> <br/>
+                                    {isEventEnded ? 'Attended' : 'Attending'}
+                                </span>
+                            )}
                     </div>
                 </div>
             </div>

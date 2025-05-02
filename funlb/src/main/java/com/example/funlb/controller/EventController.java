@@ -25,8 +25,6 @@ public class EventController {
     private UserService userService;
     private final JwtUtil jwtUtils;
 
-//    @Autowired
-//    private CategoryService categoryService;
 
     public EventController(EventService eventService, JwtUtil jwtUtils) {
         this.eventService = eventService;
@@ -63,11 +61,6 @@ public class EventController {
     @PostMapping
     public ResponseEntity<?> createEvent(@RequestBody Event event, HttpServletRequest request) {
         UUID userId = getUserIdFromRequest(request);
-//        Set<Category> categories = event.getCategories().stream()
-//                .map(category -> categoryService.getCategoryById(category.getId()))
-//                .collect(Collectors.toSet());
-//        event.setCategories(categories);
-
         return ResponseEntity.ok(eventService.createEvent(event, userId));
     }
 
@@ -75,10 +68,6 @@ public class EventController {
     public ResponseEntity<Event> updateEvent(@PathVariable UUID id, @RequestBody Event eventDetails) {
         Event updatedEvent = eventService.updateEvent(id, eventDetails);
         if (updatedEvent != null) {
-//            Set<Category> categories = eventDetails.getCategories().stream()
-//                    .map(category -> categoryService.getCategoryById(category.getId()))
-//                    .collect(Collectors.toSet());
-//            updatedEvent.setCategories(categories);
             return ResponseEntity.ok(updatedEvent);
         }
         return ResponseEntity.notFound().build();

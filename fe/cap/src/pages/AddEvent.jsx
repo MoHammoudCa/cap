@@ -78,7 +78,6 @@ const AddEvent = () => {
             });
 
             const data = await response.json();
-            console.log(data.data.url);
 
             if (!data.success) throw new Error("Image upload failed");
 
