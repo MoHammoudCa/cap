@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { FaEnvelope } from "react-icons/fa";
+import axios from "axios";
 
 const Navbar = () => {
 	const location = useLocation();
+	const [unreadCount, setUnreadCount] = useState(0);
+	const userId = JSON.parse(localStorage.getItem("user"))?.id;
 
 	// Helper function to check if current path matches the link
 	const isActive = (path) => {
 		return location.pathname === path;
 	};
+
+	useEffect(() => {
+		if (userId) {
+			const fetchUnreadCount = async () => {
+				try {
+					const response = await axios.get(`http://localhost:8080/api/messages/unread-count/${userId}`);
+					setUnreadCount(response.data);
+				} catch (error) {
+					console.error("Error fetching unread count:", error);
+				}
+			};
+			fetchUnreadCount();
+		}
+	}, [userId]);
 
 	return (
 		<>
@@ -33,58 +51,52 @@ const Navbar = () => {
 						<ul className="navbar-nav ml-auto mb-2 mb-lg-0">
 							<li className="nav-item">
 								<a
-									className={`nav-link nav-link-1 ${
-										isActive("/") ? "active" : ""
-									}`}
-									aria-current="page"
+									className={`nav-link nav-link-1 ${isActive("/") ? "active" : ""}`}
 									href="/"
 								>
 									Home
 								</a>
 							</li>
-
 							<li className="nav-item">
 								<a
-									className={`nav-link nav-link-2 ${
-										isActive("/my-events") ? "active" : ""
-									}`}
+									className={`nav-link nav-link-2 ${isActive("/my-events") ? "active" : ""}`}
 									href="/my-events"
 								>
 									My Events
 								</a>
 							</li>
-
 							<li className="nav-item">
 								<a
-									className={`nav-link nav-link-3 ${
-										isActive("/about") ? "active" : ""
-									}`}
+									className={`nav-link nav-link-3 ${isActive("/about") ? "active" : ""}`}
 									href="/about"
 								>
 									About
 								</a>
 							</li>
-							{/* <li className="nav-item">
-								<a
-									className={`nav-link nav-link-4 ${
-										isActive("/contact") ? "active" : ""
-									}`}
-									href="/contact"
-								>
-									Contact
-								</a>
-							</li> */}
-							
 							<li className="nav-item">
 								<a
-									className={`nav-link nav-link-4 ${
-										isActive("/profile") ? "active" : ""
-									}`}
+									className={`nav-link nav-link-4 ${isActive("/profile") ? "active" : ""}`}
 									href="/profile"
 								>
 									Profile
 								</a>
 							</li>
+
+							{/* Inbox link only if user is logged in */}
+							{userId && (
+								<li className="nav-item">
+									<a
+										className={`nav-link nav-link-5 ${isActive("/inbox") ? "active" : ""}`}
+										href="/inbox"
+									>
+										<FaEnvelope className="mr-1" />
+										Inbox{" "}
+										{unreadCount > 0 && (
+											<span className="badge bg-danger">{unreadCount}</span>
+										)}
+									</a>
+								</li>
+							)}
 						</ul>
 					</div>
 				</div>
