@@ -1,9 +1,9 @@
 package com.example.funlb.entity;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 
 import java.util.UUID;
@@ -24,5 +24,4 @@ public class User {
     private String password;
     private String role = "ROLE_USER";
     private String profilePicture = "default-profile-pic-url";
-
 }

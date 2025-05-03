@@ -5,11 +5,7 @@ import com.example.funlb.entity.User;
 import com.example.funlb.repository.UserRepository;
 import com.example.funlb.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,15 +43,6 @@ public class UserController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
-//    @PutMapping("/{id}")
-//    public ResponseEntity<?> updateUser(@PathVariable UUID id, @RequestBody User userDetails) {
-//        User updatedUser = userService.updateUser(id, userDetails);
-//        if (updatedUser != null) {
-//            return ResponseEntity.ok("User updated successfully");
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateUser(

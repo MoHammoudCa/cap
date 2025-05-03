@@ -36,6 +36,7 @@ public class MessageController {
     public Long getUnreadCount(@PathVariable UUID userId) {
         return messageService.getUnreadCount(userId);
     }
+
     @PutMapping("/{messageId}/read")
     public Message markAsRead(@PathVariable UUID messageId) {
         return messageService.markAsRead(messageId);

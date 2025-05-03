@@ -111,7 +111,7 @@ const MyEventsComp = () => {
         <button
           type="button"
           className="btn btn-primary"
-          onClick={() => navigate("/create")}
+          onClick={() => navigate("/add-event")}
         >
           Create New Event
         </button>

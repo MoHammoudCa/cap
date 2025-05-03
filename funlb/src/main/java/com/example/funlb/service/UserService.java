@@ -53,7 +53,6 @@ public class UserService {
     }
 
 
-
     public void deleteUser(UUID id) {
         userRepository.deleteById(id);
     }
@@ -63,10 +62,6 @@ public class UserService {
                 .filter(user -> user.getEmail().equals(email))
                 .findFirst()
                 .orElse(null);
-    }
-
-    public boolean checkPassword(User user, String rawPassword) {
-        return passwordEncoder.matches(rawPassword, user.getPassword());
     }
 
     private UserDTO convertToDTO(User user) {

@@ -16,7 +16,6 @@ const EventDetailPage = () => {
 		<>
 			{/* <Loader /> */}
 			<Navbar />
-			<Hero />
 			<EventDetail />
 			{/* <RelatedPhotos /> */}
 			<Footer />

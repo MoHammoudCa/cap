@@ -1,10 +1,10 @@
 package com.example.funlb.service;
 
-import com.example.funlb.entity.Like;
 import com.example.funlb.entity.Event;
+import com.example.funlb.entity.Like;
 import com.example.funlb.entity.User;
-import com.example.funlb.repository.LikeRepository;
 import com.example.funlb.repository.EventRepository;
+import com.example.funlb.repository.LikeRepository;
 import com.example.funlb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

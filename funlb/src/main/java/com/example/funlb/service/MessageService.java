@@ -1,10 +1,8 @@
 package com.example.funlb.service;
 
 import com.example.funlb.entity.Message;
-import com.example.funlb.entity.User;
 import com.example.funlb.repository.MessageRepository;
 import com.example.funlb.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;

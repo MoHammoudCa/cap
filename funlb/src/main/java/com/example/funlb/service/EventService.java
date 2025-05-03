@@ -23,14 +23,6 @@ public class EventService {
         return eventRepository.findAll();
     }
 
-    public List<Event> getAllAvailableEvents() {
-        return getAllEvents().stream().filter(Event::isAvailable).toList();
-    }
-
-    public List<Event> getAllArchivedEvents() {
-        return getAllEvents().stream().filter(event -> !event.isAvailable()).toList();
-    }
-
     public Event getEventById(UUID id) {
         return eventRepository.findById(id).orElse(null);
     }
@@ -62,25 +54,7 @@ public class EventService {
         eventRepository.deleteById(id);
     }
 
-    public List<Event> getFilteredEvents(String searchQuery) {
-        if (searchQuery == null || searchQuery.isBlank()) {
-            return getAllEvents();
-        }
-        return getAllEvents().stream().filter(event -> event.getTitle() != null && event.getTitle().toLowerCase().contains(searchQuery.toLowerCase())
-                        || event.getCategories() != null && event.getCategories().toLowerCase().contains(searchQuery.toLowerCase())
-                        || event.getOrganizer() != null && event.getOrganizer().getName().toLowerCase().contains(searchQuery.toLowerCase()))
-                .toList();
-    }
-
     public List<Event> getEventsByUser(UUID userId) {
         return getAllEvents().stream().filter(event -> event.getOrganizer().getId().equals(userId)).toList();
-    }
-
-    public List<Event> getEventsByOrganizerId(List<UUID> organizerId) {
-        return eventRepository.findByOrganizerIdIn(organizerId);
-    }
-
-    public List<Event> getEventsById(List<UUID> eventIds) {
-        return eventRepository.findByIdIn(eventIds);
     }
 }

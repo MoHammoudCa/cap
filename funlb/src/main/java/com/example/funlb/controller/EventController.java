@@ -1,8 +1,7 @@
 package com.example.funlb.controller;
 
-//import com.example.funlb.entity.Category;
+
 import com.example.funlb.entity.Event;
-//import com.example.funlb.service.CategoryService;
 import com.example.funlb.entity.User;
 import com.example.funlb.security.JwtUtil;
 import com.example.funlb.service.EventService;

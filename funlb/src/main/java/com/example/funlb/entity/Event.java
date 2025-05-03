@@ -25,8 +25,4 @@ public class Event {
     @ManyToOne
     @JoinColumn(name = "organizer_id")
     private User organizer;
-
-    public boolean isAvailable() {
-        return date != null && date.after(new Timestamp(System.currentTimeMillis()));
-    }
 }

@@ -14,8 +14,8 @@ const EditEvent = () => {
         date: "",
         categories: "",
         image: "",
-        capacity: "",
-        price: ""
+        capacity: 0,
+        price: 0
         });
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -146,7 +146,7 @@ const EditEvent = () => {
             const response = await api.put(`/events/${id}`, {
                 ...formData,
                 capacity: parseInt(formData.capacity),
-                price: parseFloat(formData.price)
+                price: parseInt(formData.price)
             });
 
             if (response.status !== 200) throw new Error("Failed to update event");

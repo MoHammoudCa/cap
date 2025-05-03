@@ -38,13 +38,10 @@ public class AttendeeService {
         Event event = eventRepository.findById(eventId).orElseThrow();
         User user = userRepository.findById(userId).orElseThrow();
 
-        // Check if user is the organizer
         if (event.getOrganizer().getId().equals(userId)) {
             throw new IllegalArgumentException("Organizers cannot attend their own events");
         }
 
-
-        // Check if already attending
         if (attendeeRepository.existsByUserIdAndEventId(userId, eventId)) {
             throw new IllegalArgumentException("User is already attending this event");
         }
@@ -55,7 +52,6 @@ public class AttendeeService {
 
         Attendee savedAttendee = attendeeRepository.save(attendee);
 
-        // Send confirmation message
         sendConfirmationMessage(userId, event);
 
         return savedAttendee;
@@ -75,7 +71,7 @@ public class AttendeeService {
         messageRepository.save(message);
     }
 
-    private void sendCancelationMessage(UUID userId, Event event) {
+    private void sendCancellationMessage(UUID userId, Event event) {
         User eventNotifier = userRepository.findById(EVENT_NOTIFIER_ID).orElseThrow();
 
         Message message = new Message();
@@ -100,7 +96,7 @@ public class AttendeeService {
     @Transactional
     public void cancelAttendance(UUID userId, UUID eventId) {
         attendeeRepository.deleteByUserIdAndEventId(userId, eventId);
-        sendCancelationMessage(userId, eventRepository.findById(eventId).orElseThrow());
+        sendCancellationMessage(userId, eventRepository.findById(eventId).orElseThrow());
     }
 
     public List<Attendee> getEventAttendees(UUID eventId) {

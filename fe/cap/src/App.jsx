@@ -8,7 +8,6 @@ import AddEvent from "./pages/AddEvent";
 import EventDetailPage from "./pages/EventDetailPage";
 import ProtectedRoute from "./components/layout/ProtectedRoute";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
 import MyEvents from "./pages/MyEvents";
 import LogoutPage from "./pages/logout";
 import OrganizerProfilePage from "./pages/OrganizerProfilePage";
@@ -35,7 +34,6 @@ const App = () => {
 					<Route path="/profile/" element={<Profile />} />
 				</Route>
 				<Route path="/about" element={<About />} />
-				<Route path="/contact" element={<Contact />} />
 				<Route path="/event/:id" element={<EventDetailPage />} />
 				<Route path="/event/:id/edit" element={<EditEvent />} />
 				<Route path="/organizer/:id" element={<OrganizerProfilePage />} />	

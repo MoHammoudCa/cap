@@ -8,7 +8,6 @@ const OrganizerProfilePage = () => {
   return (
     <>
       <Navbar />
-      <Hero />
       <OrganizerProfile />
       <Footer />
     </>

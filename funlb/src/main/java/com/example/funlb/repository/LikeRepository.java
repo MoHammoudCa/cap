@@ -8,8 +8,12 @@ import java.util.UUID;
 
 public interface LikeRepository extends JpaRepository<Like, UUID> {
     boolean existsByUserIdAndEventId(UUID userId, UUID eventId);
+
     void deleteByUserIdAndEventId(UUID userId, UUID eventId);
+
     long countByEventId(UUID eventId);
+
     long countByUserId(UUID userId);
+
     List<Like> findByUserId(UUID userId);
 }

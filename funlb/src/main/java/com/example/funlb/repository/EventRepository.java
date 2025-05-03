@@ -7,6 +7,4 @@ import java.util.List;
 import java.util.UUID;
 
 public interface EventRepository extends JpaRepository<Event, UUID> {
-    List<Event> findByOrganizerIdIn(List<UUID> organizerIds);
-    List<Event> findByIdIn(List<UUID> eventIds);
 }

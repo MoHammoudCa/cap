@@ -17,7 +17,6 @@ const MyEvents = () => {
 	return (
 		<>
 			<Navbar />
-			<Hero />
 			<MyEventsComp />
 			<Footer />
 		</>

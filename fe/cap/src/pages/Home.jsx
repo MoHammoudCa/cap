@@ -16,16 +16,6 @@ const Home = () => {
 	return (
 		<>
 			<Navbar />
-			<Hero
-				setFinalEvents={setFinalEvents}
-				setLoading={setLoading}
-				setError={setError}
-			/>
-			{/* <SearchAndFilter
-				setFinalEvents={setFinalEvents}
-				setLoading={setLoading}
-				setError={setError}
-			/> */}
 			<Events finalEvents={finalEvents} loading={loading} error={error} />
 			<Footer />
 		</>
