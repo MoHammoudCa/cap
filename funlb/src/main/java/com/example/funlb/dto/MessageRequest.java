@@ -9,4 +9,5 @@ public class MessageRequest {
     private UUID senderId;
     private UUID recipientId;
     private String content;
+    private String title;
 }

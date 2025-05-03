@@ -165,7 +165,7 @@ const OrganizerProfileComp = () => {
                     )}
                   </button>
                 )}
-                {currentUserId && <MessageButton organizerId={organizer.id} currentUserId={currentUserId} />}
+                {currentUserId && currentUserId !== id && <MessageButton organizerId={organizer.id} currentUserId={currentUserId} />}
               </div>
             </div>
           </div>

@@ -20,6 +20,7 @@ public class Message {
     @ManyToOne
     private User recipient;
 
+    private String title;
     private String content;
     private LocalDateTime timestamp;
     private boolean isRead;

@@ -17,6 +17,7 @@ import FollowersPage from "./pages/FollowersPage";
 import FollowingPage from "./pages/FollowingPage";
 import LikedEventsPage from "./pages/LikedEventsPage";
 import InboxPage from "./pages/InboxPage";
+import EventAttendeesPage from "./pages/EventAttendeesPage";
 
 const App = () => {
 	return (
@@ -41,6 +42,7 @@ const App = () => {
 				<Route path="/user/:id/following" element={<FollowingPage/>}/>
 				<Route path="/user/:userId/liked-events" element={<LikedEventsPage />} />
 				<Route path="/inbox" element = {<InboxPage/>}/>
+				<Route path="/event/:id/attendees" element={<EventAttendeesPage/>}/>
 			</Routes>
 		</Router>
 	);

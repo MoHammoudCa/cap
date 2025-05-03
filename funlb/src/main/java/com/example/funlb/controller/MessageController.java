@@ -22,7 +22,8 @@ public class MessageController {
         return messageService.sendMessage(
                 request.getSenderId(),
                 request.getRecipientId(),
-                request.getContent()
+                request.getContent(),
+                request.getTitle()
         );
     }
 

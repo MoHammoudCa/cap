@@ -151,7 +151,7 @@ const InboxPage = () => {
                                                     <FaEnvelope className="me-3 text-primary" />
                                                 )}
                                                 <div>
-                                                    <h5 className="mb-1">{message.title}</h5>
+                                                    <h6 className="mb-1">{message.title || 'No Title'}</h6>
                                                     <small className="text-muted">
                                                         From: {message.sender?.name || 'Unknown'}
                                                     </small>
@@ -185,6 +185,7 @@ const InboxPage = () => {
                             </div>
                             <div className="modal-body">
                                 <div className="mb-3">
+                                    <p className="mb-1"><strong>Title:</strong> {selectedMessage.title|| 'No Title'}</p>
                                     <p className="mb-1"><strong>From:</strong> {selectedMessage.sender?.name || 'Unknown'}</p>
                                     <p className="mb-1"><strong>Date:</strong> {formatDate(selectedMessage.timestamp)}</p>
                                 </div>

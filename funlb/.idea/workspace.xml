@@ -5,31 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Attendee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/AttendeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/EventItem.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/Events.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/MessageButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/MessageButton.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/OrganizerProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/OrganizerProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/InboxPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/InboxPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/config/CorsConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/config/CorsConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/FollowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/FollowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/LikeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/dto/LikeRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/dto/LikeRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Like.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Like.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/EventRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/EventRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/FollowRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/FollowRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/LikeRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/LikeRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/FollowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/FollowService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/LikeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/MessageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/MessageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +50,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.FunlbApplication.executor": "Debug",
+    "Spring Boot.FunlbApplication.executor": "Run",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -157,14 +142,14 @@
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java</url>
-          <line>87</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java</url>
           <line>46</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

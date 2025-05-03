@@ -198,7 +198,6 @@ const Profile = () => {
               )}
             </div>
             <h2 className="profile-name">{name}</h2>
-            <p className="profile-role">{role.toLowerCase()}</p>
           </div>
 
           {/* Stats Section */}
@@ -241,9 +240,9 @@ const Profile = () => {
 
           <div className="profile-actions">
             <button className="edit-button" onClick={handleLogout}>Logout</button>
-            {role === "ADMIN" && (
+            {/* {role === "ADMIN" && (
               <button className="admin-button">Admin Panel</button>
-            )}
+            )} */}
           </div>
         </div>
       </div>

@@ -75,6 +75,20 @@ public class AttendeeService {
         messageRepository.save(message);
     }
 
+    private void sendCancelationMessage(UUID userId, Event event) {
+        User eventNotifier = userRepository.findById(EVENT_NOTIFIER_ID).orElseThrow();
+
+        Message message = new Message();
+        message.setSender(eventNotifier);
+        message.setRecipient(userRepository.findById(userId).orElseThrow());
+//        message.setTitle("Attendance Confirmation: " + event.getTitle());
+        message.setContent("You have successfully unregistered for the event '" +
+                event.getTitle() + "' on " + event.getDate());
+        message.setTimestamp(LocalDateTime.now());
+
+        messageRepository.save(message);
+    }
+
     public int getAttendanceCount(UUID eventId) {
         return attendeeRepository.countByEventId(eventId);
     }
@@ -86,6 +100,7 @@ public class AttendeeService {
     @Transactional
     public void cancelAttendance(UUID userId, UUID eventId) {
         attendeeRepository.deleteByUserIdAndEventId(userId, eventId);
+        sendCancelationMessage(userId, eventRepository.findById(eventId).orElseThrow());
     }
 
     public List<Attendee> getEventAttendees(UUID eventId) {

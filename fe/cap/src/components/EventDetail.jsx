@@ -10,7 +10,8 @@ import {
   FaHourglassHalf,
   FaTicketAlt,
   FaUserCheck,
-  FaTimes
+  FaTimes,
+  FaUserFriends 
 } from "react-icons/fa";
 import axios from "axios";
 import { parseISO, isAfter, isBefore, format } from "date-fns";
@@ -27,6 +28,8 @@ const EventDetail = () => {
   const [attendanceCount, setAttendanceCount] = useState(0);
   const [isLoadingAttendance, setIsLoadingAttendance] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [modalAction, setModalAction] = useState(null); // 'register' or 'cancel'
 
   const user = JSON.parse(localStorage.getItem("user"));
   const currentUserId = user?.id;
@@ -96,36 +99,36 @@ const EventDetail = () => {
     if (!currentUserId) return;
     
     if (isAttending) {
-      try {
-        setIsLoadingAttendance(true);
-        console.log(currentUserId , id);
+      setModalAction('cancel');
+      setShowCancelModal(true);
+    } else {
+      setModalAction('register');
+      setShowConfirmModal(true);
+    }
+  };
+
+  const confirmAction = async () => {
+    try {
+      setIsLoadingAttendance(true);
+      
+      if (modalAction === 'register') {
+        await axios.post(`http://localhost:8080/api/attendees`, null, {
+          params: { userId: currentUserId, eventId: id }
+        });
+        setIsAttending(true);
+        setAttendanceCount(prev => prev + 1);
+        setShowConfirmModal(false);
+      } else {
         await axios.delete(`http://localhost:8080/api/attendees`, {
           params: { userId: currentUserId, eventId: id }
         });
         setIsAttending(false);
         setAttendanceCount(prev => prev - 1);
-      } catch (error) {
-        console.error("Error canceling attendance:", error);
-      } finally {
-        setIsLoadingAttendance(false);
+        setShowCancelModal(false);
       }
-    } else {
-      setShowConfirmModal(true);
-    }
-  };
-
-  const confirmAttendance = async () => {
-    try {
-      setIsLoadingAttendance(true);
-      await axios.post(`http://localhost:8080/api/attendees`, null, {
-        params: { userId: currentUserId, eventId: id }
-      });
-      setIsAttending(true);
-      setAttendanceCount(prev => prev + 1);
-      setShowConfirmModal(false);
     } catch (error) {
-      console.error("Error registering attendance:", error);
-      alert(error.response?.data?.message || "Cannot register for this event");
+      console.error("Error handling attendance:", error);
+      alert(error.response?.data?.message || "Error processing your request");
     } finally {
       setIsLoadingAttendance(false);
     }
@@ -184,7 +187,7 @@ const EventDetail = () => {
 
   return (
     <div className="container-fluid tm-container-content" style={{ paddingBottom: "100px" }}>
-      {/* Confirmation Modal */}
+      {/* Registration Confirmation Modal */}
       {showConfirmModal && (
         <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
           <div className="modal-dialog modal-dialog-centered">
@@ -203,6 +206,7 @@ const EventDetail = () => {
                 {event.capacity && (
                   <p className="small text-muted">
                     {attendanceCount}/{event.capacity} spots already reserved
+                    {remainingSpots !== null && ` (${remainingSpots} remaining)`}
                   </p>
                 )}
               </div>
@@ -218,12 +222,59 @@ const EventDetail = () => {
                 <button 
                   type="button" 
                   className="btn btn-primary" 
-                  onClick={confirmAttendance}
+                  onClick={confirmAction}
                   disabled={isLoadingAttendance}
                 >
                   {isLoadingAttendance ? (
                     <span className="spinner-border spinner-border-sm" role="status"></span>
-                  ) : 'Confirm'}
+                  ) : 'Confirm Registration'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Cancel Registration Confirmation Modal */}
+      {showCancelModal && (
+        <div className="modal fade show" style={{ display: 'block', backgroundColor: 'rgba(0,0,0,0.5)' }}>
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Cancel Attendance</h5>
+                <button 
+                  type="button" 
+                  className="btn-close" 
+                  onClick={() => setShowCancelModal(false)}
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>Are you sure you want to cancel your registration for "{event.title}"?</p>
+                {event.capacity && (
+                  <p className="small text-muted">
+                    Your spot will be made available to others
+                  </p>
+                )}
+              </div>
+              <div className="modal-footer">
+                <button 
+                  type="button" 
+                  className="btn btn-secondary" 
+                  onClick={() => setShowCancelModal(false)}
+                  disabled={isLoadingAttendance}
+                >
+                  Keep Registration
+                </button>
+                <button 
+                  type="button" 
+                  className="btn btn-danger" 
+                  onClick={confirmAction}
+                  disabled={isLoadingAttendance}
+                >
+                  {isLoadingAttendance ? (
+                    <span className="spinner-border spinner-border-sm" role="status"></span>
+                  ) : 'Confirm Cancellation'}
                 </button>
               </div>
             </div>
@@ -352,7 +403,6 @@ const EventDetail = () => {
                   <span>{event.price ? `$${event.price}` : "Free"}</span>
                 </li>
               </ul>
-
               {/* Categories */}
               <div className="mb-4">
                 <h4 className="h6 mb-3">Categories</h4>
@@ -374,7 +424,7 @@ const EventDetail = () => {
               </div>
 
               {/* Attendance Button */}
-              {currentUserId && !isOrganizer && (
+              {currentUserId && !isOrganizer && statusInfo.status=='Active'  && (
                 <div className="mt-4">
                   {isFull && !isAttending ? (
                     <button className="btn btn-secondary w-100" disabled>
@@ -401,6 +451,17 @@ const EventDetail = () => {
                   )}
                 </div>
               )}
+
+                {event.organizer && event.organizer.id === currentUserId && (
+                            <div className="mt-3">
+                                <Link 
+                                    to={`/event/${event.id}/attendees`} 
+                                    className="btn btn-outline-secondary w-100"
+                                >
+                                    <FaUserFriends className="me-2" /> View Attendees
+                                </Link>
+                            </div>
+                        )}
             </div>
           </div>
         </div>

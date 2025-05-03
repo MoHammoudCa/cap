@@ -20,13 +20,14 @@ public class MessageService {
         this.userRepository = userRepository;
     }
 
-    public Message sendMessage(UUID senderId, UUID recipientId, String content) {
+    public Message sendMessage(UUID senderId, UUID recipientId, String content, String title) {
         Message message = new Message();
         message.setSender(userRepository.findById(senderId)
                 .orElseThrow(() -> new IllegalArgumentException("Sender not found")));
         message.setRecipient(userRepository.findById(recipientId)
                 .orElseThrow(() -> new IllegalArgumentException("Recipient not found")));
         message.setContent(content);
+        message.setTitle(title);
         message.setTimestamp(LocalDateTime.now());
         message.setRead(false);
         return messageRepository.save(message);
