@@ -424,7 +424,7 @@ const EventDetail = () => {
               </div>
 
               {/* Attendance Button */}
-              {currentUserId && !isOrganizer && statusInfo.status=='Active'  && (
+              {currentUserId && !isOrganizer  && (
                 <div className="mt-4">
                   {isFull && !isAttending ? (
                     <button className="btn btn-secondary w-100" disabled>

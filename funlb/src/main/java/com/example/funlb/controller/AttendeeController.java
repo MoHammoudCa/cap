@@ -52,4 +52,19 @@ public class AttendeeController {
     public ResponseEntity<List<Attendee>> getEventAttendees(@PathVariable UUID eventId) {
         return ResponseEntity.ok(attendeeService.getEventAttendees(eventId));
     }
+
+    @GetMapping("/user/{userId}/ended")
+    public ResponseEntity<List<Attendee>> getUserAttendedEvents(@PathVariable UUID userId) {
+        return ResponseEntity.ok(attendeeService.getUserAttendedEvents(userId));
+    }
+
+    @GetMapping("/user/{userId}/ended/count")
+    public ResponseEntity<Long> countUserAttendedEvents(@PathVariable UUID userId) {
+        return ResponseEntity.ok(attendeeService.countUserAttendedEvents(userId));
+    }
+
+    @GetMapping("/user/{userId}/upcoming")
+    public ResponseEntity<List<Attendee>> getUserUpcomingEvents(@PathVariable UUID userId) {
+        return ResponseEntity.ok(attendeeService.getUserUpcomingEvents(userId));
+    }
 }

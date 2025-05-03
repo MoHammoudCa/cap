@@ -6,15 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../fe/cap/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/MessageButton.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/MessageButton.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/OrganizerProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/OrganizerProfile.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/InboxPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/InboxPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/Profile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/Profile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/MessageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/MessageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/AttendeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/AttendeeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,16 +136,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java</url>
           <line>23</line>
           <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/funlb/controller/AttendeeController.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

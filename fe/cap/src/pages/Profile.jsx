@@ -2,7 +2,16 @@ import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
-import { FaUserFriends, FaHeart, FaCalendarAlt, FaEnvelope, FaSignOutAlt, FaUserCog, FaCamera } from "react-icons/fa";
+import { 
+  FaUserFriends, 
+  FaHeart, 
+  FaCalendarAlt, 
+  FaCheckCircle,
+  FaSignOutAlt,
+  FaCamera 
+} from "react-icons/fa";
+import axios from "axios";
+import EventItem from "../components/EventItem";
 
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -16,10 +25,13 @@ const Profile = () => {
     followersCount: 0,
     followingCount: 0,
     likedEventsCount: 0,
+    attendedEventsCount: 0,
     followersList: [],
     followingList: [],
     likedEventsList: []
   });
+  const [registeredEvents, setRegisteredEvents] = useState([]);
+  const [loadingEvents, setLoadingEvents] = useState(true);
   const fileInputRef = useRef(null);
   const { logout } = useAuth();
 
@@ -32,30 +44,24 @@ const Profile = () => {
   useEffect(() => {
     const fetchProfileData = async () => {
       try {
-        const [userResponse, followersResponse, followingResponse, likedEventsResponse] = await Promise.all([
-          fetch(`http://localhost:8080/api/users/${userId}`),
-          fetch(`http://localhost:8080/api/follows/followers/${userId}`),
-          fetch(`http://localhost:8080/api/follows/following/${userId}`),
-          fetch(`http://localhost:8080/api/likes/user/${userId}`)
+        const [userResponse, followersResponse, followingResponse, 
+               likedEventsResponse, attendedEventsResponse] = await Promise.all([
+          axios.get(`http://localhost:8080/api/users/${userId}`),
+          axios.get(`http://localhost:8080/api/follows/followers/${userId}`),
+          axios.get(`http://localhost:8080/api/follows/following/${userId}`),
+          axios.get(`http://localhost:8080/api/likes/user/${userId}`),
+          axios.get(`http://localhost:8080/api/attendees/user/${userId}/ended/count`)
         ]);
 
-        if (!userResponse.ok || !followersResponse.ok || !followingResponse.ok || !likedEventsResponse.ok) {
-          throw new Error("Network response was not ok");
-        }
-
-        const userData = await userResponse.json();
-        const followersList = await followersResponse.json();
-        const followingList = await followingResponse.json();
-        const likedEventsList = await likedEventsResponse.json();
-        
-        setUser(userData);
+        setUser(userResponse.data);
         setStats({
-          followersCount: followersList.length,
-          followingCount: followingList.length,
-          likedEventsCount: likedEventsList.length,
-          followersList,
-          followingList,
-          likedEventsList
+          followersCount: followersResponse.data.length,
+          followingCount: followingResponse.data.length,
+          likedEventsCount: likedEventsResponse.data.length,
+          attendedEventsCount: attendedEventsResponse.data,
+          followersList: followersResponse.data,
+          followingList: followingResponse.data,
+          likedEventsList: likedEventsResponse.data
         });
       } catch (err) {
         setError(err.message);
@@ -64,7 +70,27 @@ const Profile = () => {
       }
     };
 
+    const fetchRegisteredEvents = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:8080/api/attendees/user/${userId}/upcoming`,
+          { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
+        );
+        
+        const sortedEvents = response.data
+          .map(attendance => attendance.event)
+          .sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        setRegisteredEvents(sortedEvents);
+      } catch (err) {
+        console.error("Error fetching registered events:", err);
+      } finally {
+        setLoadingEvents(false);
+      }
+    };
+
     fetchProfileData();
+    fetchRegisteredEvents();
   }, [userId]);
 
   const handleLogout = async () => {
@@ -229,6 +255,15 @@ const Profile = () => {
                 </div>
               </Link>
             </div>
+            <div>
+                  <Link to={`/user/${userId}/attended-events`} className="text-decoration-none text-dark">
+                      <div className="fs-4 fw-bold">{stats.attendedEventsCount}</div>
+                      <div className="text-muted small">
+                        <FaCheckCircle className="me-1" />
+                        Attended
+                      </div>
+                    </Link>
+                  </div>
           </div>
 
           <div className="profile-details">
@@ -246,6 +281,29 @@ const Profile = () => {
           </div>
         </div>
       </div>
+            
+
+      <div className="container-fluid tm-container-content tm-mt-60">
+      <h2>Upcoming Events</h2>
+
+<div className="row tm-mb-90 tm-gallery">
+    {registeredEvents.length > 0 ? (
+        registeredEvents.map((event) => (
+            <EventItem 
+                key={event.id} 
+                event={event} 
+            />
+        ))
+    ) : (
+        <div className="col-12">
+            <div className="alert alert-info">
+                No events found. Register your first event!
+            </div>
+        </div>
+    )}
+</div>
+</div>
+
 
       {/* Hidden file input */}
       <input

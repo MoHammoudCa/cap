@@ -67,7 +67,7 @@ public class AttendeeService {
         Message message = new Message();
         message.setSender(eventNotifier);
         message.setRecipient(userRepository.findById(userId).orElseThrow());
-//        message.setTitle("Attendance Confirmation: " + event.getTitle());
+        message.setTitle("Attendance Confirmation: " + event.getTitle());
         message.setContent("You have successfully registered for the event '" +
                 event.getTitle() + "' on " + event.getDate());
         message.setTimestamp(LocalDateTime.now());
@@ -81,7 +81,7 @@ public class AttendeeService {
         Message message = new Message();
         message.setSender(eventNotifier);
         message.setRecipient(userRepository.findById(userId).orElseThrow());
-//        message.setTitle("Attendance Confirmation: " + event.getTitle());
+        message.setTitle("Attendance Cancellation: " + event.getTitle());
         message.setContent("You have successfully unregistered for the event '" +
                 event.getTitle() + "' on " + event.getDate());
         message.setTimestamp(LocalDateTime.now());
@@ -105,5 +105,20 @@ public class AttendeeService {
 
     public List<Attendee> getEventAttendees(UUID eventId) {
         return attendeeRepository.findByEventId(eventId);
+    }
+
+    public List<Attendee> getUserAttendedEvents(UUID userId) {
+        LocalDateTime now = LocalDateTime.now();
+        return attendeeRepository.findByUserIdAndEventDateBefore(userId, now);
+    }
+
+    public long countUserAttendedEvents(UUID userId) {
+        LocalDateTime now = LocalDateTime.now();
+        return attendeeRepository.countByUserIdAndEventDateBefore(userId, now);
+    }
+
+    public List<Attendee> getUserUpcomingEvents(UUID userId) {
+        LocalDateTime now = LocalDateTime.now();
+        return attendeeRepository.findByUserIdAndEventDateAfter(userId, now);
     }
 }

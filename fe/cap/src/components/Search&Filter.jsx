@@ -30,6 +30,14 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
     { id: "Other", name: "Other" },
   ];
 
+  // Normalize the categories field
+  const normalizeCategories = (categories) => {
+    if (typeof categories === "string") {
+      return categories.split(",").map((item) => item.trim()).filter(Boolean);
+    }
+    return Array.isArray(categories) ? categories : [];
+  };
+
   // Apply all filters whenever any filter criteria changes
   useEffect(() => {
     if (!events) return;
@@ -56,9 +64,11 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
 
     // Apply category filter if any selected
     if (selectedCategories.length > 0) {
-      result = result.filter((event) =>
-        event.categories?.some((cat) => selectedCategories.includes(cat))
-  )}
+      result = result.filter((event) => {
+        const eventCategories = normalizeCategories(event.categories); // Ensure categories are always an array
+        return eventCategories.some((cat) => selectedCategories.includes(cat));
+      });
+    }
 
     // Apply date sorting
     if (sortDate) {
@@ -70,7 +80,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
     }
 
     setFilteredEvents(result);
-  }, [events, searchTerm, selectedCategories, , sortDate, eventStatusFilter]);
+  }, [events, searchTerm, selectedCategories, sortDate, eventStatusFilter]);
 
   const toggleCategory = (categoryId) => {
     setSelectedCategories((prev) =>
@@ -104,7 +114,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
       {/* Filters Panel */}
       {showFilters && (
         <div className="filters-panel">
-          {/* New Event Status Filter Section */}
+          {/* Event Status Filter Section */}
           <div className="filter-section">
             <h4>Event Status</h4>
             <div className="status-options">
@@ -132,7 +142,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
             </div>
           </div>
 
-          {/* Existing Filters */}
+          {/* Categories */}
           <div className="filter-section">
             <h4>Categories</h4>
             <div className="category-bubbles">
@@ -151,6 +161,7 @@ const SearchAndFilter = ({ events, setFilteredEvents, setLoading, setError }) =>
             </div>
           </div>
 
+          {/* Sort by Date */}
           <div className="filter-section">
             <h4>Sort by Date</h4>
             <div className="sort-options">
