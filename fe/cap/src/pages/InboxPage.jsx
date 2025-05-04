@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import { FaEnvelope, FaEnvelopeOpen, FaSearch, FaTimes } from 'react-icons/fa';
+import Loader from '../components/Loader';
 
 const InboxPage = () => {
     const [messages, setMessages] = useState([]);
@@ -129,7 +130,7 @@ const InboxPage = () => {
                         </div>
                         
                         {loading ? (
-                            <div className="text-center py-5">Loading messages...</div>
+                            <Loader></Loader>
                         ) : filteredMessages.length === 0 ? (
                             <div className="alert alert-info">
                                 {searchTerm ? "No matching messages found" : "No messages found"}

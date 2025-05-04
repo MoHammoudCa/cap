@@ -4,6 +4,7 @@ import axios from "axios";
 import { FaCheckCircle } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import { parseISO, isAfter, isBefore, format } from "date-fns";
+import Loader from "../components/Loader";
 
 const AttendancePage = () => {
   const userId = JSON.parse(localStorage.getItem("user"))?.id;
@@ -65,7 +66,7 @@ const AttendancePage = () => {
     fetchAttendanceEvents();
   }, [userId, token]);
 
-  if (loading) return <div className="text-center py-5">Loading attendance events...</div>;
+  if (loading) return <Loader></Loader>;
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (

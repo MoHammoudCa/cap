@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import EventItem from "./EventItem";
 import SearchAndFilter from "./Search&Filter";
 import axios from "axios";
+import Loader from "./Loader";
 
 const Events = () => {
 	const [originalEvents, setOriginalEvents] = useState([]);
@@ -62,7 +63,7 @@ const Events = () => {
 	}, []);
 
 	if (loading) {
-		return <div>Loading events...</div>;
+		return <Loader></Loader>;
 	}
 
 	if (error) {

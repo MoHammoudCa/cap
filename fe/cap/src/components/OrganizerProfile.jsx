@@ -5,6 +5,7 @@ import EventItem from "./EventItem";
 import SearchAndFilter from "./Search&Filter";
 import { FaUserPlus, FaUserCheck } from "react-icons/fa";
 import MessageButton from "./MessageButton";
+import Loader from "./Loader";
 
 const OrganizerProfileComp = () => {
   const { id } = useParams();
@@ -123,7 +124,7 @@ const OrganizerProfileComp = () => {
     fetchData();
   }, [id]);
 
-  if (loading) return <div className="text-center py-5">Loading organizer...</div>;
+  if (loading) return <Loader></Loader>;
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (

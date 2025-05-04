@@ -4,157 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/about.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/public/hero.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/public/vite.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/about.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/defaultEventImage.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/funlb-team.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/hero.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-01-big.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/img-16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/lebanon-evennts.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/people-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/people-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/people-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/people-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/assets/img/select-arrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/EditEvent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/EditEvent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/components/MyEventsComp.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/components/MyEventsComp.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/Contact.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/EventDetailPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/EventDetailPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/MyEvents.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/MyEvents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/cap/src/pages/OrganizerProfilePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../fe/cap/src/pages/OrganizerProfilePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/contact.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/css/login.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/css/templatemo-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/db.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/attribution.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/css/all.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-brands-400.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-brands-400.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-brands-400.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-brands-400.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-brands-400.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-regular-400.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-regular-400.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-regular-400.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-regular-400.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-regular-400.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-solid-900.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-solid-900.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-solid-900.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-solid-900.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/fontawesome/webfonts/fa-solid-900.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/about.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/hero.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-01-big.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-05.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-06.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-07.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-08.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-09.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-10.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-11.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-12.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-13.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-14.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-15.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/img-16.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/lebanon-events.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/people-1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/people-2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/people-3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/people-4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/img/select-arrow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/js/login.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/js/plugins.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/photo-detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/profile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/video-detail.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/video/hero.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../fe/videos.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/config/SecurityConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/CategoryController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/EventController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/LikeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/TestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/TestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/UserDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/dto/UserDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Comment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Follow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Follow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/Like.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/AttendeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/AttendeeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/CategoryRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/CommentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/CommentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/EventRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/EventRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/FollowRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/FollowRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/LikeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/LikeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/AuthEntryPointJwt.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/AuthEntryPointJwt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/AuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/AuthTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/security/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/AttendeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/CategoryService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/EventService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/LikeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/MessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/funlb/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/EventController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/TestController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/TestController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/dto/UserDTO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/dto/UserDTO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Comment.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Comment.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Event.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Follow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Follow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Like.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/entity/Like.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/EventRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/repository/EventRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/AuthEntryPointJwt.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/AuthEntryPointJwt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/AuthTokenFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/AuthTokenFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/JwtUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/JwtUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/security/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/CustomUserDetailsService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/CustomUserDetailsService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/EventService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/funlb/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/funlb/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
-    </list>
+    <list default="true" id="e0e2e137-93c0-4d0c-8213-fe2d1eecae5d" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -181,31 +31,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.FunlbApplication.executor": "Run",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/aliabdelghaffar/Downloads/funlb",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.FunlbApplication.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/aliabdelghaffar/Downloads/funlb&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="FunlbApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="21" />

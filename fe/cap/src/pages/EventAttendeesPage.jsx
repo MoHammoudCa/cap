@@ -4,6 +4,7 @@ import axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import { FaUserFriends, FaTimes, FaUserTimes } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import Loader from "../components/Loader";
 
 const EventAttendeesPage = () => {
     const { id } = useParams();
@@ -73,7 +74,7 @@ const EventAttendeesPage = () => {
         }
     };
 
-    if (loading) return <div className="text-center py-5">Loading attendees...</div>;
+    if (loading) return <Loader></Loader>;
     if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
     return (

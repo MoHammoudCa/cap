@@ -17,6 +17,7 @@ import axios from "axios";
 import { parseISO, isAfter, isBefore, format } from "date-fns";
 import EventItem from "./EventItem";
 import '../assets/css/eventDetails.css';
+import Loader from "./Loader";
 
 const EventDetail = () => {
   const { id } = useParams();
@@ -171,7 +172,7 @@ const EventDetail = () => {
     fetchEvent();
   }, [id, currentUserId]);
 
-  if (loading) return <div className="text-center py-5">Loading...</div>;
+  if (loading) return <Loader></Loader>;
   if (error) return <div className="alert alert-danger mx-3">Error: {error}</div>;
   if (!event) return <div className="alert alert-warning mx-3">Event not found</div>;
 

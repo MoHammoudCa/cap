@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { FaHeart } from "react-icons/fa";
-import SearchAndFilter from "../components/Search&Filter";
 import { parseISO, isAfter, isBefore, format } from "date-fns";
 import Navbar from "../components/Navbar";
+import Loader from "../components/Loader";
 
 
 const LikedEventsPage = () => {
@@ -87,7 +87,7 @@ const LikedEventsPage = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-5">Loading liked events...</div>;
+  if (loading) <Loader></Loader>;
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (

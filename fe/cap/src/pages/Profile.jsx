@@ -12,6 +12,7 @@ import {
 } from "react-icons/fa";
 import axios from "axios";
 import EventItem from "../components/EventItem";
+import Loader from "../components/Loader";
 
 const Profile = () => {
   const userId = JSON.parse(localStorage.getItem("user")).id;
@@ -171,7 +172,7 @@ const Profile = () => {
   };
 
   if (loading) {
-    return <div>Loading profile...</div>;
+    return <Loader></Loader>;
   }
 
   if (error) {

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import EventItem from "./EventItem";
 import SearchAndFilter from "./Search&Filter";
 import axios from "axios";
+import Loader from "./Loader";
 
 const MyEventsComp = () => {
   const userId = JSON.parse(localStorage.getItem("user"))?.id;
@@ -85,11 +86,7 @@ const MyEventsComp = () => {
 
   if (loading) {
     return (
-      <div className="d-flex justify-content-center mt-5">
-        <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
+      <Loader></Loader>
     );
   }
 

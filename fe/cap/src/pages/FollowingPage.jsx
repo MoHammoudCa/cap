@@ -4,6 +4,7 @@ import axios from "axios";
 import { FiSearch } from "react-icons/fi";
 import { FaUserFriends, FaUserTimes } from "react-icons/fa";
 import Navbar from "../components/Navbar";
+import Loader from "../components/Loader";
 
 
 const FollowingPage = () => {
@@ -63,7 +64,7 @@ const FollowingPage = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-5">Loading following...</div>;
+  if (loading) return <Loader></Loader>;
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (

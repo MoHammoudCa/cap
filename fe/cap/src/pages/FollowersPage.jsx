@@ -5,6 +5,7 @@ import { FiSearch } from "react-icons/fi";
 import { FaUserFriends, FaTimes } from "react-icons/fa";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import Loader from "../components/Loader";
 
 const FollowersPage = () => {
     const userId = JSON.parse(localStorage.getItem("user"))?.id;
@@ -63,7 +64,7 @@ const FollowersPage = () => {
     }
   };
 
-  if (loading) return <div className="text-center py-5">Loading followers...</div>;
+  if (loading) return <Loader></Loader>;
   if (error) return <div className="alert alert-danger">Error: {error}</div>;
 
   return (
