@@ -14,10 +14,8 @@ const EventDetailPage = () => {
 
 	return (
 		<>
-			{/* <Loader /> */}
 			<Navbar />
 			<EventDetail />
-			{/* <RelatedPhotos /> */}
 			<Footer />
 		</>
 	);

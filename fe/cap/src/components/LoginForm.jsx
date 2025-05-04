@@ -1,82 +1,88 @@
 import React, { useState } from "react";
-import "boxicons";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const LoginForm = ({ switchToSignup }) => {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [showPassword, setShowPassword] = useState(false);
-	const [error, setError] = useState("");
-	const { login } = useAuth();
-	const navigate = useNavigate();
+const LoginForm = ({userData}) => {
+const [email, setEmail] = useState(userData.email || "");
+  const [password, setPassword] = useState(userData.password || "");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		try {
-			await login(email, password);
-			navigate("/");
-		} catch (err) {
-			setError(err.message || "login failed");
-		}
-	};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError("");
+    
+    try {
+      await login(email, password);
+      navigate("/");
+    } catch (err) {
+      setError(err.message || "Login failed. Please check your credentials.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-	return (
-		<div className="form login">
-			<div className="form-content">
-				<header>Login</header>
-				{error && <div className="error-message">{error}</div>}
-				<form onSubmit={handleSubmit}>
-					<div className="field input-field">
-						<input
-							type="email"
-							placeholder="Email"
-							className="input"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							required
-						/>
-					</div>
-					<div className="field input-field">
-						<input
-							type={showPassword ? "text" : "password"}
-							placeholder="Password"
-							className="password"
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
-							required
-						/>
-						{/* <i
-							className={`bx ${showPassword ? "bx-show" : "bx-hide"} eye-icon`}
-							onClick={() => setShowPassword(!showPassword)}
-						></i> */}
-						<i
-							className={`fa-solid ${
-								showPassword ? "fa-eye-slash" : "fa-eye"
-							} eye-icon`}
-							onClick={() => setShowPassword(!showPassword)}
-						></i>
-					</div>
-					<div className="form-link">
-						<a href="#" className="forgot-pass">
-							Forgot password?
-						</a>
-					</div>
-					<div className="field button-field">
-						<button type="submit">Login</button>
-					</div>
-				</form>
-				<div className="form-link">
-					<span>
-						Don't have an account?{" "}
-						<a href="#" className="link signup-link" onClick={switchToSignup}>
-							Signup
-						</a>
-					</span>
-				</div>
-			</div>
-		</div>
-	);
+  return (
+    <form onSubmit={handleSubmit}>
+      {error && (
+        <div className="alert alert-danger mb-4" role="alert">
+          {error}
+        </div>
+      )}
+      
+      <div className="mb-3">
+        <label htmlFor="email" className="form-label">Email</label>
+        <input
+          type="email"
+          className="form-control"
+          id="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+      </div>
+      
+      <div className="mb-3">
+        <label htmlFor="password" className="form-label">Password</label>
+        <div className="input-group">
+          <input
+            type={showPassword ? "text" : "password"}
+            className="form-control"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          <button 
+            className="btn btn-outline-secondary" 
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+          >
+            {showPassword ? <FaEyeSlash /> : <FaEye />}
+          </button>
+        </div>
+      </div>
+      
+      <div className="d-flex justify-content-between align-items-center mb-4">
+		</div>        
+      
+      <button 
+        type="submit" 
+        className="btn btn-primary w-100 mb-3"
+        disabled={isLoading}
+      >
+        {isLoading ? (
+          <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        ) : null}
+        Login
+      </button>
+    </form>
+  );
 };
 
 export default LoginForm;

@@ -283,6 +283,7 @@ const EventDetail = () => {
         </div>
       )}
 
+      <br></br><br></br>
       <div className="row mb-4">
         <h2 className="col-12 tm-text-primary">{event.title}</h2>
       </div>

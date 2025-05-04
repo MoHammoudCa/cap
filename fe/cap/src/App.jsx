@@ -18,6 +18,9 @@ import LikedEventsPage from "./pages/LikedEventsPage";
 import InboxPage from "./pages/InboxPage";
 import EventAttendeesPage from "./pages/EventAttendeesPage";
 import AttendedEventsPage from "./pages/AttendedEventsPage";
+import AuthContainer from "./components/authContainer";
+import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
 
 const App = () => {
 	return (
@@ -25,7 +28,9 @@ const App = () => {
 			<Routes>
 				<Route path="/" element={<Home />} />
 				<Route path="/photo/:id" element={<PhotoDetailPage />} />
-				<Route path="/login" element={<LoginSignup />} />
+				<Route path="/login" element={<AuthContainer />} />
+				<Route path="/signup" element={<AuthContainer />} />
+
 
 				<Route element={<ProtectedRoute />}>
 					<Route path="/add-event" element={<AddEvent />} />
