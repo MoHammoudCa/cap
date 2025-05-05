@@ -30,7 +30,7 @@ const EventDetail = () => {
   const [isLoadingAttendance, setIsLoadingAttendance] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const [modalAction, setModalAction] = useState(null); // 'register' or 'cancel'
+  const [modalAction, setModalAction] = useState(null); 
 
   const user = JSON.parse(localStorage.getItem("user"));
   const currentUserId = user?.id;
@@ -82,14 +82,42 @@ const EventDetail = () => {
 
   const fetchSimilarEvents = async (currentEvent) => {
     try {
-      const response = await axios.get(`http://localhost:8080/api/events/`);
-      const now = new Date();
+      const response = await fetch(`http://localhost:8080/api/events/`);
+      if (!response.ok) throw new Error("Could not fetch events");
+      const allEvents = await response.json();
       
-      const otherEvents = response.data
-        .filter(e => e.id !== currentEvent.id && new Date(e.date) > now)
-        .map(normalizeEvent);
+
+	  const now = new Date();
+	  
+      // Filter out the current event
+      const otherEvents = allEvents.filter(e => e.id !== currentEvent.id
+		&& new Date(e.date) > now).map(normalizeEvent);
       
-      setSimilarEvents(otherEvents.slice(0, 3));
+      // Score events based on similarity
+      const scoredEvents = otherEvents.map(otherEvent => {
+        let score = 0;
+        
+        // Same organizer (high weight)
+        if (currentEvent.organizer && otherEvent.organizer && 
+            currentEvent.organizer.id === otherEvent.organizer.id) {
+          score += 2;
+        }
+        
+        // Shared categories (medium weight)
+        const sharedCategories = currentEvent.categories.filter(cat => 
+          otherEvent.categories.includes(cat)
+        ).length;
+        score += sharedCategories * 3;
+        
+        return { ...otherEvent, score };
+      });
+      
+      // Sort by score and get top 3
+      const topSimilar = scoredEvents
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
+      
+      setSimilarEvents(topSimilar);
     } catch (err) {
       console.error("Error fetching similar events:", err);
       setSimilarEvents([]);
@@ -426,7 +454,7 @@ const EventDetail = () => {
               </div>
 
               {/* Attendance Button */}
-              {currentUserId && !isOrganizer  && (
+              {currentUserId && !isOrganizer  && statusInfo.status == "Active" &&  (
                 <div className="mt-4">
                   {isFull && !isAttending ? (
                     <button className="btn btn-secondary w-100" disabled>
