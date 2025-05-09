@@ -7,20 +7,6 @@ const About = () => {
 	return (
 		<>
 			<Navbar />
-			<Parallax
-				blur={{ min: -15, max: 15 }}
-				bgImage="/src/assets/img/lebanon-events.jpg" // Changed to more relevant image
-				bgImageAlt="Lebanon events background"
-				strength={200}
-				className="tm-hero d-flex justify-content-center align-items-center"
-			>
-				<div className="tm-hero-text text-center text-white">
-					<h1 className="tm-hero-title">Discover the Pulse of Lebanon</h1>
-					<p className="tm-hero-subtitle">
-						Connecting people with the best events across the country
-					</p>
-				</div>
-			</Parallax>
 
 			<div className="container-fluid tm-mt-60">
 				<div className="row mb-4">
@@ -31,10 +17,10 @@ const About = () => {
 				<div className="row tm-mb-74 tm-row-1640">
 					<div className="col-lg-5 col-md-6 col-12 mb-3">
 						<img
-							src="/src/assets/img/funlb-team.jpg"
+							src="https://i.ibb.co/9mWLbrWL/My-Pic-zoomed.jpg"
 							alt="Fun.LB team"
 							className="img-fluid"
-							style={{width : '100%', height : 'auto' }}
+							style={{width : '90%', height : 'auto' }}
 						/>
 					</div>
 					<div className="col-lg-7 col-md-6 col-12">
