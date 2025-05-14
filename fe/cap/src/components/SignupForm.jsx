@@ -52,7 +52,7 @@ const SignupForm = ({ setIsLogin, setUserData }) => {
 
     // Name validation
     if (!formData.name.trim()) {
-      newErrors.name = "Full name is required";
+      newErrors.name = "Username is required";
       isValid = false;
     }
 
@@ -136,7 +136,7 @@ const SignupForm = ({ setIsLogin, setUserData }) => {
       )}
 
       <div className="mb-3">
-        <label htmlFor="name" className="form-label">Full Name</label>
+        <label htmlFor="name" className="form-label">Username</label>
         <input
           type="text"
           className={`form-control ${errors.name ? "is-invalid" : ""}`}

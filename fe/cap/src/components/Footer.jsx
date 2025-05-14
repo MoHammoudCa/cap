@@ -42,7 +42,7 @@ const Footer = () => {
               </li>
               <li className="mb-2">
                 <i className="fas fa-phone mr-2"></i>
-                +961 1 234 567
+                +961 70 554 528
               </li>
               <li className="mb-2">
                 <i className="fas fa-envelope mr-2"></i>

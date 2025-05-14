@@ -166,10 +166,12 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                             <h5 className="card-title mb-0 me-2">{event.title}</h5>
                         </div>
                         <div className="d-flex align-items-center">
-                            <span className="text-muted me-2 small">{likesCount}</span>
+                            <span className="text-muted me-2 small fw-bold" style={{ minWidth: "20px", textAlign: "center" }}>
+                                {likesCount}
+                            </span>
                             <button 
                                 onClick={handleLikeToggle}
-                                className="btn btn-link p-0 border-0"
+                                className="btn btn-link p-0 border-0 align-middle"
                                 disabled={isLoadingLike}
                                 aria-label={isLiked ? "Unlike event" : "Like event"}
                                 style={{ lineHeight: 1 }}
@@ -199,7 +201,7 @@ const EventItem = ({ event, onDelete, onUpdate, showActions = false }) => {
                                     style={{ width: "30px", height: "30px", objectFit: "cover" }}
                                 />
                                 <span className="text-muted small">
-                                    Hosted by <strong className="ms-2">{event.organizer.name}</strong>
+                                    `<strong className="ms-2">{event.organizer.name}</strong>
                                 </span>
                             </Link>
                         </div>

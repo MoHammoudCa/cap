@@ -154,7 +154,11 @@ const InboxPage = () => {
                                                 <div>
                                                     <h6 className="mb-1">{message.title || 'No Title'}</h6>
                                                     <small className="text-muted">
-                                                        From: {message.sender?.name || 'Unknown'}
+                                                    From: {message.sender ? (
+                                                        <Link to={`/organizer/${message.sender.id}`} className="text-decoration-none">
+                                                        {message.sender.name}
+                                                        </Link>
+                                                    ) : 'Unknown'}
                                                     </small>
                                                 </div>
                                             </div>
